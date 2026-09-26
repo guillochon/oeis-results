@@ -7,8 +7,8 @@
 ## 1. The question
 
 **Split quaternions** are numbers of the form a + b·i + c·j + d·k with i² = j² = +1. They're a
-cousin of Hamilton's quaternions, which describe 3D rotations, and are really 2×2 matrices in
-disguise. Do the arithmetic **modulo n**, like clock arithmetic with an n-hour clock, so that a,
+cousin of Hamilton's quaternions, which describe 3D rotations. For odd n they are exactly the
+2×2 matrices. Do the arithmetic **modulo n**, like clock arithmetic with an n-hour clock, so that a,
 b, c, d are remainders after dividing by n.
 
 An **involution** is an X with **X² = 1**: something that undoes itself when done twice, like a
@@ -71,3 +71,36 @@ For an odd prime power, split the solutions by the first coordinate a.
 A sibling sequence, **A227867**, asks the same question for ordinary quaternions (i² = j² = −1).
 Surprisingly, it has exactly the same values at odd n. The two differ only at powers of 2, and
 there's a nice reason why (see its own explanation).
+
+## 6. Why it matters (honestly)
+
+This is a modest result, not a breakthrough. It still has real value:
+
+- **Every term, instantly.** The OEIS entry had 49 values found by computer search and no
+  formula. Now any term, for any n, comes from a short product over n's prime factors.
+- **It explains the numbers.** For odd n, the count equals the number of **2×2 matrices X with
+  X² = I** over clock arithmetic modulo n. That's a natural question in its own right: those
+  matrices are the "reflections" of the space of pairs of numbers mod n. The formula p² + p + 2
+  for a prime p has a clean meaning. There are the two obvious answers, I and −I. The other
+  p(p + 1) are the reflections, one for each choice of a line the reflection keeps fixed and a
+  different line it flips. There are p + 1 lines through the origin, so that's (p + 1) × p
+  choices.
+- **It explains a coincidence.** Ordinary quaternions (A227867) give *exactly the same numbers*
+  at odd n. The reason is that, modulo an odd number, both kinds of quaternion are secretly the
+  same ring of 2×2 matrices. They only differ at powers of 2.
+- **It uses a classic, reusable idea.** Counting solutions to equations one prime power at a time
+  and "lifting" them (Hensel's lemma) is one of the basic tools of number theory. Here it's done in
+  a fully counted form that others can reuse.
+- **It's machine-checked.** The whole argument is verified in Lean, so nobody has to trust it on
+  faith.
+
+---
+
+### Tiny glossary
+- **OEIS:** the On-Line Encyclopedia of Integer Sequences, a huge reference catalogue of number
+  sequences.
+- **Modulo n:** clock arithmetic, keeping only the remainder after dividing by n.
+- **Multiplicative:** the value at a product of coprime numbers is the product of the values
+  (for example, value at 12 = value at 4 × value at 3).
+- **Hensel's lemma:** a way to lift a solution modulo p to solutions modulo p², p³, and so on.
+- **Lean:** a proof assistant. It checks every step of a proof down to the axioms of mathematics.
