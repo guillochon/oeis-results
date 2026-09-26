@@ -24,8 +24,9 @@ used every day to describe **rotations in 3D**, in video games, spacecraft attit
 phone orientation sensors.
 
 This sequence uses a close cousin, the **split quaternions**, where i² = +1 and j² = +1 instead of
-−1. They show up in the geometry of spacetime (special relativity) and in studying 2×2 matrices.
-In fact, split quaternions are really just 2×2 matrices in disguise.
+−1. They show up in the geometry of spacetime (special relativity) and are closely related to 2×2
+matrices. With an odd modulus they *are* exactly the 2×2 matrices. With the powers of two used
+here they are a genuinely different ring.
 
 We do split-quaternion arithmetic **modulo 2ⁿ**: every coefficient a, b, c, d is a remainder
 after dividing by 2ⁿ.
@@ -86,3 +87,32 @@ We checked three independent ways:
 
 This sequence also opened the door to two relatives, A236553 and A227867, the same question with
 any modulus. Both now have proved formulas too.
+
+## 7. Why it matters (honestly)
+
+This is a small result, not a breakthrough. It still has real value:
+
+- **It removes a false "hard" label.** The OEIS tags sequences `hard` and `more` to steer
+  volunteers toward problems that need effort. This one only *looked* hard, because the only
+  program tried every possible answer. Now every term is instant, and nobody will waste
+  computer time on it.
+- **It was the key to a bigger answer.** Powers of two turned out to be the awkward part of the
+  general question. With this formula in hand, the whole family could be finished: A236553 (any
+  modulus) and A227867 (ordinary quaternions) now both have complete, proved formulas.
+- **The answer is fully machine-checked.** Very few OEIS formulas come with a proof that a
+  computer has verified step by step. This one does, so nobody has to take the argument on trust,
+  including ours.
+- **A lesson for spotting targets.** A `hard` tag sometimes means "the obvious program is slow",
+  not "the problem is deep". Looking for sequences like that is a good way to find results that
+  are within reach.
+
+---
+
+### Tiny glossary
+- **OEIS:** the On-Line Encyclopedia of Integer Sequences, a huge reference catalogue of number
+  sequences.
+- **Modulo n:** clock arithmetic, keeping only the remainder after dividing by n.
+- **Split quaternions:** numbers a + b·i + c·j + d·k with i² = j² = +1 (ordinary quaternions have
+  −1).
+- **Involution:** something that undoes itself when done twice. Here, an X with X² = 1.
+- **Lean:** a proof assistant. It checks every step of a proof down to the axioms of mathematics.
