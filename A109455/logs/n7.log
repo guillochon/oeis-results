@@ -1,0 +1,17 @@
+n=7:
+  (7,): class 720, Fix 16  canonical=9 lps=9 bad=0 0.13s
+  (6, 1): class 840, Fix 124  canonical=36 lps=51 bad=0 0.18s
+  (5, 2): class 504, Fix 212  canonical=58 lps=97 bad=0 0.29s
+  (5, 1, 1): class 504, Fix 1904  canonical=162 lps=279 bad=0 0.53s
+  (4, 3): class 420, Fix 264  canonical=71 lps=124 bad=0 0.23s
+  (4, 2, 1): class 630, Fix 3692  canonical=495 lps=1010 bad=0 1.74s
+  (4, 1, 1, 1): class 210, Fix 53736  canonical=871 lps=1700 bad=0 2.87s
+  (3, 3, 1): class 280, Fix 4560  canonical=321 lps=504 bad=0 0.99s
+  (3, 2, 2): class 210, Fix 6320  canonical=448 lps=879 bad=0 1.52s
+  (3, 2, 1, 1): class 420, Fix 111184  canonical=4050 lps=9473 bad=0 28.99s
+  (3, 1, 1, 1, 1): class 70, Fix 2537520  canonical=5576 lps=11547 bad=0 35.67s
+  (2, 2, 2, 1): class 105, Fix 168556  canonical=2074 lps=3680 bad=0 9.19s
+  (2, 2, 1, 1, 1): class 105, Fix 4526792  canonical=15424 lps=35341 bad=0 94.15s
+  (2, 1, 1, 1, 1, 1): class 21, Fix 163803892  canonical=36748 lps=77413 bad=0 160.66s
+  (1, 1, 1, 1, 1, 1, 1): class 1, Fix 8378070864  canonical=29375 lps=49114 bad=0 119.69s
+==> a(7) = 2490634   (Burnside remainder 0, 163.1s)

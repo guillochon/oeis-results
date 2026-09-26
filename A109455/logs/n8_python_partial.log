@@ -1,0 +1,24 @@
+n=8:
+    done (8,): canonical=10 tasks=0 0.15s
+    done (7, 1): canonical=45 tasks=6 1.87s
+    done (6, 2): canonical=76 tasks=14 1.92s
+    done (5, 3): canonical=100 tasks=15 1.88s
+    done (4, 4): canonical=58 tasks=6 2.18s
+    done (6, 1, 1): canonical=238 tasks=29 2.52s
+    done (5, 2, 1): canonical=823 tasks=66 3.88s
+    done (4, 3, 1): canonical=1118 tasks=74 4.28s
+    done (4, 2, 2): canonical=818 tasks=49 3.44s
+    done (3, 3, 2): canonical=996 tasks=44 3.89s
+    done (5, 1, 1, 1): canonical=1621 tasks=53 4.25s
+    done (4, 2, 1, 1): canonical=9129 tasks=127 21.41s
+    done (3, 3, 1, 1): canonical=6089 tasks=74 13.63s
+    done (3, 2, 2, 1): canonical=17540 tasks=142 44.28s
+    done (2, 2, 2, 2): canonical=2530 tasks=22 7.8s
+    done (4, 1, 1, 1, 1): canonical=14712 tasks=70 31.68s
+    done (3, 2, 1, 1, 1): canonical=117032 tasks=189 575.38s
+    new_handle = reduction.duplicate(pipe_handle,
+PermissionError: [WinError 5] Access is denied
+    new_handle = reduction.duplicate(pipe_handle,
+PermissionError: [WinError 5] Access is denied
+    new_handle = reduction.duplicate(pipe_handle,
+PermissionError: [WinError 5] Access is denied

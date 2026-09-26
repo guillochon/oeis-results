@@ -1,0 +1,61 @@
+n=8:
+  -> starting class 1/22: 8 (class size 5040)
+  8: class 5040, Fix 18  canonical=10 positive=10 lps=11 bad=0 0.0s subtrees=0
+  -> starting class 2/22: 7-1 (class size 5760)
+  7-1: class 5760, Fix 158  canonical=45 positive=45 lps=46 bad=0 0.0s subtrees=0
+  -> starting class 3/22: 6-2 (class size 3360)
+  6-2: class 3360, Fix 282  canonical=76 positive=76 lps=108 bad=0 0.0s subtrees=0
+  -> starting class 4/22: 5-3 (class size 2688)
+  5-3: class 2688, Fix 378  canonical=100 positive=100 lps=156 bad=0 0.0s subtrees=0
+  -> starting class 5/22: 4-4 (class size 1260)
+  4-4: class 1260, Fix 402  canonical=58 positive=106 lps=65 bad=0 0.0s subtrees=0
+  -> starting class 6/22: 6-1-1 (class size 3360)
+  6-1-1: class 3360, Fix 2914  canonical=238 positive=400 lps=319 bad=0 0.0s subtrees=0
+  -> starting class 7/22: 5-2-1 (class size 4032)
+  5-2-1: class 4032, Fix 6226  canonical=823 positive=823 lps=1408 bad=0 0.0s subtrees=0
+  -> starting class 8/22: 4-3-1 (class size 3360)
+  4-3-1: class 3360, Fix 8542  canonical=1118 positive=1118 lps=2056 bad=0 0.0s subtrees=0
+  -> starting class 9/22: 4-2-2 (class size 1260)
+  4-2-2: class 1260, Fix 11858  canonical=818 positive=1530 lps=1580 bad=0 0.0s subtrees=0
+  -> starting class 10/22: 3-3-2 (class size 1120)
+  3-3-2: class 1120, Fix 14930  canonical=996 positive=1916 lps=1725 bad=0 0.0s subtrees=0
+  -> starting class 11/22: 5-1-1-1 (class size 1344)
+  5-1-1-1: class 1344, Fix 106746  canonical=1621 positive=7057 lps=2742 bad=0 0.0s subtrees=0
+  -> starting class 12/22: 4-2-1-1 (class size 2520)
+  4-2-1-1: class 2520, Fix 258426  canonical=9129 positive=16728 lps=20386 bad=0 0.2s subtrees=0
+  -> starting class 13/22: 3-3-1-1 (class size 1120)
+  3-3-1-1: class 1120, Fix 340634  canonical=6089 positive=21964 lps=10816 bad=0 0.1s subtrees=2
+  -> starting class 14/22: 3-2-2-1 (class size 1680)
+  3-2-2-1: class 1680, Fix 531806  canonical=17540 positive=33962 lps=40428 bad=0 0.4s subtrees=265
+  -> starting class 15/22: 2-2-2-2 (class size 105)
+  2-2-2-2: class 105, Fix 797682  canonical=2530 positive=50554 lps=3738 bad=0 0.0s subtrees=72
+  -> starting class 16/22: 4-1-1-1-1 (class size 420)
+  4-1-1-1-1: class 420, Fix 7409026  canonical=14712 positive=238550 lps=30212 bad=0 0.5s subtrees=429
+  -> starting class 17/22: 3-2-1-1-1 (class size 1120)
+  3-2-1-1-1: class 1120, Fix 18712754  canonical=117032 positive=596474 lps=314139 bad=0 2.0s subtrees=4700
+  -> starting class 18/22: 2-2-2-1-1 (class size 420)
+  2-2-2-1-1: class 420, Fix 32527330  canonical=94751 positive=1030732 lps=206935 bad=0 1.6s subtrees=4435
+  -> starting class 19/22: 3-1-1-1-1-1 (class size 112)
+  3-1-1-1-1-1: class 112, Fix 890096678  canonical=175826 positive=14111410 lps=407348 bad=0 3.5s subtrees=4668
+  -> starting class 20/22: 2-2-1-1-1-1 (class size 210)
+[     30s] class 20/22 n=8 2-2-1-1-1-1 [searching]  subtrees 4424/4426 (100.0%)  canonical 6.438e5 (21400/s)  LPs 1.783e6  class 22s  ETA ~0s
+  2-2-1-1-1-1: class 210, Fix 1830743090  canonical=747563 positive=28913006 lps=2074707 bad=0 29.5s subtrees=4426
+  -> starting class 21/22: 2-1-1-1-1-1-1 (class size 28)
+[     60s] class 21/22 n=8 2-1-1-1-1-1-1 [searching]  subtrees 4851/4857 (99.9%)  canonical 8.680e5 (7458/s)  LPs 2.062e6  class 22s  ETA ~0s
+[     90s] class 21/22 n=8 2-1-1-1-1-1-1 [searching]  subtrees 4852/4857 (99.9%)  canonical 1.245e6 (12553/s)  LPs 3.080e6  class 52s  ETA ~0s
+[    120s] class 21/22 n=8 2-1-1-1-1-1-1 [searching]  subtrees 4852/4857 (99.9%)  canonical 1.552e6 (10297/s)  LPs 3.770e6  class 82s  ETA ~0s
+[    150s] class 21/22 n=8 2-1-1-1-1-1-1 [searching]  subtrees 4852/4857 (99.9%)  canonical 1.848e6 (9844/s)  LPs 4.498e6  class 112s  ETA ~0s
+[    180s] class 21/22 n=8 2-1-1-1-1-1-1 [searching]  subtrees 4852/4857 (99.9%)  canonical 2.113e6 (8826/s)  LPs 5.242e6  class 142s  ETA ~0s
+  2-1-1-1-1-1-1: class 28, Fix 146244881906  canonical=2306991 positive=1150415288 lps=5767517 bad=0 161.4s subtrees=4857
+  -> starting class 22/22: 1-1-1-1-1-1-1-1 (class size 1)
+[    210s] class 22/22 n=8 1-1-1-1-1-1-1-1 [searching]  subtrees 4901/4907 (99.9%)  canonical 5.950e5 (19801/s)  LPs 1.030e6  class 11s  ETA ~0s
+[    240s] class 22/22 n=8 1-1-1-1-1-1-1-1 [searching]  subtrees 4903/4907 (99.9%)  canonical 1.170e6 (19258/s)  LPs 2.223e6  class 41s  ETA ~0s
+[    270s] class 22/22 n=8 1-1-1-1-1-1-1-1 [searching]  subtrees 4906/4907 (100.0%)  canonical 1.431e6 (8689/s)  LPs 2.783e6  class 71s  ETA ~0s
+[    300s] class 22/22 n=8 1-1-1-1-1-1-1-1 [searching]  subtrees 4906/4907 (100.0%)  canonical 1.649e6 (7267/s)  LPs 3.236e6  class 101s  ETA ~0s
+[    330s] class 22/22 n=8 1-1-1-1-1-1-1-1 [searching]  subtrees 4906/4907 (100.0%)  canonical 1.892e6 (8077/s)  LPs 3.661e6  class 131s  ETA ~0s
+[    360s] class 22/22 n=8 1-1-1-1-1-1-1-1 [searching]  subtrees 4906/4907 (100.0%)  canonical 2.130e6 (7930/s)  LPs 4.125e6  class 161s  ETA ~0s
+[    390s] class 22/22 n=8 1-1-1-1-1-1-1-1 [searching]  subtrees 4906/4907 (100.0%)  canonical 2.353e6 (7489/s)  LPs 4.603e6  class 191s  ETA ~0s
+[    420s] class 22/22 n=8 1-1-1-1-1-1-1-1 [searching]  subtrees 4906/4907 (100.0%)  canonical 2.594e6 (8019/s)  LPs 5.121e6  class 221s  ETA ~0s
+  1-1-1-1-1-1-1-1: class 1, Fix 17561539552946  canonical=2730166 positive=68863243522 lps=5370097 bad=0 233.4s subtrees=4907
+    identity check vs A000609(8) = 17561539552946: OK
+==> a(8) = 550112272   (Burnside remainder 0, 432.9s)
