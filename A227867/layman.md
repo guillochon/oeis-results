@@ -58,3 +58,30 @@ always 4 × 8 = 32 solutions, whatever the power of 2.
 3. **A computer-checked proof in Lean**, a proof assistant that accepts an argument only if every
    step is justified down to the axioms. It confirms the formula for **all** n. The "never 7
    mod 8" fact is checked by having Lean try all 512 combinations modulo 8.
+
+## 5. Why it matters (honestly)
+
+This is a modest result, not a breakthrough. It still has real value:
+
+- **A complete answer.** The OEIS had 52 values from computer searches and no formula. Now every
+  term follows from a short product over the prime factors of n.
+- **It explains why two sequences agree.** At odd n, A227867 equals A236553, the same count for
+  the "split" quaternions. Both equal the number of 2×2 matrices X with X² = I modulo n. The
+  reason is that, modulo an odd number, ordinary quaternions and split quaternions are both
+  secretly the same ring of 2×2 matrices. That's a real structural fact, now visible in the
+  numbers.
+- **An old theorem shows up.** The freeze at 32 for powers of 2 is the three-square theorem of
+  Legendre and Gauss ("8m + 7 is never a sum of three squares") appearing in a new place.
+- **It's machine-checked.** The proof is verified in Lean, down to the axioms, including the
+  "never 7 mod 8" fact.
+
+---
+
+### Tiny glossary
+- **OEIS:** the On-Line Encyclopedia of Integer Sequences, a huge reference catalogue of number
+  sequences.
+- **Quaternion:** a number a + b·i + c·j + d·k with i² = j² = k² = −1. Lipschitz quaternions have
+  whole-number coefficients.
+- **Modulo n:** clock arithmetic, keeping only the remainder after dividing by n.
+- **Multiplicative:** the value at a product of coprime numbers is the product of the values.
+- **Lean:** a proof assistant. It checks every step of a proof down to the axioms of mathematics.
