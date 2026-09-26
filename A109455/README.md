@@ -128,3 +128,15 @@ Beyond a(9): the identity term A000609(10) (threshold functions of 10 variables)
 
   n = 8 identity grid: 403 s → 95 s on 8 threads, same exact counts (A000609(8)); a(0..7) re-validated. The a(9) run was resumed from its checkpoints with the new binary.
 - 2026-09-25: **Root cause of the "only ~3.3 cores busy" slowdowns:** this machine has an i5-12600K (6 P-cores + 4 E-cores). Windows 11 treated the engine, launched in the background, as EcoQoS work and kept it on the 4 E-cores; the P-cores sat idle. The engine now calls `SetProcessInformation(ProcessPowerThrottling)` at startup to opt out. Measured on the n = 8 transposition grid: 3.3 → 7.2 of 8 threads busy, 25 s, same exact counts. Also removed per-LP heap allocations (stack buffers). The a(9) run was resumed with this binary.
+- 2026-09-26: **a(9) = 448764716674** (`logs/n9.log`, `rust/results/n9.tsv`; about 3.1 h of wall time for the final resumed segment, 11049 s in total after resumes). The largest classes:
+  - Fix(2·1^7) = 486010253627696 (471,919,158 canonical);
+  - Fix(2²·1^5) = 2594373863484 (99,515,335 canonical);
+  - Fix(3·1^6) = 1091995941092.
+
+  Checks: Burnside remainder 0; bad = 0 in all 29 computed classes; the value lies inside [A000609(9)/9!, 2^9·A000617(9)] = [397185106518, 506835633152]; recomputed independently from `n9.tsv`. **Caveat:** the identity term is A000609(9) from the literature. It rests on a single 2006 thesis (see the provenance notes); an independent n = 9 identity run is next, and it also yields A001529(9) (NPN classes, new).
+- 2026-09-26: **Independent n = 9 identity run** (`logs/n9_identity.log`, 19,535 s on 12 threads; 993,061,484 canonical functions, 3.46×10⁹ LPs, bad = 0):
+  - **A000609(9) = 144130531453121108 confirmed**: the first independent check of the 2006 thesis value. So **a(9) = 448764716674 now rests only on our own computation** (Burnside remainder 0).
+  - A001532(9) = 175428 confirmed (self-dual NP classes).
+  - **A000617(9): the engine gives 993061484, but the OEIS lists 989913346.** Kurz, *On minimum sum representations for weighted voting games* ([arXiv:1103.1445](https://arxiv.org/abs/1103.1445), Table 2), lists 993061482 weighted voting games on 9 voters up to symmetry. A000617(n) = Kurz(n) + 2 (the two constant functions) for every n ≤ 8, so both sources give **993061484**; the OEIS value appears to be wrong (the entry attributes it to Tautenhahn's thesis).
+  - **A002078(9) = 281814234754247 (new).** It is counted directly and also equals the binomial mean 2⁻⁹ Σ C(9,k)·A000609(k), an identity that holds for every n ≤ 8.
+  - **A001529(9) = (993061484 + 175428)/2 = 496618456 (new)**, NPN classes; the formula is validated against A001529 for n ≤ 8.

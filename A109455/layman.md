@@ -72,7 +72,7 @@ The number of threshold rules explodes as the committee grows:
 | 6 | 15 million | 38,456 |
 | 7 | 8.4 billion | 2,490,634 |
 | 8 | 17.6 trillion | 550,112,272 |
-| 9 | 144 quadrillion (1.4×10¹⁷) | *being computed* |
+| 9 | 144 quadrillion (1.4×10¹⁷) | 448,764,716,674 |
 
 You can't list 144 quadrillion rules one by one and then group them. So the trick is to count the
 groups **without listing their members**.
@@ -97,7 +97,10 @@ can see why without a computer:
 The correct value is **38,456**.
 
 **New terms.** Nobody had computed the values for 7 and 8 members. They are **2,490,634** and
-**550,112,272**. The value for 9 is running now.
+**550,112,272**. For 9 members it is **448,764,716,674**. That run also recounted all 144 quadrillion rules
+for 9 inputs from scratch, confirming a published number that had rested on a single 2006 thesis.
+Along the way it found that a related OEIS entry (A000617) also seems to have a wrong value for 9
+inputs, and it gave new values for two more entries (A002078 and A001529).
 
 ## 6. How we know the numbers are right
 
@@ -122,7 +125,7 @@ This is a small piece of mathematics, not a breakthrough. It still has real valu
 - **Fixing an error in a widely used reference.** Researchers look up the OEIS to recognise
   sequences in their own work, and a wrong term can send someone down a dead end.
 - **Extending what's known.** The new terms tell us how many essentially different weighted voting
-  rules (or single-neuron behaviours) exist for committees of 7, 8 and hopefully 9 members.
+  rules (or single-neuron behaviours) exist for committees of 7, 8 and 9 members.
 - **The approach is what counts.** We didn't win with a bigger computer. We found a better way to
   count, and that is exactly what hard OEIS sequences usually need.
 - **A clear frontier.** Going to 10 members would need the total number of threshold rules for 10

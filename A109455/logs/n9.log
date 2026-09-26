@@ -1,0 +1,494 @@
+n=9:
+  -> starting class 1/30: 9 (class size 40320)
+  9: class 40320, Fix 20  canonical=11 positive=11 lps=12 bad=0 0.0s subtrees=0
+  -> starting class 2/30: 8-1 (class size 45360)
+  8-1: class 45360, Fix 196  canonical=55 positive=55 lps=56 bad=0 0.0s subtrees=0
+  -> starting class 3/30: 7-2 (class size 25920)
+  7-2: class 25920, Fix 364  canonical=97 positive=97 lps=144 bad=0 0.0s subtrees=0
+  -> starting class 4/30: 6-3 (class size 20160)
+  6-3: class 20160, Fix 504  canonical=132 positive=132 lps=225 bad=0 0.0s subtrees=0
+  -> starting class 5/30: 5-4 (class size 18144)
+  5-4: class 18144, Fix 580  canonical=151 positive=151 lps=264 bad=0 0.0s subtrees=0
+  -> starting class 6/30: 7-1-1 (class size 25920)
+  7-1-1: class 25920, Fix 4228  canonical=335 positive=573 lps=468 bad=0 0.0s subtrees=0
+  -> starting class 7/30: 6-2-1 (class size 30240)
+  6-2-1: class 30240, Fix 9604  canonical=1258 positive=1258 lps=2375 bad=0 0.0s subtrees=0
+  -> starting class 8/30: 5-3-1 (class size 24192)
+  5-3-1: class 24192, Fix 14632  canonical=1897 positive=1897 lps=3903 bad=0 0.0s subtrees=0
+  -> starting class 9/30: 5-2-2 (class size 9072)
+  5-2-2: class 9072, Fix 20284  canonical=1375 positive=2599 lps=3065 bad=0 0.0s subtrees=0
+  -> starting class 10/30: 4-4-1 (class size 11340)
+  4-4-1: class 11340, Fix 16068  canonical=1067 positive=2079 lps=1571 bad=0 0.0s subtrees=0
+  -> starting class 11/30: 4-3-2 (class size 15120)
+  4-3-2: class 15120, Fix 28244  canonical=3598 positive=3598 lps=9602 bad=0 0.1s subtrees=0
+  -> starting class 12/30: 3-3-3 (class size 2240)
+  3-3-3: class 2240, Fix 35516  canonical=821 positive=4508 lps=1194 bad=0 0.0s subtrees=2
+  -> starting class 13/30: 6-1-1-1 (class size 10080)
+  6-1-1-1: class 10080, Fix 191640  canonical=2766 positive=12558 lps=5191 bad=0 0.1s subtrees=0
+  -> starting class 14/30: 5-2-1-1 (class size 18144)
+  5-2-1-1: class 18144, Fix 525696  canonical=18201 positive=33803 lps=46739 bad=0 0.5s subtrees=241
+  -> starting class 15/30: 4-3-1-1 (class size 15120)
+  4-3-1-1: class 15120, Fix 802092  canonical=27471 positive=51344 lps=74941 bad=0 0.8s subtrees=1172
+  -> starting class 16/30: 4-2-2-1 (class size 11340)
+  4-2-2-1: class 11340, Fix 1250516  canonical=40763 positive=79447 lps=118394 bad=0 1.2s subtrees=2765
+  -> starting class 17/30: 3-3-2-1 (class size 10080)
+  3-3-2-1: class 10080, Fix 1688504  canonical=54145 positive=107032 lps=146554 bad=0 0.6s subtrees=4188
+  -> starting class 18/30: 3-2-2-2 (class size 2520)
+  3-2-2-2: class 2520, Fix 2570892  canonical=28854 positive=162066 lps=79973 bad=0 0.6s subtrees=2223
+  -> starting class 19/30: 5-1-1-1-1 (class size 3024)
+  5-1-1-1-1: class 3024, Fix 17879668  canonical=33301 positive=572527 lps=81719 bad=0 1.1s subtrees=2308
+  -> starting class 20/30: 4-2-1-1-1 (class size 7560)
+  4-2-1-1-1: class 7560, Fix 55179896  canonical=332762 positive=1751035 lps=1122085 bad=0 2.9s subtrees=4464
+  -> starting class 21/30: 3-3-1-1-1 (class size 3360)
+  3-3-1-1-1: class 3360, Fix 77716340  canonical=234109 positive=2462600 lps=677129 bad=0 2.1s subtrees=4224
+  -> starting class 22/30: 3-2-2-1-1 (class size 7560)
+  3-2-2-1-1: class 7560, Fix 138912180  canonical=1149975 positive=4382892 lps=4229615 bad=0 11.3s subtrees=5459
+  -> starting class 23/30: 2-2-2-2-1 (class size 945)
+  2-2-2-2-1: class 945, Fix 238069348  canonical=332479 positive=7486183 lps=854165 bad=0 2.8s subtrees=4349
+  -> starting class 24/30: 4-1-1-1-1-1 (class size 756)
+  4-1-1-1-1-1: class 756, Fix 3311445420  canonical=601644 positive=52330391 lps=1840294 bad=0 7.4s subtrees=4470
+  -> starting class 25/30: 3-2-1-1-1-1 (class size 2520)
+[     60s] class 25/30 n=9 3-2-1-1-1-1 [searching]  subtrees 4551/4590 (99.2%)  canonical 2.206e6 (36649/s)  LPs 7.940e6  class 28s  ETA ~0s
+[    120s] class 25/30 n=9 3-2-1-1-1-1 [searching]  subtrees 4552/4590 (99.2%)  canonical 5.244e6 (50790/s)  LPs 2.227e7  class 88s  ETA ~1s
+  3-2-1-1-1-1: class 2520, Fix 10304390204  canonical=7912475 positive=162238006 lps=32931348 bad=0 136.7s subtrees=4590
+  -> starting class 26/30: 2-2-2-1-1-1 (class size 1260)
+[    180s] class 26/30 n=9 2-2-2-1-1-1 [searching]  subtrees 4033/4112 (98.1%)  canonical 1.142e6 (19034/s)  LPs 3.197e6  class 12s  ETA ~0s
+[    240s] class 26/30 n=9 2-2-2-1-1-1 [searching]  subtrees 4045/4112 (98.4%)  canonical 4.675e6 (58776/s)  LPs 1.742e7  class 72s  ETA ~1s
+[    300s] class 26/30 n=9 2-2-2-1-1-1 [searching]  subtrees 4045/4112 (98.4%)  canonical 7.961e6 (54728/s)  LPs 3.052e7  class 132s  ETA ~2s
+  2-2-2-1-1-1: class 1260, Fix 20769998328  canonical=9863538 positive=326281779 lps=36900972 bad=0 161.7s subtrees=4112
+  -> starting class 27/30: 3-1-1-1-1-1-1 (class size 168)
+[    360s] class 27/30 n=9 3-1-1-1-1-1-1 [searching]  subtrees 4218/4241 (99.5%)  canonical 2.077e6 (34588/s)  LPs 5.990e6  class 30s  ETA ~0s
+[    420s] class 27/30 n=9 3-1-1-1-1-1-1 [searching]  subtrees 4228/4241 (99.7%)  canonical 5.174e6 (51797/s)  LPs 1.682e7  class 90s  ETA ~0s
+[    480s] class 27/30 n=9 3-1-1-1-1-1-1 [searching]  subtrees 4239/4241 (100.0%)  canonical 7.659e6 (41262/s)  LPs 2.686e7  class 150s  ETA ~0s
+[    540s] class 27/30 n=9 3-1-1-1-1-1-1 [searching]  subtrees 4239/4241 (100.0%)  canonical 1.011e7 (40835/s)  LPs 3.664e7  class 210s  ETA ~0s
+[    600s] class 27/30 n=9 3-1-1-1-1-1-1 [searching]  subtrees 4239/4241 (100.0%)  canonical 1.246e7 (39195/s)  LPs 4.587e7  class 270s  ETA ~0s
+[    660s] class 27/30 n=9 3-1-1-1-1-1-1 [searching]  subtrees 4239/4241 (100.0%)  canonical 1.489e7 (40508/s)  LPs 5.467e7  class 330s  ETA ~0s
+  3-1-1-1-1-1-1: class 168, Fix 1091995941092  canonical=15726886 positive=8573364752 lps=56956448 bad=0 346.4s subtrees=4241
+  -> starting class 28/30: 2-2-1-1-1-1-1 (class size 378)
+[    720s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4604/4776 (96.4%)  canonical 2.823e6 (47083/s)  LPs 9.181e6  class 44s  ETA ~2s
+[    780s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4732/4776 (99.1%)  canonical 6.186e6 (55929/s)  LPs 2.099e7  class 104s  ETA ~1s
+[    840s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4738/4776 (99.2%)  canonical 9.358e6 (52917/s)  LPs 3.233e7  class 164s  ETA ~1s
+[    900s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4741/4776 (99.3%)  canonical 1.208e7 (45473/s)  LPs 4.335e7  class 224s  ETA ~2s
+[    960s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4741/4776 (99.3%)  canonical 1.438e7 (38250/s)  LPs 5.379e7  class 284s  ETA ~2s
+[   1020s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4741/4776 (99.3%)  canonical 1.679e7 (40119/s)  LPs 6.419e7  class 344s  ETA ~3s
+[   1080s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4741/4776 (99.3%)  canonical 1.904e7 (37650/s)  LPs 7.437e7  class 403s  ETA ~3s
+[   1140s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4747/4776 (99.4%)  canonical 2.124e7 (36576/s)  LPs 8.451e7  class 463s  ETA ~3s
+[   1200s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4747/4776 (99.4%)  canonical 2.324e7 (33398/s)  LPs 9.435e7  class 524s  ETA ~3s
+[   1260s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4747/4776 (99.4%)  canonical 2.525e7 (33420/s)  LPs 1.043e8  class 584s  ETA ~4s
+[   1320s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4747/4776 (99.4%)  canonical 2.712e7 (31220/s)  LPs 1.138e8  class 644s  ETA ~4s
+[   1380s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4747/4776 (99.4%)  canonical 2.899e7 (31079/s)  LPs 1.233e8  class 704s  ETA ~4s
+[   1440s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4747/4776 (99.4%)  canonical 3.088e7 (31479/s)  LPs 1.327e8  class 764s  ETA ~5s
+[   1500s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4747/4776 (99.4%)  canonical 3.273e7 (30834/s)  LPs 1.422e8  class 824s  ETA ~5s
+[   1560s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4747/4776 (99.4%)  canonical 3.467e7 (32341/s)  LPs 1.518e8  class 884s  ETA ~5s
+[   1620s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4747/4776 (99.4%)  canonical 3.659e7 (31931/s)  LPs 1.611e8  class 944s  ETA ~6s
+[   1680s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4747/4776 (99.4%)  canonical 3.830e7 (28484/s)  LPs 1.702e8  class 1004s  ETA ~6s
+[   1740s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4747/4776 (99.4%)  canonical 3.998e7 (28153/s)  LPs 1.795e8  class 1064s  ETA ~6s
+[   1800s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4747/4776 (99.4%)  canonical 4.060e7 (10234/s)  LPs 1.830e8  class 1124s  ETA ~7s
+[   1860s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4747/4776 (99.4%)  canonical 4.098e7 (6399/s)  LPs 1.851e8  class 1184s  ETA ~7s
+[   1920s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4747/4776 (99.4%)  canonical 4.136e7 (6339/s)  LPs 1.871e8  class 1244s  ETA ~8s
+[   1980s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4747/4776 (99.4%)  canonical 4.174e7 (6259/s)  LPs 1.892e8  class 1304s  ETA ~8s
+=== resumed with FORK_MIN_REMAINING=6 ===
+n=9:
+  9: class 40320, Fix 20  (from results\n9.tsv)
+  8-1: class 45360, Fix 196  (from results\n9.tsv)
+  7-2: class 25920, Fix 364  (from results\n9.tsv)
+  6-3: class 20160, Fix 504  (from results\n9.tsv)
+  5-4: class 18144, Fix 580  (from results\n9.tsv)
+  7-1-1: class 25920, Fix 4228  (from results\n9.tsv)
+  6-2-1: class 30240, Fix 9604  (from results\n9.tsv)
+  5-3-1: class 24192, Fix 14632  (from results\n9.tsv)
+  5-2-2: class 9072, Fix 20284  (from results\n9.tsv)
+  4-4-1: class 11340, Fix 16068  (from results\n9.tsv)
+  4-3-2: class 15120, Fix 28244  (from results\n9.tsv)
+  3-3-3: class 2240, Fix 35516  (from results\n9.tsv)
+  6-1-1-1: class 10080, Fix 191640  (from results\n9.tsv)
+  5-2-1-1: class 18144, Fix 525696  (from results\n9.tsv)
+  4-3-1-1: class 15120, Fix 802092  (from results\n9.tsv)
+  4-2-2-1: class 11340, Fix 1250516  (from results\n9.tsv)
+  3-3-2-1: class 10080, Fix 1688504  (from results\n9.tsv)
+  3-2-2-2: class 2520, Fix 2570892  (from results\n9.tsv)
+  5-1-1-1-1: class 3024, Fix 17879668  (from results\n9.tsv)
+  4-2-1-1-1: class 7560, Fix 55179896  (from results\n9.tsv)
+  3-3-1-1-1: class 3360, Fix 77716340  (from results\n9.tsv)
+  3-2-2-1-1: class 7560, Fix 138912180  (from results\n9.tsv)
+  2-2-2-2-1: class 945, Fix 238069348  (from results\n9.tsv)
+  4-1-1-1-1-1: class 756, Fix 3311445420  (from results\n9.tsv)
+  3-2-1-1-1-1: class 2520, Fix 10304390204  (from results\n9.tsv)
+  2-2-2-1-1-1: class 1260, Fix 20769998328  (from results\n9.tsv)
+  3-1-1-1-1-1-1: class 168, Fix 1091995941092  (from results\n9.tsv)
+  -> starting class 28/30: 2-2-1-1-1-1-1 (class size 378)
+    [2-2-1-1-1-1-1] resuming: 4747/4776 subtrees already done (checkpoint)
+[     60s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4766/4776 (99.8%)  canonical 4.498e6 (74851/s)  LPs 3.960e6  class 60s  ETA ~0s
+[    120s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4767/4776 (99.8%)  canonical 5.245e6 (12460/s)  LPs 6.521e6  class 120s  ETA ~0s
+[    180s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4767/4776 (99.8%)  canonical 5.962e6 (11943/s)  LPs 9.043e6  class 180s  ETA ~0s
+[    240s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4770/4776 (99.9%)  canonical 6.640e6 (11309/s)  LPs 1.164e7  class 240s  ETA ~0s
+[    300s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4770/4776 (99.9%)  canonical 7.272e6 (10533/s)  LPs 1.408e7  class 300s  ETA ~0s
+[    360s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4770/4776 (99.9%)  canonical 8.014e6 (12359/s)  LPs 1.681e7  class 360s  ETA ~0s
+[    420s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4771/4776 (99.9%)  canonical 8.744e6 (12176/s)  LPs 1.940e7  class 420s  ETA ~0s
+[    480s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4771/4776 (99.9%)  canonical 9.479e6 (12224/s)  LPs 2.204e7  class 480s  ETA ~1s
+[    540s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4771/4776 (99.9%)  canonical 1.013e7 (10857/s)  LPs 2.454e7  class 540s  ETA ~1s
+[    600s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4771/4776 (99.9%)  canonical 1.079e7 (10991/s)  LPs 2.715e7  class 600s  ETA ~1s
+[    660s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4771/4776 (99.9%)  canonical 1.141e7 (10293/s)  LPs 2.967e7  class 660s  ETA ~1s
+[    720s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4771/4776 (99.9%)  canonical 1.194e7 (8903/s)  LPs 3.200e7  class 720s  ETA ~1s
+[    780s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4771/4776 (99.9%)  canonical 1.247e7 (8827/s)  LPs 3.437e7  class 780s  ETA ~1s
+[    840s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4772/4776 (99.9%)  canonical 1.299e7 (8573/s)  LPs 3.670e7  class 840s  ETA ~1s
+[    900s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4772/4776 (99.9%)  canonical 1.344e7 (7573/s)  LPs 3.898e7  class 900s  ETA ~1s
+[    960s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4772/4776 (99.9%)  canonical 1.393e7 (8241/s)  LPs 4.135e7  class 960s  ETA ~1s
+[   1020s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4772/4776 (99.9%)  canonical 1.446e7 (8859/s)  LPs 4.375e7  class 1020s  ETA ~1s
+[   1080s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4772/4776 (99.9%)  canonical 1.503e7 (9415/s)  LPs 4.615e7  class 1080s  ETA ~1s
+[   1140s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4772/4776 (99.9%)  canonical 1.557e7 (9036/s)  LPs 4.844e7  class 1140s  ETA ~1s
+[   1200s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 1.609e7 (8692/s)  LPs 5.073e7  class 1200s  ETA ~1s
+[   1260s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 1.658e7 (8042/s)  LPs 5.294e7  class 1260s  ETA ~1s
+[   1320s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 1.702e7 (7420/s)  LPs 5.510e7  class 1320s  ETA ~1s
+[   1380s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 1.749e7 (7858/s)  LPs 5.735e7  class 1380s  ETA ~1s
+[   1440s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 1.798e7 (8060/s)  LPs 5.961e7  class 1440s  ETA ~1s
+[   1500s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 1.847e7 (8199/s)  LPs 6.194e7  class 1500s  ETA ~1s
+[   1560s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 1.896e7 (8250/s)  LPs 6.422e7  class 1560s  ETA ~1s
+[   1620s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 1.948e7 (8546/s)  LPs 6.654e7  class 1620s  ETA ~1s
+[   1680s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 1.996e7 (8103/s)  LPs 6.886e7  class 1680s  ETA ~1s
+[   1740s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.044e7 (7877/s)  LPs 7.112e7  class 1740s  ETA ~1s
+[   1800s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.092e7 (8087/s)  LPs 7.337e7  class 1800s  ETA ~1s
+[   1860s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.141e7 (8093/s)  LPs 7.560e7  class 1860s  ETA ~1s
+[   1920s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.187e7 (7801/s)  LPs 7.774e7  class 1920s  ETA ~1s
+[   1980s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.236e7 (8151/s)  LPs 7.992e7  class 1980s  ETA ~1s
+[   2040s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.279e7 (7061/s)  LPs 8.184e7  class 2040s  ETA ~1s
+[   2100s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.309e7 (5033/s)  LPs 8.325e7  class 2100s  ETA ~1s
+[   2160s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.338e7 (4850/s)  LPs 8.459e7  class 2160s  ETA ~1s
+[   2220s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.368e7 (4980/s)  LPs 8.596e7  class 2220s  ETA ~1s
+[   2280s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.398e7 (5022/s)  LPs 8.736e7  class 2280s  ETA ~1s
+[   2340s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.428e7 (5065/s)  LPs 8.881e7  class 2340s  ETA ~1s
+[   2400s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.455e7 (4452/s)  LPs 9.020e7  class 2400s  ETA ~2s
+[   2460s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.490e7 (5762/s)  LPs 9.213e7  class 2460s  ETA ~2s
+[   2520s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.521e7 (5146/s)  LPs 9.384e7  class 2520s  ETA ~2s
+[   2580s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.549e7 (4672/s)  LPs 9.532e7  class 2580s  ETA ~2s
+[   2640s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.584e7 (5904/s)  LPs 9.716e7  class 2640s  ETA ~2s
+[   2700s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.629e7 (7465/s)  LPs 9.945e7  class 2700s  ETA ~2s
+[   2760s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.670e7 (6864/s)  LPs 1.015e8  class 2760s  ETA ~2s
+[   2820s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.699e7 (4869/s)  LPs 1.030e8  class 2820s  ETA ~2s
+[   2880s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.728e7 (4805/s)  LPs 1.044e8  class 2880s  ETA ~2s
+[   2940s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.754e7 (4342/s)  LPs 1.058e8  class 2940s  ETA ~2s
+[   3000s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.780e7 (4236/s)  LPs 1.072e8  class 3000s  ETA ~2s
+[   3060s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.807e7 (4660/s)  LPs 1.086e8  class 3060s  ETA ~2s
+[   3120s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.835e7 (4586/s)  LPs 1.100e8  class 3120s  ETA ~2s
+[   3180s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.867e7 (5318/s)  LPs 1.117e8  class 3180s  ETA ~2s
+[   3240s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.909e7 (6992/s)  LPs 1.139e8  class 3240s  ETA ~2s
+[   3300s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.936e7 (4610/s)  LPs 1.155e8  class 3300s  ETA ~2s
+[   3360s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.965e7 (4673/s)  LPs 1.169e8  class 3360s  ETA ~2s
+[   3420s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.993e7 (4708/s)  LPs 1.183e8  class 3420s  ETA ~2s
+[   3480s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 3.021e7 (4703/s)  LPs 1.197e8  class 3480s  ETA ~2s
+[   3540s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 3.049e7 (4725/s)  LPs 1.211e8  class 3540s  ETA ~2s
+[   3600s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 3.075e7 (4353/s)  LPs 1.225e8  class 3600s  ETA ~2s
+[   3660s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 3.107e7 (5327/s)  LPs 1.242e8  class 3660s  ETA ~2s
+[   3720s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 3.143e7 (6005/s)  LPs 1.261e8  class 3720s  ETA ~2s
+[   3780s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 3.170e7 (4362/s)  LPs 1.274e8  class 3780s  ETA ~2s
+[   3840s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 3.196e7 (4420/s)  LPs 1.288e8  class 3840s  ETA ~2s
+[   3900s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 3.307e7 (18506/s)  LPs 1.344e8  class 3900s  ETA ~2s
+[   3960s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 3.374e7 (11103/s)  LPs 1.377e8  class 3960s  ETA ~2s
+[   4020s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 3.403e7 (4949/s)  LPs 1.392e8  class 4020s  ETA ~3s
+=== resumed with work-stealing + maximal-zero LP rows ===
+n=9:
+  9: class 40320, Fix 20  (from results\n9.tsv)
+  8-1: class 45360, Fix 196  (from results\n9.tsv)
+  7-2: class 25920, Fix 364  (from results\n9.tsv)
+  6-3: class 20160, Fix 504  (from results\n9.tsv)
+  5-4: class 18144, Fix 580  (from results\n9.tsv)
+  7-1-1: class 25920, Fix 4228  (from results\n9.tsv)
+  6-2-1: class 30240, Fix 9604  (from results\n9.tsv)
+  5-3-1: class 24192, Fix 14632  (from results\n9.tsv)
+  5-2-2: class 9072, Fix 20284  (from results\n9.tsv)
+  4-4-1: class 11340, Fix 16068  (from results\n9.tsv)
+  4-3-2: class 15120, Fix 28244  (from results\n9.tsv)
+  3-3-3: class 2240, Fix 35516  (from results\n9.tsv)
+  6-1-1-1: class 10080, Fix 191640  (from results\n9.tsv)
+  5-2-1-1: class 18144, Fix 525696  (from results\n9.tsv)
+  4-3-1-1: class 15120, Fix 802092  (from results\n9.tsv)
+  4-2-2-1: class 11340, Fix 1250516  (from results\n9.tsv)
+  3-3-2-1: class 10080, Fix 1688504  (from results\n9.tsv)
+  3-2-2-2: class 2520, Fix 2570892  (from results\n9.tsv)
+  5-1-1-1-1: class 3024, Fix 17879668  (from results\n9.tsv)
+  4-2-1-1-1: class 7560, Fix 55179896  (from results\n9.tsv)
+  3-3-1-1-1: class 3360, Fix 77716340  (from results\n9.tsv)
+  3-2-2-1-1: class 7560, Fix 138912180  (from results\n9.tsv)
+  2-2-2-2-1: class 945, Fix 238069348  (from results\n9.tsv)
+  4-1-1-1-1-1: class 756, Fix 3311445420  (from results\n9.tsv)
+  3-2-1-1-1-1: class 2520, Fix 10304390204  (from results\n9.tsv)
+  2-2-2-1-1-1: class 1260, Fix 20769998328  (from results\n9.tsv)
+  3-1-1-1-1-1-1: class 168, Fix 1091995941092  (from results\n9.tsv)
+  -> starting class 28/30: 2-2-1-1-1-1-1 (class size 378)
+    [2-2-1-1-1-1-1] resuming: 4773/4776 subtrees already done (checkpoint)
+[     60s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 9.774e6 (1.624e5/s)  LPs 1.139e7  donated 53  class 60s  ETA ~0s
+[    120s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 1.312e7 (55916/s)  LPs 2.486e7  donated 64  class 120s  ETA ~0s
+[    180s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 1.730e7 (69480/s)  LPs 4.191e7  donated 78  class 180s  ETA ~0s
+[    240s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.126e7 (66100/s)  LPs 5.940e7  donated 100  class 240s  ETA ~0s
+[    300s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.274e7 (24746/s)  LPs 6.617e7  donated 108  class 300s  ETA ~0s
+[    360s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4773/4776 (99.9%)  canonical 2.411e7 (22715/s)  LPs 7.254e7  donated 112  class 360s  ETA ~0s
+[    420s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4774/4776 (100.0%)  canonical 2.486e7 (12558/s)  LPs 7.609e7  donated 114  class 420s  ETA ~0s
+[    480s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4774/4776 (100.0%)  canonical 2.565e7 (13152/s)  LPs 7.978e7  donated 232  class 480s  ETA ~0s
+[    540s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4774/4776 (100.0%)  canonical 2.632e7 (11121/s)  LPs 8.331e7  donated 235  class 540s  ETA ~0s
+[    600s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4774/4776 (100.0%)  canonical 2.702e7 (11708/s)  LPs 8.692e7  donated 239  class 600s  ETA ~0s
+[    660s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4774/4776 (100.0%)  canonical 2.776e7 (12449/s)  LPs 9.082e7  donated 243  class 660s  ETA ~0s
+[    720s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4774/4776 (100.0%)  canonical 2.852e7 (12536/s)  LPs 9.478e7  donated 245  class 720s  ETA ~0s
+[    780s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4774/4776 (100.0%)  canonical 2.932e7 (13336/s)  LPs 9.876e7  donated 254  class 780s  ETA ~0s
+[    840s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4774/4776 (100.0%)  canonical 3.020e7 (14768/s)  LPs 1.028e8  donated 285  class 840s  ETA ~0s
+[    900s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4774/4776 (100.0%)  canonical 3.109e7 (14729/s)  LPs 1.068e8  donated 302  class 900s  ETA ~0s
+[    960s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4774/4776 (100.0%)  canonical 3.191e7 (13805/s)  LPs 1.105e8  donated 307  class 960s  ETA ~0s
+[   1020s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4774/4776 (100.0%)  canonical 3.341e7 (24854/s)  LPs 1.176e8  donated 312  class 1020s  ETA ~0s
+[   1080s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4774/4776 (100.0%)  canonical 3.480e7 (23328/s)  LPs 1.245e8  donated 316  class 1080s  ETA ~0s
+[   1140s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4774/4776 (100.0%)  canonical 3.568e7 (14563/s)  LPs 1.286e8  donated 316  class 1140s  ETA ~0s
+[   1200s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4774/4776 (100.0%)  canonical 3.892e7 (54131/s)  LPs 1.454e8  donated 332  class 1200s  ETA ~1s
+[   1260s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4774/4776 (100.0%)  canonical 4.174e7 (46988/s)  LPs 1.594e8  donated 364  class 1260s  ETA ~1s
+[   1320s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 4.462e7 (48043/s)  LPs 1.735e8  donated 375  class 1320s  ETA ~0s
+[   1380s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 4.783e7 (53320/s)  LPs 1.906e8  donated 391  class 1380s  ETA ~0s
+[   1440s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 5.107e7 (54075/s)  LPs 2.076e8  donated 412  class 1440s  ETA ~0s
+[   1500s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 5.418e7 (51845/s)  LPs 2.237e8  donated 421  class 1500s  ETA ~0s
+[   1560s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 5.498e7 (13294/s)  LPs 2.279e8  donated 421  class 1560s  ETA ~0s
+[   1620s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 5.576e7 (12959/s)  LPs 2.320e8  donated 423  class 1620s  ETA ~0s
+[   1680s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 5.657e7 (13473/s)  LPs 2.363e8  donated 423  class 1680s  ETA ~0s
+[   1740s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 5.741e7 (13996/s)  LPs 2.405e8  donated 426  class 1740s  ETA ~0s
+[   1800s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 5.822e7 (13535/s)  LPs 2.447e8  donated 426  class 1800s  ETA ~0s
+[   1860s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 5.902e7 (13321/s)  LPs 2.489e8  donated 426  class 1860s  ETA ~0s
+[   1920s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 5.978e7 (12698/s)  LPs 2.529e8  donated 426  class 1920s  ETA ~0s
+[   1980s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 6.054e7 (12683/s)  LPs 2.567e8  donated 426  class 1980s  ETA ~0s
+[   2040s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 6.105e7 (8502/s)  LPs 2.593e8  donated 428  class 2040s  ETA ~0s
+[   2100s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 6.153e7 (7924/s)  LPs 2.618e8  donated 428  class 2100s  ETA ~0s
+[   2160s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 6.206e7 (8902/s)  LPs 2.645e8  donated 431  class 2160s  ETA ~0s
+[   2220s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 6.290e7 (13955/s)  LPs 2.686e8  donated 450  class 2220s  ETA ~0s
+[   2280s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 6.365e7 (12475/s)  LPs 2.724e8  donated 450  class 2280s  ETA ~0s
+[   2340s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 6.433e7 (11379/s)  LPs 2.759e8  donated 450  class 2340s  ETA ~0s
+[   2400s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 6.504e7 (11864/s)  LPs 2.794e8  donated 456  class 2400s  ETA ~1s
+[   2460s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 6.555e7 (8435/s)  LPs 2.818e8  donated 460  class 2460s  ETA ~1s
+[   2520s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 6.607e7 (8709/s)  LPs 2.842e8  donated 464  class 2520s  ETA ~1s
+[   2580s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 6.657e7 (8363/s)  LPs 2.866e8  donated 474  class 2580s  ETA ~1s
+[   2640s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 6.747e7 (14968/s)  LPs 2.908e8  donated 480  class 2640s  ETA ~1s
+[   2700s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 6.835e7 (14627/s)  LPs 2.949e8  donated 1379  class 2700s  ETA ~1s
+[   2760s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 6.922e7 (14517/s)  LPs 2.990e8  donated 1379  class 2760s  ETA ~1s
+[   2820s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 7.006e7 (14113/s)  LPs 3.031e8  donated 1379  class 2820s  ETA ~1s
+[   2880s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 7.083e7 (12690/s)  LPs 3.068e8  donated 1379  class 2880s  ETA ~1s
+[   2940s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 7.136e7 (8985/s)  LPs 3.092e8  donated 1379  class 2940s  ETA ~1s
+[   3000s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 7.225e7 (14742/s)  LPs 3.131e8  donated 1379  class 3000s  ETA ~1s
+[   3060s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 7.280e7 (9097/s)  LPs 3.156e8  donated 1379  class 3060s  ETA ~1s
+[   3120s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 7.333e7 (8838/s)  LPs 3.181e8  donated 1379  class 3120s  ETA ~1s
+[   3180s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 7.393e7 (10087/s)  LPs 3.209e8  donated 1379  class 3180s  ETA ~1s
+[   3240s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 7.467e7 (12361/s)  LPs 3.246e8  donated 3068  class 3240s  ETA ~1s
+[   3300s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 7.519e7 (8572/s)  LPs 3.271e8  donated 3068  class 3300s  ETA ~1s
+[   3360s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 7.580e7 (10192/s)  LPs 3.303e8  donated 3068  class 3360s  ETA ~1s
+=== resumed with EcoQoS opt-out (P-cores) + allocation-free LP ===
+n=9:
+  9: class 40320, Fix 20  (from results\n9.tsv)
+  8-1: class 45360, Fix 196  (from results\n9.tsv)
+  7-2: class 25920, Fix 364  (from results\n9.tsv)
+  6-3: class 20160, Fix 504  (from results\n9.tsv)
+  5-4: class 18144, Fix 580  (from results\n9.tsv)
+  7-1-1: class 25920, Fix 4228  (from results\n9.tsv)
+  6-2-1: class 30240, Fix 9604  (from results\n9.tsv)
+  5-3-1: class 24192, Fix 14632  (from results\n9.tsv)
+  5-2-2: class 9072, Fix 20284  (from results\n9.tsv)
+  4-4-1: class 11340, Fix 16068  (from results\n9.tsv)
+  4-3-2: class 15120, Fix 28244  (from results\n9.tsv)
+  3-3-3: class 2240, Fix 35516  (from results\n9.tsv)
+  6-1-1-1: class 10080, Fix 191640  (from results\n9.tsv)
+  5-2-1-1: class 18144, Fix 525696  (from results\n9.tsv)
+  4-3-1-1: class 15120, Fix 802092  (from results\n9.tsv)
+  4-2-2-1: class 11340, Fix 1250516  (from results\n9.tsv)
+  3-3-2-1: class 10080, Fix 1688504  (from results\n9.tsv)
+  3-2-2-2: class 2520, Fix 2570892  (from results\n9.tsv)
+  5-1-1-1-1: class 3024, Fix 17879668  (from results\n9.tsv)
+  4-2-1-1-1: class 7560, Fix 55179896  (from results\n9.tsv)
+  3-3-1-1-1: class 3360, Fix 77716340  (from results\n9.tsv)
+  3-2-2-1-1: class 7560, Fix 138912180  (from results\n9.tsv)
+  2-2-2-2-1: class 945, Fix 238069348  (from results\n9.tsv)
+  4-1-1-1-1-1: class 756, Fix 3311445420  (from results\n9.tsv)
+  3-2-1-1-1-1: class 2520, Fix 10304390204  (from results\n9.tsv)
+  2-2-2-1-1-1: class 1260, Fix 20769998328  (from results\n9.tsv)
+  3-1-1-1-1-1-1: class 168, Fix 1091995941092  (from results\n9.tsv)
+  -> starting class 28/30: 2-2-1-1-1-1-1 (class size 378)
+    [2-2-1-1-1-1-1] resuming: 4775/4776 subtrees already done (checkpoint)
+[     60s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 2.609e7 (4.343e5/s)  LPs 1.591e7  donated 340 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 60s  ETA ~0s
+[    120s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 2.946e7 (56112/s)  LPs 3.123e7  donated 348 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 120s  ETA ~0s
+[    180s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 3.245e7 (49801/s)  LPs 4.592e7  donated 360 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 180s  ETA ~0s
+[    240s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 3.528e7 (47299/s)  LPs 6.077e7  donated 734 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 240s  ETA ~0s
+[    300s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 3.807e7 (46486/s)  LPs 7.535e7  donated 734 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 300s  ETA ~0s
+[    360s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 4.093e7 (47594/s)  LPs 8.964e7  donated 734 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 360s  ETA ~0s
+[    420s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 4.392e7 (49927/s)  LPs 1.040e8  donated 734 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 420s  ETA ~0s
+[    480s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 4.726e7 (55562/s)  LPs 1.202e8  donated 734 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 480s  ETA ~0s
+[    540s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 5.023e7 (49629/s)  LPs 1.351e8  donated 734 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 540s  ETA ~0s
+[    600s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 5.332e7 (51523/s)  LPs 1.502e8  donated 768 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 600s  ETA ~0s
+[    660s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 5.652e7 (53281/s)  LPs 1.655e8  donated 1045 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 660s  ETA ~0s
+[    720s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 5.993e7 (56751/s)  LPs 1.807e8  donated 1045 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 720s  ETA ~0s
+[    780s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 6.324e7 (55192/s)  LPs 1.968e8  donated 1045 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 780s  ETA ~0s
+[    840s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 6.636e7 (52028/s)  LPs 2.127e8  donated 1045 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 840s  ETA ~0s
+[    900s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 6.978e7 (56871/s)  LPs 2.293e8  donated 1045 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 900s  ETA ~0s
+[    960s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 7.310e7 (55482/s)  LPs 2.455e8  donated 1045 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 960s  ETA ~0s
+[   1020s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 7.610e7 (50072/s)  LPs 2.606e8  donated 1045 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 1020s  ETA ~0s
+[   1080s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 7.908e7 (49627/s)  LPs 2.754e8  donated 1057 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 1080s  ETA ~0s
+[   1140s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 8.238e7 (54950/s)  LPs 2.914e8  donated 1083 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 1140s  ETA ~0s
+[   1200s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 8.541e7 (50525/s)  LPs 3.071e8  donated 1108 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 1200s  ETA ~0s
+[   1260s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 8.870e7 (54892/s)  LPs 3.225e8  donated 1352 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 1260s  ETA ~0s
+[   1320s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 9.243e7 (62094/s)  LPs 3.371e8  donated 1765 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 1320s  ETA ~0s
+[   1380s] class 28/30 n=9 2-2-1-1-1-1-1 [searching]  subtrees 4775/4776 (100.0%)  canonical 9.664e7 (70055/s)  LPs 3.530e8  donated 1765 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 1380s  ETA ~0s
+  2-2-1-1-1-1-1: class 378, Fix 2594373863484  canonical=99515335 positive=20343027639 lps=452694440 bad=0 1425.8s subtrees=4776
+  -> starting class 29/30: 2-1-1-1-1-1-1-1 (class size 36)
+[   1440s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 1785/4671 (38.2%)  canonical 1.199e6 (19984/s)  LPs 2.735e6  donated 3330 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 14s  ETA ~23s
+[   1500s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 1827/4671 (39.1%)  canonical 4.964e6 (62771/s)  LPs 1.436e7  donated 3330 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 74s  ETA ~116s
+[   1560s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 1840/4671 (39.4%)  canonical 8.412e6 (57473/s)  LPs 2.591e7  donated 3330 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 134s  ETA ~207s
+[   1620s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 1851/4671 (39.6%)  canonical 1.190e7 (58114/s)  LPs 3.769e7  donated 3330 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 194s  ETA ~296s
+[   1680s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 1878/4671 (40.2%)  canonical 1.546e7 (59323/s)  LPs 4.895e7  donated 3330 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 254s  ETA ~378s
+[   1740s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4661/4671 (99.8%)  canonical 1.921e7 (62583/s)  LPs 6.022e7  donated 3982 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 314s  ETA ~1s
+[   1800s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4662/4671 (99.8%)  canonical 2.205e7 (47241/s)  LPs 7.079e7  donated 3982 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 374s  ETA ~1s
+[   1860s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4662/4671 (99.8%)  canonical 2.504e7 (49935/s)  LPs 8.240e7  donated 3982 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 434s  ETA ~1s
+[   1920s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4662/4671 (99.8%)  canonical 2.798e7 (48941/s)  LPs 9.370e7  donated 3982 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 494s  ETA ~1s
+[   1980s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4662/4671 (99.8%)  canonical 3.154e7 (59288/s)  LPs 1.071e8  donated 3982 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 554s  ETA ~1s
+[   2040s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4662/4671 (99.8%)  canonical 3.514e7 (60010/s)  LPs 1.202e8  donated 3982 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 614s  ETA ~1s
+[   2100s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4662/4671 (99.8%)  canonical 3.875e7 (60269/s)  LPs 1.335e8  donated 3982 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 674s  ETA ~1s
+[   2160s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4662/4671 (99.8%)  canonical 4.226e7 (58310/s)  LPs 1.466e8  donated 3982 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 734s  ETA ~1s
+[   2220s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4662/4671 (99.8%)  canonical 4.582e7 (59585/s)  LPs 1.599e8  donated 3982 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 794s  ETA ~2s
+[   2280s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4662/4671 (99.8%)  canonical 4.952e7 (61551/s)  LPs 1.733e8  donated 3982 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 854s  ETA ~2s
+[   2340s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4662/4671 (99.8%)  canonical 5.349e7 (66238/s)  LPs 1.870e8  donated 3982 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 914s  ETA ~2s
+[   2400s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4662/4671 (99.8%)  canonical 5.712e7 (60337/s)  LPs 2.006e8  donated 3982 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 974s  ETA ~2s
+[   2460s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4662/4671 (99.8%)  canonical 6.091e7 (63408/s)  LPs 2.141e8  donated 3982 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 1034s  ETA ~2s
+[   2520s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4662/4671 (99.8%)  canonical 6.436e7 (57368/s)  LPs 2.275e8  donated 3982 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 1094s  ETA ~2s
+[   2580s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4663/4671 (99.8%)  canonical 6.788e7 (58612/s)  LPs 2.411e8  donated 3982 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 1154s  ETA ~2s
+[   2640s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4663/4671 (99.8%)  canonical 7.150e7 (60337/s)  LPs 2.546e8  donated 3982 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 1214s  ETA ~2s
+[   2700s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4663/4671 (99.8%)  canonical 7.498e7 (57951/s)  LPs 2.681e8  donated 3982 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 1274s  ETA ~2s
+[   2760s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4663/4671 (99.8%)  canonical 7.874e7 (62768/s)  LPs 2.817e8  donated 3982 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 1334s  ETA ~2s
+[   2820s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4663/4671 (99.8%)  canonical 8.203e7 (54842/s)  LPs 2.951e8  donated 3982 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 1394s  ETA ~2s
+[   2880s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4663/4671 (99.8%)  canonical 8.528e7 (54010/s)  LPs 3.085e8  donated 3982 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 1454s  ETA ~2s
+[   2940s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4663/4671 (99.8%)  canonical 8.857e7 (55075/s)  LPs 3.220e8  donated 3982 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 1514s  ETA ~3s
+[   3000s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4663/4671 (99.8%)  canonical 9.221e7 (60655/s)  LPs 3.355e8  donated 3982 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 1574s  ETA ~3s
+[   3060s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4663/4671 (99.8%)  canonical 9.563e7 (56943/s)  LPs 3.491e8  donated 3982 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 1634s  ETA ~3s
+[   3120s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4663/4671 (99.8%)  canonical 9.906e7 (57152/s)  LPs 3.626e8  donated 3982 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 1694s  ETA ~3s
+[   3180s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4663/4671 (99.8%)  canonical 1.028e8 (62159/s)  LPs 3.763e8  donated 3982 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 1754s  ETA ~3s
+[   3240s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4663/4671 (99.8%)  canonical 1.067e8 (64710/s)  LPs 3.896e8  donated 3982 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 1814s  ETA ~3s
+[   3300s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4663/4671 (99.8%)  canonical 1.107e8 (67185/s)  LPs 4.031e8  donated 3982 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 1874s  ETA ~3s
+[   3360s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4667/4671 (99.9%)  canonical 1.147e8 (66355/s)  LPs 4.167e8  donated 3986 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 1934s  ETA ~2s
+[   3420s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4667/4671 (99.9%)  canonical 1.181e8 (57259/s)  LPs 4.298e8  donated 3986 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 1994s  ETA ~2s
+[   3480s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4668/4671 (99.9%)  canonical 1.216e8 (58272/s)  LPs 4.431e8  donated 3989 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 2054s  ETA ~1s
+[   3540s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4668/4671 (99.9%)  canonical 1.250e8 (55618/s)  LPs 4.567e8  donated 3993 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 2114s  ETA ~1s
+[   3600s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4668/4671 (99.9%)  canonical 1.279e8 (49850/s)  LPs 4.693e8  donated 4000 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 2174s  ETA ~1s
+[   3660s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4668/4671 (99.9%)  canonical 1.314e8 (57909/s)  LPs 4.827e8  donated 4003 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 2234s  ETA ~1s
+[   3720s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4668/4671 (99.9%)  canonical 1.345e8 (51971/s)  LPs 4.957e8  donated 4009 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 2294s  ETA ~1s
+[   3780s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4669/4671 (100.0%)  canonical 1.378e8 (54199/s)  LPs 5.089e8  donated 4025 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 2354s  ETA ~1s
+[   3840s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4669/4671 (100.0%)  canonical 1.410e8 (53921/s)  LPs 5.220e8  donated 4038 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 2414s  ETA ~1s
+[   3900s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4669/4671 (100.0%)  canonical 1.443e8 (54894/s)  LPs 5.351e8  donated 4045 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 2474s  ETA ~1s
+[   3960s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4669/4671 (100.0%)  canonical 1.474e8 (51388/s)  LPs 5.483e8  donated 4048 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 2534s  ETA ~1s
+[   4020s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4669/4671 (100.0%)  canonical 1.502e8 (47182/s)  LPs 5.604e8  donated 4051 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 2594s  ETA ~1s
+[   4080s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4669/4671 (100.0%)  canonical 1.529e8 (45256/s)  LPs 5.713e8  donated 4054 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 2654s  ETA ~1s
+[   4140s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4669/4671 (100.0%)  canonical 1.563e8 (55853/s)  LPs 5.845e8  donated 4057 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 2714s  ETA ~1s
+[   4200s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4669/4671 (100.0%)  canonical 1.595e8 (52976/s)  LPs 5.979e8  donated 4228 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 2774s  ETA ~1s
+[   4260s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4669/4671 (100.0%)  canonical 1.622e8 (45367/s)  LPs 6.091e8  donated 4228 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 2834s  ETA ~1s
+[   4320s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4669/4671 (100.0%)  canonical 1.654e8 (53647/s)  LPs 6.224e8  donated 4228 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 2894s  ETA ~1s
+[   4380s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4669/4671 (100.0%)  canonical 1.683e8 (48297/s)  LPs 6.354e8  donated 4228 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 2954s  ETA ~1s
+[   4440s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4669/4671 (100.0%)  canonical 1.711e8 (46256/s)  LPs 6.485e8  donated 4228 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 3014s  ETA ~1s
+[   4500s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4669/4671 (100.0%)  canonical 1.740e8 (49280/s)  LPs 6.616e8  donated 4228 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 3074s  ETA ~1s
+[   4560s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4669/4671 (100.0%)  canonical 1.769e8 (47095/s)  LPs 6.747e8  donated 4228 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 3134s  ETA ~1s
+[   4620s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4669/4671 (100.0%)  canonical 1.797e8 (46724/s)  LPs 6.878e8  donated 4246 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 3194s  ETA ~1s
+[   4680s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4669/4671 (100.0%)  canonical 1.826e8 (48146/s)  LPs 7.011e8  donated 4256 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 3254s  ETA ~1s
+[   4740s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4669/4671 (100.0%)  canonical 1.855e8 (47978/s)  LPs 7.142e8  donated 4259 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 3314s  ETA ~1s
+[   4800s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4669/4671 (100.0%)  canonical 1.884e8 (49367/s)  LPs 7.274e8  donated 4263 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 3374s  ETA ~1s
+[   4860s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4669/4671 (100.0%)  canonical 1.914e8 (49794/s)  LPs 7.405e8  donated 4268 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 3434s  ETA ~1s
+[   4920s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4669/4671 (100.0%)  canonical 1.942e8 (47278/s)  LPs 7.534e8  donated 4273 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 3494s  ETA ~1s
+[   4980s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4669/4671 (100.0%)  canonical 1.971e8 (47818/s)  LPs 7.665e8  donated 4273 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 3554s  ETA ~2s
+[   5040s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4669/4671 (100.0%)  canonical 1.999e8 (46187/s)  LPs 7.794e8  donated 4273 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 3614s  ETA ~2s
+[   5100s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.027e8 (47420/s)  LPs 7.920e8  donated 4277 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 3674s  ETA ~1s
+[   5160s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.055e8 (46153/s)  LPs 8.047e8  donated 4280 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 3734s  ETA ~1s
+[   5220s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.083e8 (46113/s)  LPs 8.178e8  donated 4362 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 3794s  ETA ~1s
+[   5280s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.110e8 (45757/s)  LPs 8.307e8  donated 4372 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 3854s  ETA ~1s
+[   5340s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.138e8 (46394/s)  LPs 8.434e8  donated 4372 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 3914s  ETA ~1s
+[   5400s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.166e8 (47328/s)  LPs 8.566e8  donated 4390 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 3974s  ETA ~1s
+[   5460s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.192e8 (42867/s)  LPs 8.683e8  donated 4395 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 4034s  ETA ~1s
+[   5520s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.215e8 (38402/s)  LPs 8.786e8  donated 4404 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 4094s  ETA ~1s
+[   5580s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.238e8 (37843/s)  LPs 8.888e8  donated 4406 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 4154s  ETA ~1s
+[   5640s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.259e8 (35383/s)  LPs 8.990e8  donated 4410 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 4214s  ETA ~1s
+[   5700s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.280e8 (34329/s)  LPs 9.091e8  donated 4540 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 4274s  ETA ~1s
+[   5760s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.300e8 (34780/s)  LPs 9.192e8  donated 4540 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 4334s  ETA ~1s
+[   5820s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.322e8 (35735/s)  LPs 9.294e8  donated 4540 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 4394s  ETA ~1s
+[   5880s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.344e8 (37222/s)  LPs 9.397e8  donated 4540 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 4454s  ETA ~1s
+[   5940s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.366e8 (36599/s)  LPs 9.501e8  donated 4540 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 4514s  ETA ~1s
+[   6000s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.389e8 (37447/s)  LPs 9.603e8  donated 4540 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 4574s  ETA ~1s
+[   6060s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.410e8 (35340/s)  LPs 9.707e8  donated 4540 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 4634s  ETA ~1s
+[   6120s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.432e8 (37771/s)  LPs 9.808e8  donated 4540 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 4694s  ETA ~1s
+[   6180s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.454e8 (36655/s)  LPs 9.909e8  donated 4540 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 4754s  ETA ~1s
+[   6240s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.476e8 (35987/s)  LPs 1.001e9  donated 4540 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 4814s  ETA ~1s
+[   6300s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.498e8 (36709/s)  LPs 1.011e9  donated 4540 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 4874s  ETA ~1s
+[   6360s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.520e8 (35889/s)  LPs 1.021e9  donated 4540 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 4934s  ETA ~1s
+[   6420s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.541e8 (35621/s)  LPs 1.031e9  donated 4540 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 4994s  ETA ~1s
+[   6480s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.562e8 (34609/s)  LPs 1.041e9  donated 4540 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 5054s  ETA ~1s
+[   6540s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.585e8 (37969/s)  LPs 1.052e9  donated 4540 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 5114s  ETA ~1s
+[   6600s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.608e8 (38636/s)  LPs 1.062e9  donated 4540 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 5174s  ETA ~1s
+[   6660s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.631e8 (38981/s)  LPs 1.072e9  donated 4540 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 5234s  ETA ~1s
+[   6720s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.655e8 (40220/s)  LPs 1.083e9  donated 4540 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 5294s  ETA ~1s
+[   6780s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.679e8 (39470/s)  LPs 1.093e9  donated 4540 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 5354s  ETA ~1s
+[   6840s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.703e8 (40269/s)  LPs 1.103e9  donated 4540 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 5414s  ETA ~1s
+[   6900s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.730e8 (44733/s)  LPs 1.114e9  donated 4540 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 5474s  ETA ~1s
+[   6960s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.755e8 (41782/s)  LPs 1.124e9  donated 4540 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 5534s  ETA ~1s
+[   7020s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.778e8 (39091/s)  LPs 1.134e9  donated 4540 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 5594s  ETA ~1s
+[   7080s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.802e8 (39206/s)  LPs 1.144e9  donated 4540 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 5654s  ETA ~1s
+[   7140s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.824e8 (36947/s)  LPs 1.155e9  donated 4540 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 5714s  ETA ~1s
+[   7200s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.846e8 (37075/s)  LPs 1.165e9  donated 4540 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 5774s  ETA ~1s
+[   7260s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.868e8 (36039/s)  LPs 1.175e9  donated 4540 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 5834s  ETA ~1s
+[   7320s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.890e8 (36425/s)  LPs 1.185e9  donated 4546 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 5894s  ETA ~1s
+[   7380s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.913e8 (38405/s)  LPs 1.195e9  donated 4550 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 5954s  ETA ~1s
+[   7440s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.938e8 (40957/s)  LPs 1.205e9  donated 4555 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 6014s  ETA ~1s
+[   7500s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.967e8 (49586/s)  LPs 1.218e9  donated 4555 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 6074s  ETA ~1s
+[   7560s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 2.997e8 (49732/s)  LPs 1.231e9  donated 4564 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 6134s  ETA ~1s
+[   7620s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.027e8 (50060/s)  LPs 1.244e9  donated 4564 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 6194s  ETA ~1s
+[   7680s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.057e8 (50537/s)  LPs 1.257e9  donated 4576 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 6254s  ETA ~1s
+[   7740s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.088e8 (51178/s)  LPs 1.269e9  donated 4726 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 6314s  ETA ~1s
+[   7800s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.116e8 (47086/s)  LPs 1.282e9  donated 4726 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 6374s  ETA ~1s
+[   7860s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.139e8 (38198/s)  LPs 1.293e9  donated 4726 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 6434s  ETA ~1s
+[   7920s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.165e8 (43044/s)  LPs 1.305e9  donated 4726 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 6494s  ETA ~1s
+[   7980s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.194e8 (47717/s)  LPs 1.318e9  donated 4726 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 6554s  ETA ~1s
+[   8040s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.224e8 (50846/s)  LPs 1.331e9  donated 4726 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 6614s  ETA ~1s
+[   8100s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.254e8 (48987/s)  LPs 1.344e9  donated 4726 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 6674s  ETA ~1s
+[   8160s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.284e8 (51314/s)  LPs 1.357e9  donated 4726 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 6734s  ETA ~1s
+[   8220s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.314e8 (49894/s)  LPs 1.370e9  donated 4726 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 6794s  ETA ~1s
+[   8280s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.343e8 (47395/s)  LPs 1.382e9  donated 4726 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 6854s  ETA ~1s
+[   8340s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.374e8 (52554/s)  LPs 1.395e9  donated 4726 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 6914s  ETA ~1s
+[   8400s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.405e8 (51527/s)  LPs 1.408e9  donated 4726 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 6974s  ETA ~1s
+[   8460s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.436e8 (50682/s)  LPs 1.421e9  donated 4726 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 7034s  ETA ~2s
+[   8520s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.460e8 (39726/s)  LPs 1.432e9  donated 4726 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 7094s  ETA ~2s
+[   8580s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.482e8 (37719/s)  LPs 1.442e9  donated 4726 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 7154s  ETA ~2s
+[   8640s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.508e8 (43106/s)  LPs 1.454e9  donated 4726 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 7214s  ETA ~2s
+[   8700s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.537e8 (48881/s)  LPs 1.467e9  donated 4726 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 7274s  ETA ~2s
+[   8760s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.570e8 (54922/s)  LPs 1.480e9  donated 4726 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 7334s  ETA ~2s
+[   8820s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.602e8 (52277/s)  LPs 1.493e9  donated 4747 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 7394s  ETA ~2s
+[   8880s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.632e8 (50740/s)  LPs 1.507e9  donated 4957 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 7454s  ETA ~2s
+[   8940s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.663e8 (51580/s)  LPs 1.520e9  donated 4957 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 7514s  ETA ~2s
+[   9000s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.694e8 (51574/s)  LPs 1.533e9  donated 4957 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 7574s  ETA ~2s
+[   9060s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.723e8 (48479/s)  LPs 1.545e9  donated 4957 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 7634s  ETA ~2s
+[   9120s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.748e8 (41078/s)  LPs 1.556e9  donated 4957 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 7694s  ETA ~2s
+[   9180s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.771e8 (39147/s)  LPs 1.566e9  donated 4957 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 7754s  ETA ~2s
+[   9240s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.792e8 (34502/s)  LPs 1.574e9  donated 4957 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 7814s  ETA ~2s
+[   9300s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.813e8 (35921/s)  LPs 1.583e9  donated 4957 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 7874s  ETA ~2s
+[   9360s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.835e8 (36685/s)  LPs 1.593e9  donated 4957 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 7934s  ETA ~2s
+[   9420s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.861e8 (43015/s)  LPs 1.604e9  donated 4957 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 7994s  ETA ~2s
+[   9480s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.886e8 (41291/s)  LPs 1.614e9  donated 4957 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 8054s  ETA ~2s
+[   9540s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.913e8 (44964/s)  LPs 1.625e9  donated 4957 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 8114s  ETA ~2s
+[   9600s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.937e8 (39903/s)  LPs 1.635e9  donated 4957 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 8174s  ETA ~2s
+[   9660s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.963e8 (43099/s)  LPs 1.646e9  donated 4957 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 8234s  ETA ~2s
+[   9720s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 3.994e8 (52444/s)  LPs 1.660e9  donated 4957 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 8294s  ETA ~2s
+[   9780s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 4.025e8 (51511/s)  LPs 1.673e9  donated 4957 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 8354s  ETA ~2s
+[   9840s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 4.058e8 (54803/s)  LPs 1.686e9  donated 4957 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 8414s  ETA ~2s
+[   9900s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 4.088e8 (50530/s)  LPs 1.699e9  donated 4957 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 8474s  ETA ~2s
+[   9960s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 4.120e8 (53102/s)  LPs 1.712e9  donated 4957 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 8534s  ETA ~2s
+[  10020s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 4.151e8 (51332/s)  LPs 1.725e9  donated 4957 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 8594s  ETA ~2s
+[  10080s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 4.183e8 (53198/s)  LPs 1.738e9  donated 4957 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 8654s  ETA ~2s
+[  10140s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 4.214e8 (52231/s)  LPs 1.751e9  donated 4957 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 8714s  ETA ~2s
+[  10200s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 4.246e8 (53525/s)  LPs 1.764e9  donated 4957 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 8774s  ETA ~2s
+[  10260s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 4.279e8 (53865/s)  LPs 1.777e9  donated 4957 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 8834s  ETA ~2s
+[  10320s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 4.310e8 (52031/s)  LPs 1.790e9  donated 4957 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 8894s  ETA ~2s
+[  10380s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 4.341e8 (52444/s)  LPs 1.803e9  donated 4957 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 8954s  ETA ~2s
+[  10440s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 4.371e8 (49740/s)  LPs 1.816e9  donated 4957 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 9014s  ETA ~2s
+[  10500s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 4.401e8 (49667/s)  LPs 1.829e9  donated 4962 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 9074s  ETA ~2s
+[  10560s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 4.433e8 (53743/s)  LPs 1.842e9  donated 4968 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 9134s  ETA ~2s
+[  10620s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 4.465e8 (52596/s)  LPs 1.856e9  donated 4980 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 9194s  ETA ~2s
+[  10680s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 4.497e8 (53993/s)  LPs 1.870e9  donated 5002 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 9254s  ETA ~2s
+[  10740s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 4.529e8 (53328/s)  LPs 1.883e9  donated 5037 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 9314s  ETA ~2s
+[  10800s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 4.562e8 (53853/s)  LPs 1.897e9  donated 5106 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 9374s  ETA ~2s
+[  10860s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 4.596e8 (57267/s)  LPs 1.910e9  donated 5194 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 9434s  ETA ~2s
+[  10920s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 4.630e8 (56830/s)  LPs 1.924e9  donated 5262 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 9494s  ETA ~2s
+[  10980s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 4.670e8 (66164/s)  LPs 1.938e9  donated 5503 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 9554s  ETA ~2s
+[  11040s] class 29/30 n=9 2-1-1-1-1-1-1-1 [searching]  subtrees 4670/4671 (100.0%)  canonical 4.712e8 (71184/s)  LPs 1.952e9  donated 5972 [running 12 idle@lastpick 0 checks 0 pend/check 0.00 tooDeep 0]  class 9614s  ETA ~2s
+  2-1-1-1-1-1-1-1: class 36, Fix 486010253627696  canonical=471919158 positive=1902523108723 lps=1953575953 bad=0 9623.2s subtrees=4671
+  1-1-1-1-1-1-1-1-1: class 1, Fix 144130531453121108  (A000609, literature)
+==> a(9) = 448764716674   (Burnside remainder 0, 11049.0s)
