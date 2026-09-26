@@ -140,3 +140,9 @@ Beyond a(9): the identity term A000609(10) (threshold functions of 10 variables)
   - **A000617(9): the engine gives 993061484, but the OEIS lists 989913346.** Kurz, *On minimum sum representations for weighted voting games* ([arXiv:1103.1445](https://arxiv.org/abs/1103.1445), Table 2), lists 993061482 weighted voting games on 9 voters up to symmetry. A000617(n) = Kurz(n) + 2 (the two constant functions) for every n ≤ 8, so both sources give **993061484**; the OEIS value appears to be wrong (the entry attributes it to Tautenhahn's thesis).
   - **A002078(9) = 281814234754247 (new).** It is counted directly and also equals the binomial mean 2⁻⁹ Σ C(9,k)·A000609(k), an identity that holds for every n ≤ 8.
   - **A001529(9) = (993061484 + 175428)/2 = 496618456 (new)**, NPN classes; the formula is validated against A001529 for n ≤ 8.
+- 2026-09-26: **Related n = 9 terms by exact arithmetic** (`related_terms.py`; every relation is re-checked on all known terms, 12 checks):
+  - A000615(9) = 143972777957019648;
+  - A002079(9) = 281196831947304;
+  - A001530(9) = 495252138.
+
+  A000619(9) = 990331318 (Molinero, 2021) equals 993061484 − A000617(8), which is a third independent confirmation that A000617(9) should be 993061484.
