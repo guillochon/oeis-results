@@ -65,7 +65,6 @@ Counting separable labelings of a point set means counting the regions of a hype
 | `bruteforce.py` | Generates all threshold functions for n ≤ 6 and counts orbits (method 1). |
 | `engine.py` | Burnside plus grid engine in Python (method 2). `python A109455/engine.py 7 --from 7 --procs 12` |
 | `rust/` | Compiled port of `engine.py`, meant for a(8), a(9) and beyond. |
-| `oeis_submission.md` | Draft OEIS edit, with placeholders for a(8)+. |
 | `layman.md` | Plain-English explanation of the sequence, why it matters, and what we found. |
 | `logs/` | Run logs. |
 
