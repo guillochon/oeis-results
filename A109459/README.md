@@ -13,6 +13,13 @@ values are not on the web). Knuth's own program (`krom-count.ch`, a change file 
 `horn-count.w` on his programs page) is a direct backtracking enumeration of median-closed sets;
 that is how n <= 7 was done in 2005.
 
+**Literature, found 2026-09-27:** Bollobás–Brightwell–Leader (Israel J. Math. 133, 2003) define
+the same decomposition (spine = forced variables, associated pairs = blocks, "elementary"
+functions = skew posets, their H(n) = our T(n)), and Allen (2007) / Ilinca–Kahn (2012) prove
+A109457(n) ~ 2^(n(n+1)/2). Nobody computed terms. See `asymptotics.md` for the asymptotic
+picture, the conjecture A109459(n) ~ 2^(n(n-1)/2)/n!, what we could prove towards it and the
+exact gap that remains.
+
 ## What is being counted
 A *Krom function* is a Boolean function that can be written as an AND of clauses with at most
 2 literals each, a 2-CNF like (x∨¬y)∧(y∨z). Equivalently its set of true points S ⊆ {0,1}^n is
@@ -111,6 +118,7 @@ Not formalized: the Pólya/Euler orbit counting and the enumeration itself.
 - `b109457.txt`, `b109458.txt`, `b109459.txt` — b-files, n = 0..10.
 - `oeis_submission.md` — draft edits (one document for all three sequences).
 - `layman.md` — plain-English write-up.
+- `asymptotics.md` — literature (BBL, Allen, Ilinca–Kahn), the asymmetry conjecture, partial proofs.
 - `../../lean/OeisLean/A109459.lean` — Lean proof of the structure theorem.
 
 ## Log
