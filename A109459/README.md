@@ -88,6 +88,20 @@ they rest on the internal checks below and on the augmentation mode matching the
 - Canonical-augmentation mode (no hash table) reproduces the hash-table results for r ≤ 9
   exactly (S, connected, T, all Pólya sums).
 
+## Lean formalization (2026-09-27)
+`lean/OeisLean/A109459.lean` (Lean 4 + Mathlib v4.33.1, standard axioms only) proves the
+structure theorem behind the formulas, for an arbitrary finite type of variables:
+- `sol_valid_eq` — Krom's theorem: a nonempty majority-closed set equals the solution set of the
+  implications (2-clauses) valid on it. Proof: the "agree on any coordinate set" induction.
+- `valid_sol_iff`, `exists_sat` — for a skew preorder R (reflexive, transitive, reversed by
+  negation, no l ≤ ¬l) the implications valid on Sol R are exactly R, and no literal is forced.
+  Proof: the extension lemma `extend` (closed consistent literal sets extend to solutions).
+- `kromEquivSkew` — forced-free Krom functions ≃ skew preorders on the literals.
+- `fiberEquiv`, `card_krom` — the forced-variable layer: |Krom functions on V| =
+  1 + Σ over patterns f : V → Option Bool of |skew preorders on {v | f v = none}|. Grouping the
+  patterns by the number k of forced variables gives the C(n,k)·2^k of the A109457 formula.
+Not formalized: the Pólya/Euler orbit counting and the enumeration itself.
+
 ## Files
 - `c/skew.c` — enumerator (C + nauty 2.8.8, OpenMP). Build in WSL, see header.
 - `c/skewcol.c` — independent coloured-generation check.
@@ -97,6 +111,7 @@ they rest on the internal checks below and on the augmentation mode matching the
 - `b109457.txt`, `b109458.txt`, `b109459.txt` — b-files, n = 0..10.
 - `oeis_submission.md` — draft edits (one document for all three sequences).
 - `layman.md` — plain-English write-up.
+- `../../lean/OeisLean/A109459.lean` — Lean proof of the structure theorem.
 
 ## Log
 - 2026-09-25: Definition confirmed by brute force (n ≤ 4). Structure decomposition sketched, and
