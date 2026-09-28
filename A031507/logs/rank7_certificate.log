@@ -1,0 +1,10 @@
+v = 47550317: ellrank [7, 7, 0], 7 points
+   precision 38: regulator 181126.710015, min eigenvalue 1.44177
+   precision 115: regulator 181126.710015, min eigenvalue 1.44177
+   Cassels g = 1
+   points: [[-277, 5128], [-121, 6766], [-37, 6892], [359, 9686], [8327, 759890], [-1399/4, 17467/8], [2047/9, 207946/27]]
+v = -56877643: ellrank [7, 7, 0], 7 points
+   precision 38: regulator 155212.412835, min eigenvalue 1.20691
+   precision 115: regulator 155212.412835, min eigenvalue 1.20691
+   Cassels g = 1
+   points: [[403, 2928], [2017/4, 67569/8], [1363, 49752], [6337/16, 146655/64], [3481/4, 196317/8], [2707, 140640], [1697/4, 35311/8]]

@@ -1,0 +1,13 @@
+[package]
+name = "a031507"
+version = "0.1.0"
+edition = "2021"
+description = "A031507/A031508: unconditional 3-isogeny Selmer bound for y^2 = x^3 + k over a range of k"
+
+[dependencies]
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"

@@ -1,0 +1,7 @@
+a(6) reproduction with the same pipeline (target: rank <= 5 for every k below a(6)), 2026-09-28
++ (k < 1358556): stage 1: 5706 curves; stage 2: 2748 left; stage 4: 55 left; stage 5: 55 left;
+                 stage 6: 55 certified, R > 5: 0.  (7 s wall)
+- (k < 975379):  stage 1: 3903 curves; stage 2: 1561 left; stage 4: 19 left; stage 5: 19 left;
+                 stage 6: 19 certified, R > 5: 0.  (5 s wall)
+v = 1358556: certified 1, ellrank [r, R] = [6, 6], regulator 5949.345916
+v = -975379: certified 1, ellrank [r, R] = [6, 6], regulator 25502.92771
