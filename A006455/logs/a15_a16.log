@@ -1,0 +1,20 @@
+split 8+7 [ods]: 16999 x 2045 posets, max classes 4, u64 counters, setup 0.06s
+  16824018 pairs ran in the reverse direction
+a(15) = 657800677264030983838  [split 8+7 ods, new, 71.19s]
+split 7+8 [ods]: 2045 x 16999 posets, max classes 4, u64 counters, setup 0.31s
+  17938265 pairs ran in the reverse direction
+a(15) = 657800677264030983838  [split 7+8 ods, new, 71.69s]
+split 9+6 [ods]: 183231 x 318 posets, max classes 3, u64 counters, setup 0.51s
+split 8+8 [ods]: 16999 x 16999 posets, max classes 4, u128 counters, unordered pairs, setup 0.35s
+split 9+6 [ods]: 183231 x 318 posets, max classes 3, u64 counters, setup 0.81s
+  24788883 pairs ran in the reverse direction
+a(15) = 657800677264030983838  [split 9+6 ods, new, 123.31s]
+split 8+8 [ods]: 16999 x 16999 posets, max classes 4, u128 counters, unordered pairs, setup 0.33s
+  48297064 pairs ran in the reverse direction
+a(16) = 264134770940774037129920  [split 8+8 ods, new, 783.60s]
+split 9+7 [ods]: 183231 x 2045 posets, max classes 4, u64 counters, setup 0.54s
+  172572064 pairs ran in the reverse direction
+a(16) = 264134770940774037129920  [split 9+7 ods, new, 1807.53s]
+split 7+9 [ods]: 2045 x 183231 posets, max classes 5, u64 counters, setup 5.23s
+  202132619 pairs ran in the reverse direction
+a(16) = 264134770940774037129920  [split 7+9 ods, new, 1752.40s]

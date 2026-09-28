@@ -1,0 +1,6 @@
+split 8+5: 16999 x 63 posets, max classes 3, setup 0.03s
+a(13) = 10252978223661714  [split 8+5, new, 5.31s]
+split 7+7: 2045 x 2045 posets, max classes 4, setup 0.01s
+a(14) = 2223739823604074838  [split 7+7, new, 411.67s]
+split 8+6: 16999 x 318 posets, max classes 3, setup 0.03s
+a(14) = 2223739823604074838  [split 8+6, new, 170.82s]
