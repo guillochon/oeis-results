@@ -1,0 +1,13 @@
+[package]
+name = "hypercube-indep"
+version = "0.1.0"
+edition = "2021"
+description = "Counts independent sets of the hypercube Q_n (OEIS A027624) via Q_{d+2} = Q_d x C_4"
+
+[dependencies]
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"

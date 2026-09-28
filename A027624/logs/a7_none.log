@@ -1,0 +1,15 @@
+threads: 14
+d=5 group=None: 254475 independent sets, 254475 orbit reps, CSR 4997632 entries, setup 0.04s
+[    60s] items 1478060/16031925 (9.2%)  ETA ~591s
+[   120s] items 3036357/16031925 (18.9%)  ETA ~514s
+[   180s] items 4551245/16031925 (28.4%)  ETA ~454s
+[   240s] items 6075748/16031925 (37.9%)  ETA ~393s
+[   300s] items 7642527/16031925 (47.7%)  ETA ~329s
+[   360s] items 9228106/16031925 (57.6%)  ETA ~266s
+[   420s] items 10516039/16031925 (65.6%)  ETA ~220s
+[   480s] items 12090557/16031925 (75.4%)  ETA ~156s
+[   540s] items 13702580/16031925 (85.5%)  ETA ~92s
+[   600s] items 15306875/16031925 (95.5%)  ETA ~28s
+d=5 group=None: 254475 sets, 254475 reps, CSR 4997632 entries, 626.68s
+  Q_d x K_2: a(6) = 19768832143  OK
+  Q_d x C_4: a(7) = 78685477899897082403  (NEW)

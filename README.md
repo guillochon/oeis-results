@@ -6,6 +6,7 @@ logs and write-ups needed to check them. Each folder is one sequence.
 | Sequence | Results |
 |---|---|
 | [A006455](https://oeis.org/A006455) | [Naturally labeled posets on {1, …, n}](A006455/) · [plain-English explanation](A006455/layman.md) |
+| [A027624](https://oeis.org/A027624) | [Number of independent vertex sets in the n-hypercube graph Q_n](A027624/) · [plain-English explanation](A027624/layman.md) |
 | [A109455](https://oeis.org/A109455) | [Equivalence classes of threshold functions under permutations of the variables](A109455/) · [plain-English explanation](A109455/layman.md) |
 | [A109459](https://oeis.org/A109459) | [Inequivalent Krom (2SAT) functions under permuting and complementing variables](A109459/) · [plain-English explanation](A109459/layman.md) |
 | [A114601](https://oeis.org/A114601) | [Symmetric positive definite matrices with 2 on the diagonal and entries in {−1, 0, 1}](A114601/) · [plain-English explanation](A114601/layman.md) |

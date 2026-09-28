@@ -1,0 +1,5 @@
+threads: 14
+d=5 group=Full: 254475 independent sets, 288 orbit reps, CSR 4997632 entries, setup 0.08s
+d=5 group=Full: 254475 sets, 288 reps, CSR 4997632 entries, 0.75s
+  Q_d x K_2: a(6) = 19768832143  OK
+  Q_d x C_4: a(7) = 78685477899897082403  (NEW)
