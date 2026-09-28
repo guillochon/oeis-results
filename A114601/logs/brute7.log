@@ -1,0 +1,7 @@
+n=1: total 1 [OK vs OEIS]  connected by det: {2: 1}  (connected total 1)
+n=2: total 3 [OK vs OEIS]  connected by det: {3: 2}  (connected total 2)
+n=3: total 23 [OK vs OEIS]  connected by det: {4: 16}  (connected total 16)
+n=4: total 393 [OK vs OEIS]  connected by det: {4: 104, 5: 200}  (connected total 304)
+n=5: total 13089 [OK vs OEIS]  connected by det: {4: 7552, 6: 3456}  (connected total 11008)
+n=6: total 737595 [OK vs OEIS]  connected by det: {3: 355104, 4: 220800, 7: 76832}  (connected total 652736)
+n=7: total 58969079 [OK vs OEIS]  connected by det: {2: 43733504, 4: 7597824, 8: 2097152}  (connected total 53428480)

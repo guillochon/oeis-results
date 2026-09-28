@@ -1,0 +1,15 @@
+E6: 72 roots, 36 positive; subsets of size 6
+  independent subsets by Gram det: [(3, 798984), (12, 46656), (27, 1080)]
+  Cauchy-Binet: sum of dets = 2985984, expected h^n = 12^6 = 2985984  OK
+  bases (det 3): 798984 unordered sets of positive roots -> 36817182720 ordered root bases; / |Aut| 103680 = 355104 (remainder 0)
+  => c_E6 = 355104   (0.0s)
+E7: 126 roots, 63 positive; subsets of size 7
+  independent subsets by Gram det: [(2, 196800768), (8, 23347584), (18, 1306368), (32, 259560), (128, 135)]
+  Cauchy-Binet: sum of dets = 612220032, expected h^n = 18^7 = 612220032  OK
+  bases (det 2): 196800768 unordered sets of positive roots -> 126960111452160 ordered root bases; / |Aut| 2903040 = 43733504 (remainder 0)
+  => c_E7 = 43733504   (1.7s)
+E7: 126 roots, 63 positive; subsets of size 7 containing root 0
+  independent subsets by Gram det: [(2, 21866752), (8, 2594176), (18, 145152), (32, 28840), (128, 15)]
+  Cauchy-Binet: sum of dets = 612220032, expected h^n = 18^7 = 612220032  OK
+  bases (det 2): 196800768 unordered sets of positive roots -> 126960111452160 ordered root bases; / |Aut| 2903040 = 43733504 (remainder 0)
+  => c_E7 = 43733504   (0.2s)

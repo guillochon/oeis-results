@@ -7,6 +7,7 @@ logs and write-ups needed to check them. Each folder is one sequence.
 |---|---|
 | [A109455](https://oeis.org/A109455) | [Equivalence classes of threshold functions under permutations of the variables](A109455/) · [plain-English explanation](A109455/layman.md) |
 | [A109459](https://oeis.org/A109459) | [Inequivalent Krom (2SAT) functions under permuting and complementing variables](A109459/) · [plain-English explanation](A109459/layman.md) |
+| [A114601](https://oeis.org/A114601) | [Symmetric positive definite matrices with 2 on the diagonal and entries in {−1, 0, 1}](A114601/) · [plain-English explanation](A114601/layman.md) |
 | [A157615](https://oeis.org/A157615) | [Longest alternating (H/V) self-avoiding path on an n × n board](A157615/) · [plain-English explanation](A157615/layman.md) |
 | [A227867](https://oeis.org/A227867) | [Lipschitz quaternions X with X^2 ≡ 1 (mod n): a closed form](A227867/) · [plain-English explanation](A227867/layman.md) |
 | [A236553](https://oeis.org/A236553) | [Involutions in the quaternion ring over Z/nZ with i^2 = j^2 = 1: a closed form](A236553/) · [plain-English explanation](A236553/layman.md) |

@@ -1,0 +1,5 @@
+E8: 240 roots, 120 positive; subsets of size 8 containing root 0
+  independent subsets by Gram det: [(1, 18242882496), (4, 4286297088), (9, 485082432), (16, 202259520), (25, 12600000), (36, 10450944), (64, 841680), (81, 60480), (256, 135)]
+  Cauchy-Binet: sum of dets = 656100000000, expected h^n = 30^8 = 656100000000  OK
+  bases (det 1): 273643237440 unordered sets of positive roots -> 2824523605396684800 ordered root bases; / |Aut| 696729600 = 4053973888 (remainder 0)
+  => c_E8 = 4053973888   (166.9s)

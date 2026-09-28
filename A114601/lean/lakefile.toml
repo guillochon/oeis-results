@@ -1,0 +1,19 @@
+name = "OeisLean"
+version = "0.1.0"
+keywords = ["math"]
+defaultTargets = ["OeisLean"]
+
+[leanOptions]
+pp.unicode.fun = true # pretty-prints `fun a ↦ b`
+relaxedAutoImplicit = false
+weak.linter.mathlibStandardSet = true
+maxSynthPendingDepth = 3
+weak.linter.style.header = false # not a Mathlib file: no copyright header / import rules
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.33.1"
+
+[[lean_lib]]
+name = "OeisLean"

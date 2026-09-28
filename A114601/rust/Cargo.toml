@@ -1,0 +1,13 @@
+[package]
+name = "a114601"
+version = "0.1.0"
+edition = "2021"
+description = "A114601: PD {-1,0,1} matrices with 2 on the diagonal; E_8 term by two routes"
+
+[dependencies]
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
