@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Stacking Matryoshkas</title>
+<title>Repeated Sizes: Nesting</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Philosopher:wght@700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400&display=swap">
 <style>
 /* Layout: one reading column for the rules and sequence, then a full-width wrapping gallery of drawn configurations, grouped by how many objects sit on the table. */
@@ -37,6 +37,8 @@ code,.mono{font-family:var(--mono);font-size:.88em}
 .tabs button{font:600 1rem var(--body);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:6px 16px;cursor:pointer}
 .tabs button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
 .tabs button:focus-visible{outline:2px solid var(--d4);outline-offset:2px}
+#kfilter{margin-top:10px}
+#kfilter button{font-size:.88rem;padding:4px 12px}
 .tabs .count{color:var(--muted);margin-left:6px}
 .group h3{font:600 .8rem var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:18px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
@@ -58,32 +60,32 @@ a{color:var(--d4)}
 <body>
 
 <div class="wrap">
-  <nav class="crumbs" aria-label="Pages"><a href="./">Home</a><a href="nesting.html">Nesting</a><a href="stacking.html" aria-current=page>Stacking</a><a href="repeat_nesting.html">Repeated sizes: nesting</a><a href="repeat_stacking.html">Repeated sizes: stacking</a></nav>
+  <nav class="crumbs" aria-label="Pages"><a href="./">Home</a><a href="nesting.html">Nesting</a><a href="stacking.html">Stacking</a><a href="repeat_nesting.html" aria-current=page>Repeated sizes: nesting</a><a href="repeat_stacking.html">Repeated sizes: stacking</a></nav>
   <header class="col">
-    <h1>Stacking Matryoshkas</h1>
-    <p class="lede">The same split-apart nesting dolls, now with flat heads, so a smaller piece can also stand on a top half or a closed doll. Every configuration for N = 1 to 4 is drawn below.</p>
+    <h1>Repeated Sizes: Nesting</h1>
+    <p class="lede">N dolls where several can share a size. Dolls of the same size are identical, and only the order of the sizes matters. Pieces only nest. Every arrangement for N = 1 to 4 is drawn below, grouped by size set.</p>
   </header>
 
   <section class="col">
     <h2>The rules</h2>
     <ul>
-      <li>Doll <i>k</i> is either closed (top on bottom) or split into its two halves.</li>
-      <li>A piece only goes inside, or on top of, a <em>larger</em> doll's piece.</li>
+      <li>Each of the N dolls has a size, and sizes can repeat. Only their order matters: sizes 1, 1, 3 are the same set as 1, 1, 2 or 2, 2, 3. So a size set is a list of how many dolls share each size, smallest first, and there are 2<sup>N−1</sup> of them.</li>
+      <li>Dolls of the same size are identical: swapping them changes nothing, and any top fits any bottom of its size.</li>
+      <li>Each doll is either closed or split into its two halves.</li>
+      <li>A piece only goes inside a <em>strictly larger</em> piece. Equal sizes never nest.</li>
       <li>A closed doll or an open bottom holds one item directly: a smaller closed doll or a smaller bottom (which may hold more).</li>
       <li>An open top holds one item directly, and only a smaller top. A top never covers a doll or a bottom.</li>
       <li>A loose top never goes inside a bottom or a closed doll.</li>
-      <li><b>New:</b> the flat head of a top half or a closed doll holds one smaller item: a closed doll, a bottom or a top, with whatever it carries.</li>
-      <li>A head shut inside a closed doll or tucked under another top can't hold anything. A piece standing in an open bottom sticks out, so its head is still usable.</li>
-      <li>Position on the table doesn't matter. Only what is inside or on top of what counts.</li>
+      <li>Position on the table doesn't matter. The count adds up the arrangements over every size set.</li>
     </ul>
   </section>
 
   <section class="col">
     <h2>The sequence</h2>
     <div class="terms" id="terms"></div>
-    <p style="margin-top:12px">Further terms, N = 1…16:</p>
-    <div class="seq">2, 19, 312, 7643, 256020, 11096168, 598896401, 39139847188, 3031322144533, 273521581657006, 28358733352479982, 3339902710297719296, 442517243620250926437, 65415815270340860490360, 10712294881435175920813811, 1931132206343352778109827474</div>
-    <p style="margin-top:12px">Not in the OEIS as of 2026-10-03. Without stacking the count is 2, 10, 75, 780, … (<a href="https://oeis.org/A124426">A124426</a>, Bell(N)·Bell(N+1)). Insert the pieces from largest to smallest. Each one goes on the table or into a free slot: a flat head, an empty open bottom, the empty space inside a closed doll, or an empty top. Counting the free slots of each kind as you go gives a short recurrence. It matches a brute-force enumeration for N ≤ 5.</p>
+    <p style="margin-top:12px">Further terms, N = 1…18:</p>
+    <div class="seq">2, 13, 117, 1485, 24508, 505381, 12612491, 372322941, 12770803390, 501779797457, 22322464263069, 1113465408407831, 61762804180641774, 3782719976340625333, 254226434258030713275, 18647276568817135935691, 1485581867072414191122855, 127996356073773681330787566</div>
+    <p style="margin-top:12px">Not in the OEIS as of 2026-10-03. The size set with all sizes distinct gives A124426, Bell(N)·Bell(N+1); a single shared size gives N + 1 (just how many dolls are closed). The terms come from Burnside's lemma: average, over the ways of permuting equal pieces, the number of arrangements each permutation leaves unchanged. Those counts reduce to the slot-counting recurrence of the distinct-size case. A brute-force enumeration of every arrangement agrees for N ≤ 4, and a Pólya multiset count agrees for N ≤ 6.</p>
   </section>
 
   <section>
@@ -92,6 +94,7 @@ a{color:var(--d4)}
 
   <section>
     <div class="tabs" id="tabs" role="group" aria-label="Number of dolls"></div>
+    <div class="tabs kfilter" id="kfilter" role="group" aria-label="Number of distinct sizes"></div>
     <div id="gallery"></div>
   </section>
 </div>
@@ -101,10 +104,10 @@ const S = i => 22 + 12 * i;               // natural width of doll i
 const HT = 0.78, HB = 0.62;               // top / bottom half heights as fraction of width
 const COL = i => `var(--d${i})`;
 
-// ---- enumeration (same model as stack_brute.py) ----
-const bit = (k, i) => 1 << (2 * (i - 1) + (k === 'T' ? 1 : 0));
+// ---- enumeration with repeated sizes (same model as repeat_sizes.py: brute) ----
+// A multiset of pieces is an array of 3 counts (D, B, T) per size index.
 const key = u => {
-  let s = u.k + u.i;
+  let s = u.k + (u.i + 1);
   if (u.c.length) s += '[' + key(u.c[0]) + ']';
   if (u.o.length) { const o = key(u.o[0]); s += '^' + (o.length > 2 ? '(' + o + ')' : o); }
   return s;
@@ -112,43 +115,63 @@ const key = u => {
 const ENC = { inD: 1, inT: 1, inBe: 1, inBf: 0, on: 0, table: 0 };
 const ACC = { inD: 'DB', inBe: 'DB', inBf: 'DB', inT: 'T', on: 'DBT', table: 'DBT' };
 const memo = new Map();
-function subsets(m) { const r = []; for (let s = m; ; s = (s - 1) & m) { r.push(s); if (!s) break; } return r; }
-function units(S_, k, i, enc) {
-  const mk = 'u' + S_ + k + i + enc; if (memo.has(mk)) return memo.get(mk);
-  const inslot = k === 'D' ? 'inD' : k === 'T' ? 'inT' : (enc ? 'inBe' : 'inBf');
-  const out = [];
-  for (const X of subsets(S_)) for (const a of level(X, inslot)) {
-    if (enc || k === 'B') { if (S_ & ~X) continue; out.push({ k, i, c: a, o: [] }); }
-    else for (const b of level(S_ & ~X, 'on')) out.push({ k, i, c: a, o: b });
+function submultisets(S) {
+  let out = [[]];
+  for (const n of S) { const nx = []; for (const p of out) for (let x = 0; x <= n; x++) nx.push([...p, x]); out = nx; }
+  return out;
+}
+const minus = (a, b) => a.map((x, j) => x - b[j]);
+function units(S, k, i, enc) {
+  const mk = 'u' + S + k + i + enc; if (memo.has(mk)) return memo.get(mk);
+  const inslot = MODEL === 'nest' ? (k === 'T' ? 'inT' : 'inD') : (k === 'D' ? 'inD' : k === 'T' ? 'inT' : (enc ? 'inBe' : 'inBf'));
+  const seen = new Set(), out = [];
+  for (const X of submultisets(S)) for (const a of level(X, inslot)) {
+    const rest = minus(S, X);
+    const cands = [];
+    if (MODEL === 'nest' || enc || k === 'B') { if (rest.some(x => x)) continue; cands.push({ k, i, c: a, o: [] }); }
+    else for (const b of level(rest, 'on')) cands.push({ k, i, c: a, o: b });
+    for (const u of cands) { const kk = key(u); if (!seen.has(kk)) { seen.add(kk); out.push(u); } }
   }
   memo.set(mk, out); return out;
 }
-function level(S_, slot) {
-  const mk = 'l' + S_ + slot; if (memo.has(mk)) return memo.get(mk);
-  if (!S_) { memo.set(mk, [[]]); return [[]]; }
-  let i = 0; for (let j = 1; j <= 8; j++) if (S_ & (bit('B', j) | bit('T', j))) i = j;
-  const mine = ['B', 'T'].filter(k => S_ & bit(k, i));
-  const smaller = S_ & ~(bit('B', i) | bit('T', i));
-  const enc = ENC[slot], seen = new Set(), out = [];
-  const finish = (us, rem) => {
-    for (const r of level(rem, slot)) {
-      let t = [...us, ...r];
+function level(S, slot) {
+  const mk = 'l' + S + slot; if (memo.has(mk)) return memo.get(mk);
+  if (!S.some(x => x)) { memo.set(mk, [[]]); return [[]]; }
+  let i = 0; for (let j = 0; j < S.length / 3; j++) if (S[3 * j] || S[3 * j + 1] || S[3 * j + 2]) i = j;
+  const enc = MODEL === 'stack' ? ENC[slot] : 0;
+  const seen = new Set(), out = [];
+  ['D', 'B', 'T'].forEach((k, ki) => {
+    const idx = 3 * i + ki;
+    if (!S[idx] || !ACC[slot].includes(k)) return;
+    const rem = S.slice(); rem[idx]--;
+    const smaller = rem.map((x, j) => (Math.floor(j / 3) < i ? x : 0));
+    for (const X of submultisets(smaller)) for (const u of units(X, k, i, enc)) for (const r of level(minus(rem, X), slot)) {
+      const t = [u, ...r];
       if (slot !== 'table' && t.length > 1) continue;
-      if (t.some(u => !ACC[slot].includes(u.k))) continue;
-      t.sort((a, b) => b.i - a.i || a.k.localeCompare(b.k));
+      t.sort((a, b) => b.i - a.i || a.k.localeCompare(b.k) || key(a).localeCompare(key(b)));
       const kk = t.map(key).join(' ');
       if (!seen.has(kk)) { seen.add(kk); out.push(t); }
     }
-  };
-  if (mine.length === 2) for (const X of subsets(smaller)) for (const u of units(X, 'D', i, enc)) finish([u], smaller & ~X);
-  (function rec(us, rem, todo) {
-    if (!todo.length) return finish(us, rem);
-    const k = todo[0];
-    for (const X of subsets(rem & smaller)) for (const u of units(X, k, i, enc)) rec([...us, u], rem & ~X, todo.slice(1));
-  })([], smaller, mine);
+  });
   memo.set(mk, out); return out;
 }
-const configs = n => { let m = 0; for (let i = 1; i <= n; i++) m |= bit('B', i) | bit('T', i); return level(m, 'table'); };
+function compositions(n) {
+  if (!n) return [[]];
+  const out = [];
+  for (let f = 1; f <= n; f++) for (const r of compositions(n - f)) out.push([f, ...r]);
+  return out;
+}
+function configsFor(comp) {
+  const out = [];
+  for (const o of submultisets(comp)) {
+    const S = [];
+    comp.forEach((m, j) => S.push(m - o[j], o[j], o[j]));
+    out.push(...level(S, 'table'));
+  }
+  return out;
+}
+const profiles = n => compositions(n).sort((a, b) => b.length - a.length || a.join().localeCompare(b.join()));
+const configs = n => profiles(n).flatMap(configsFor);
 
 // ---- drawing ----
 function topPath(cx, y, w, h) {
@@ -172,7 +195,8 @@ function rowOf(units, gap) {               // lay units side by side, bottom-ali
   return { w, h, svg };
 }
 function fit(inner, maxW, maxH) { return Math.min(1, maxW / Math.max(inner.w, 1e-9), maxH / Math.max(inner.h, 1e-9)); }
-function draw(u) {
+function draw(u0) {
+  const u = u0.i0 === undefined ? { ...u0, i0: true, i: u0.i + 1, c: u0.c.map(x => ({ ...x })), o: u0.o.map(x => ({ ...x })) } : u0;
   const base = drawBase(u);
   if (!u.o || !u.o.length) return base;
   const p = draw(u.o[0]), w = Math.max(base.w, p.w), h = base.h + p.h + 1;
@@ -218,29 +242,57 @@ function svgFor(units) {
 }
 
 // ---- page ----
-const TERMS = [2, 19, 312, 7643];
+const TERMS = [2, 13, 117, 1485];
+const MODEL = 'nest';
+const STORE_KEY = 'repeat-nest-n';
 document.getElementById('terms').innerHTML = TERMS.map((t, i) => `<div class="term"><span>N = ${i + 1}</span><b>${t.toLocaleString()}</b></div>`).join('')
-  + `<div class="term"><span>N = 5</span><b>256,020</b></div>`;
+  + `<div class="term"><span>N = 5</span><b>24,508</b></div>`;
 document.getElementById('legend').innerHTML =
-  `<span>${svgFor([{ k: 'D', i: 2, c: [], o: [] }])} closed doll</span>`
-  + `<span>${svgFor([{ k: 'B', i: 2, c: [], o: [] }])} open bottom</span>`
-  + `<span>${svgFor([{ k: 'T', i: 2, c: [], o: [] }])} open top</span>`
-  + `<span>${svgFor([{ k: 'D', i: 3, c: [{ k: 'D', i: 1, c: [], o: [] }], o: [] }])} things inside a closed doll show through</span>`
-  + `<span>${svgFor([{ k: 'T', i: 3, c: [], o: [{ k: 'B', i: 2, c: [], o: [] }] }])} B2 standing on T3, written T3^B2</span>`
-  + `<span class="mono">D = closed doll · B = bottom · T = top · [ ] = inside · ^ = on top</span>`;
+  `<span>${svgFor([{ k: 'D', i: 1, c: [], o: [] }])} closed doll</span>`
+  + `<span>${svgFor([{ k: 'B', i: 1, c: [], o: [] }])} open bottom</span>`
+  + `<span>${svgFor([{ k: 'T', i: 1, c: [], o: [] }])} open top</span>`
+  + `<span>${svgFor([{ k: 'D', i: 2, c: [{ k: 'D', i: 0, c: [], o: [] }], o: [] }])} things inside a closed doll show through</span>`
+  + `<span class="mono">D = closed doll · B = bottom · T = top · [ ] = inside</span>`;
 
 const tabs = document.getElementById('tabs'), gallery = document.getElementById('gallery');
 let renderToken = 0;
-function show(n) {
+let curN = 0, curK = 0; // curK = 0 shows every number of distinct sizes
+function profileLabel(comp) {
+  const sizes = [];
+  comp.forEach((m, j) => { for (let x = 0; x < m; x++) sizes.push(j + 1); });
+  return 'Sizes ' + sizes.join(', ');
+}
+function buildKFilter(n) {
+  const box = document.getElementById('kfilter');
+  const per = new Map();
+  for (const comp of profiles(n)) per.set(comp.length, (per.get(comp.length) || 0) + configsFor(comp).length);
+  const total = [...per.values()].reduce((a, b) => a + b, 0);
+  const items = [[0, 'All size sets', total], ...[...per.keys()].sort((a, b) => a - b)
+    .map(k => [k, `${k} distinct size${k > 1 ? 's' : ''}`, per.get(k)])];
+  box.innerHTML = '';
+  for (const [k, label, cnt] of items) {
+    const b = document.createElement('button');
+    b.id = 'k-' + k; b.dataset.k = k;
+    b.innerHTML = `${label}<span class="count">${cnt.toLocaleString()}</span>`;
+    b.setAttribute('aria-pressed', String(k === curK));
+    b.onclick = () => show(curN, k);
+    box.appendChild(b);
+  }
+}
+function show(n, k = 0) {
+  if (k > n) k = 0;
+  const nChanged = n !== curN;
+  curN = n; curK = k;
   [...tabs.children].forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.n === n)));
-  const all = configs(n), groups = new Map();
-  for (const c of all) { const g = c.length; if (!groups.has(g)) groups.set(g, []); groups.get(g).push(c); }
+  if (nChanged) buildKFilter(n);
+  [...document.getElementById('kfilter').children].forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.k === k)));
   gallery.innerHTML = '';
   const jobs = []; let idx = 0;
-  for (const g of [...groups.keys()].sort((a, b) => a - b)) {
-    const list = groups.get(g), box = document.createElement('div');
+  for (const comp of profiles(n)) {
+    if (k && comp.length !== k) continue;
+    const list = configsFor(comp), box = document.createElement('div');
     box.className = 'group';
-    box.innerHTML = `<h3>${g} object${g > 1 ? 's' : ''} on the table · ${list.length.toLocaleString()}</h3><div class="grid"></div>`;
+    box.innerHTML = `<h3>${profileLabel(comp)} · ${list.length.toLocaleString()}</h3><div class="grid"></div>`;
     gallery.appendChild(box);
     const grid = box.lastChild;
     for (const c of list) jobs.push([grid, ++idx, c]);
@@ -249,19 +301,19 @@ function show(n) {
   (function step(p) {
     if (token !== renderToken) return;
     const bins = new Map();
-    for (const [grid, k, c] of jobs.slice(p, p + 300))
-      bins.set(grid, (bins.get(grid) || '') + `<div class="card"><span class="num">#${k}</span>${svgFor(c)}<div class="lab">${c.map(key).join('  ')}</div></div>`);
+    for (const [grid, i, c] of jobs.slice(p, p + 300))
+      bins.set(grid, (bins.get(grid) || '') + `<div class="card"><span class="num">#${i}</span>${svgFor(c)}<div class="lab">${c.map(key).join('  ')}</div></div>`);
     for (const [grid, h] of bins) grid.insertAdjacentHTML('beforeend', h);
     if (p + 300 < jobs.length) setTimeout(() => step(p + 300), 0);
   })(0);
-  try { localStorage.setItem('stack-n', n); } catch (e) {}
+  try { localStorage.setItem(STORE_KEY, n); } catch (e) {}
 }
 for (let n = 1; n <= 4; n++) {
   const b = document.createElement('button'); b.dataset.n = n; b.id = 'tab-' + n;
   b.innerHTML = `N = ${n}<span class="count">${TERMS[n - 1]}</span>`;
   b.onclick = () => show(n); tabs.appendChild(b);
 }
-let start = 2; try { const v = +localStorage.getItem('stack-n'); if (v >= 1 && v <= 4) start = v; } catch (e) {}
+let start = 2; try { const v = +localStorage.getItem(STORE_KEY); if (v >= 1 && v <= 4) start = v; } catch (e) {}
 show(start);
 </script>
 
