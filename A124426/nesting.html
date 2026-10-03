@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Matryoshka Configurations</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Philosopher:wght@700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400&display=swap">
+<style>
+/* Layout: one reading column for the rules and sequence, then a full-width wrapping gallery of drawn configurations, grouped by how many objects sit on the table. */
+:root{
+  --bg:#eef0ec; --surface:#f8f9f6; --fg:#22261f; --muted:#5d6458; --line:#cfd4ca;
+  --d1:#b8322a; --d2:#c98a12; --d3:#2f7a4d; --d4:#2b5aa0; --face:#f6e7d2;
+  --display:"Philosopher",Georgia,serif; --body:"Source Sans 3",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#171a16; --surface:#20241f; --fg:#e7eae3; --muted:#9ea597; --line:#353b33;
+  --d1:#e0574d; --d2:#e3a93a; --d3:#4fae75; --d4:#5f8fd8; --face:#f1dfc6; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#171a16; --surface:#20241f; --fg:#e7eae3; --muted:#9ea597; --line:#353b33;
+  --d1:#e0574d; --d2:#e3a93a; --d3:#4fae75; --d4:#5f8fd8; --face:#f1dfc6; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--body);padding:0 16px}
+.wrap{max-width:1100px;margin:0 auto;padding-block:40px 64px;display:flex;flex-direction:column;gap:28px}
+.col{max-width:68ch}
+h1{font:700 clamp(2rem,5vw,3rem)/1.1 var(--display);margin:0;text-wrap:balance}
+h2{font:700 1.4rem/1.2 var(--display);margin:0 0 8px}
+p{margin:0 0 10px}
+.lede{color:var(--muted);font-size:1.1rem}
+ul{margin:0;padding-left:1.2em}
+li{margin-bottom:4px}
+code,.mono{font-family:var(--mono);font-size:.88em}
+.seq{font-family:var(--mono);font-size:.95rem;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px 14px;overflow-x:auto;white-space:nowrap;font-variant-numeric:tabular-nums}
+.terms{display:flex;flex-wrap:wrap;gap:10px}
+.term{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:8px 14px;display:flex;flex-direction:column;min-width:84px}
+.term b{font:700 1.5rem var(--display);font-variant-numeric:tabular-nums}
+.term span{font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.tabs button{font:600 1rem var(--body);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:6px 16px;cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.tabs button:focus-visible{outline:2px solid var(--d4);outline-offset:2px}
+.tabs .count{color:var(--muted);margin-left:6px}
+.group h3{font:600 .8rem var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:18px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 8px 8px;display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0}
+.card svg{width:100%;height:86px}
+.card .lab{font:400 .7rem/1.3 var(--mono);color:var(--muted);text-align:center;overflow-wrap:anywhere}
+.card .num{font:600 .7rem var(--body);color:var(--muted);align-self:flex-start}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.9rem;color:var(--muted);align-items:center}
+.legend svg{height:34px;width:auto;vertical-align:middle}
+
+body{margin:0}
+a{color:var(--d4)}
+.crumbs{display:flex;gap:14px;flex-wrap:wrap;font-size:.9rem}
+.crumbs a{text-decoration:none}
+.crumbs a:hover,.crumbs a:focus-visible{text-decoration:underline}
+.crumbs [aria-current]{color:var(--fg);font-weight:600}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav class="crumbs" aria-label="Pages"><a href="./">Home</a><a href="nesting.html" aria-current=page>Nesting gallery</a><a href="stacking.html">Stacking gallery</a></nav>
+  <header class="col">
+    <h1>Matryoshka Configurations</h1>
+    <p class="lede">Ways to arrange N nesting dolls when each doll comes apart into a top and a bottom half. Every configuration for N = 1 to 4 is drawn below.</p>
+  </header>
+
+  <section class="col">
+    <h2>The rules</h2>
+    <ul>
+      <li>Doll <i>k</i> is either closed (top on bottom) or split into its two halves.</li>
+      <li>A piece only goes inside a <em>larger</em> doll's piece.</li>
+      <li>A closed doll or an open bottom holds one item directly: a smaller closed doll or a smaller bottom (which may hold more). Nothing sits side by side inside a doll.</li>
+      <li>An open top holds one item directly, and only a smaller top. A top never covers a doll or a bottom.</li>
+      <li>A loose top never goes inside a bottom or a closed doll, even if its own bottom is also there.</li>
+      <li>Position on the table doesn't matter. Only what is inside what counts.</li>
+    </ul>
+  </section>
+
+  <section class="col">
+    <h2>The sequence</h2>
+    <div class="terms" id="terms"></div>
+    <p style="margin-top:12px">Further terms, N = 1…16:</p>
+    <div class="seq">2, 10, 75, 780, 10556, 178031, 3630780, 87548580, 2452523325, 78697155750, 2859220516290, 116482516809889, 5277304280371714, 264005848594606490, 14493602135008296115, 868435614538568029188</div>
+    <p style="margin-top:12px">This is <a href="https://oeis.org/A124426">A124426</a>, the product of two consecutive Bell numbers: a(N) = B(N)·B(N+1). The bottoms and closed dolls form stacks, and any grouping of the N dolls into stacks works. That gives B(N) ways. Each stack's order is forced by size. The loose tops then stack among themselves. Choosing which dolls are open and how their tops stack gives B(N+1) ways in total. A brute-force enumeration agrees for N ≤ 6.</p>
+  </section>
+
+  <section>
+    <div class="legend" id="legend"></div>
+  </section>
+
+  <section>
+    <div class="tabs" id="tabs" role="group" aria-label="Number of dolls"></div>
+    <div id="gallery"></div>
+  </section>
+</div>
+
+<script>
+const S = i => 22 + 12 * i;               // natural width of doll i
+const HT = 0.78, HB = 0.62;               // top / bottom half heights as fraction of width
+const COL = i => `var(--d${i})`;
+
+// ---- enumeration (same model as the Python enumerator) ----
+const bit = (k, i) => 1 << (2 * (i - 1) + (k === 'T' ? 1 : 0));
+const key = u => u.k + u.i + (u.c.length ? '[' + u.c.map(key).join(' ') + ']' : '');
+const memo = new Map();
+function subsets(m) { const r = []; for (let s = m; ; s = (s - 1) & m) { r.push(s); if (!s) break; } return r; }
+function level(S_, mode) {
+  const mk = S_ + mode; if (memo.has(mk)) return memo.get(mk);
+  if (!S_) { memo.set(mk, [[]]); return [[]]; }
+  let i = 0; for (let j = 1; j <= 8; j++) if (S_ & (bit('B', j) | bit('T', j))) i = j;
+  const mine = ['B', 'T'].filter(k => S_ & bit(k, i));
+  const smaller = S_ & ~(bit('B', i) | bit('T', i));
+  const res = [];
+  if (mine.length === 2)
+    for (const X of subsets(smaller)) for (const c of level(X, 'D')) for (const r of level(smaller & ~X, mode)) res.push([{ k: 'D', i, c }, ...r]);
+  (function rec(units, rem, todo) {
+    if (!todo.length) { for (const r of level(rem, mode)) res.push([...units, ...r]); return; }
+    const k = todo[0];
+    for (const X of subsets(rem & smaller)) for (const c of level(X, k)) rec([...units, { k, i, c }], rem & ~X & ~bit(k, i), todo.slice(1));
+  })([], S_, mine);
+  const seen = new Set(), out = [];
+  for (let t of res) {
+    if (mode === 'T' && t.some(u => u.k !== 'T')) continue;
+    if ((mode === 'B' || mode === 'D') && t.some(u => u.k === 'T')) continue;
+    if (mode !== 'table' && t.length > 1) continue;
+    t = [...t].sort((a, b) => b.i - a.i || a.k.localeCompare(b.k));
+    const kk = t.map(key).join(' ');
+    if (!seen.has(kk)) { seen.add(kk); out.push(t); }
+  }
+  memo.set(mk, out); return out;
+}
+const configs = n => { let m = 0; for (let i = 1; i <= n; i++) m |= bit('B', i) | bit('T', i); return level(m, 'table'); };
+
+// ---- drawing ----
+function topPath(cx, y, w, h) {
+  const l = cx - w / 2, r = cx + w / 2, b = y + h;
+  return `M${l},${b} C${l},${y + .38 * h} ${cx - .4 * w},${y} ${cx},${y} C${cx + .4 * w},${y} ${r},${y + .38 * h} ${r},${b} Z`;
+}
+function botPath(cx, y, w, h) {
+  const l = cx - w / 2, r = cx + w / 2, b = y + h;
+  return `M${l},${y} C${l},${y + .85 * h} ${cx - .36 * w},${b} ${cx - .26 * w},${b} L${cx + .26 * w},${b} C${cx + .36 * w},${b} ${r},${y + .85 * h} ${r},${y} Z`;
+}
+function face(cx, y, w, h, i) {
+  const fr = w * 0.2;
+  return `<circle cx="${cx}" cy="${y + h * 0.5}" r="${fr}" fill="var(--face)" stroke="${COL(i)}" stroke-width="1"/>`;
+}
+function rowOf(units, gap) {               // lay units side by side, bottom-aligned
+  const parts = units.map(draw);
+  const w = parts.reduce((s, p) => s + p.w, 0) + gap * Math.max(0, parts.length - 1);
+  const h = Math.max(0, ...parts.map(p => p.h));
+  let x = 0, svg = '';
+  for (const p of parts) { svg += `<g transform="translate(${x},${h - p.h})">${p.svg}</g>`; x += p.w + gap; }
+  return { w, h, svg };
+}
+function fit(inner, maxW, maxH) { return Math.min(1, maxW / Math.max(inner.w, 1e-9), maxH / Math.max(inner.h, 1e-9)); }
+function draw(u) {
+  const w = S(u.i), c = COL(u.i), sw = 1.6;
+  if (u.k === 'T') {                       // open top: a dome; smaller tops nest concentrically
+    const h = HT * w;
+    let svg = `<path d="${topPath(w / 2, 0, w, h)}" fill="${c}" fill-opacity=".9" stroke="${c}" stroke-width="${sw}"/>`;
+    if (u.c.length) { const ch = draw(u.c[0]); svg += `<g transform="translate(${(w - ch.w) / 2},${h - ch.h})">${ch.svg}</g>`; }
+    else svg += face(w / 2, 0, w, h, u.i);
+    return { w, h, svg };
+  }
+  if (u.k === 'B') {                       // open bottom: a cup; contents sit inside and may stick up
+    const hb = HB * w;
+    let inner = null, f = 1;
+    if (u.c.length) { inner = draw(u.c[0]); f = fit(inner, w * 0.8, 9e9); }
+    const ih = inner ? inner.h * f : 0, floor = 0.12 * hb;
+    const h = Math.max(hb, ih + floor);
+    const y0 = h - hb;
+    let svg = `<path d="${botPath(w / 2, y0, w, hb)}" fill="${c}" fill-opacity=".9" stroke="${c}" stroke-width="${sw}"/>`;
+    svg += `<path d="${botPath(w / 2, y0, w, hb)}" fill="var(--bg)" fill-opacity=".55" transform="translate(${w * .09},${y0 * .09}) scale(.82,.91)" />`;
+    if (inner) svg += `<g transform="translate(${(w - inner.w * f) / 2},${h - floor - ih}) scale(${f})">${inner.svg}</g>`;
+    return { w, h, svg };
+  }
+  // closed doll: top on bottom, contents shown x-ray style
+  const ht = HT * w, hb = HB * w, h = ht + hb;
+  let svg = `<path d="${topPath(w / 2, 0, w, ht)}" fill="${c}" stroke="${c}" stroke-width="${sw}"/>`
+          + `<path d="${botPath(w / 2, ht, w, hb)}" fill="${c}" stroke="${c}" stroke-width="${sw}"/>`;
+  if (u.c.length) {
+    const inner = rowOf(u.c, 3), f = fit(inner, w * 0.74, h * 0.8);
+    svg += `<path d="${topPath(w / 2, 0, w, ht)}" fill="var(--surface)" fill-opacity=".72" transform="translate(${w*.08},${ht*.1}) scale(.84,.9)"/>`
+         + `<path d="${botPath(w / 2, ht, w, hb)}" fill="var(--surface)" fill-opacity=".72" transform="translate(${w*.08},${ht*.02}) scale(.84,.94)"/>`;
+    svg += `<g transform="translate(${(w - inner.w * f) / 2},${h - 0.1 * hb - inner.h * f}) scale(${f})">${inner.svg}</g>`;
+  } else svg += face(w / 2, 0, w, ht, u.i);
+  svg += `<line x1="${w * .02}" y1="${ht}" x2="${w * .98}" y2="${ht}" stroke="var(--surface)" stroke-width="1.2" stroke-dasharray="3 2"/>`;
+  return { w, h, svg };
+}
+function svgFor(units) {
+  const r = rowOf(units, 10), pad = 4;
+  return `<svg viewBox="${-pad} ${-pad} ${r.w + 2 * pad} ${r.h + 2 * pad}" preserveAspectRatio="xMidYMax meet" role="img">${r.svg}</svg>`;
+}
+
+// ---- page ----
+const TERMS = [2, 10, 75, 780];
+document.getElementById('terms').innerHTML = TERMS.map((t, i) => `<div class="term"><span>N = ${i + 1}</span><b>${t.toLocaleString()}</b></div>`).join('')
+  + `<div class="term"><span>N = 5</span><b>10,556</b></div>`;
+document.getElementById('legend').innerHTML =
+  `<span>${svgFor([{ k: 'D', i: 2, c: [] }])} closed doll</span>`
+  + `<span>${svgFor([{ k: 'B', i: 2, c: [] }])} open bottom</span>`
+  + `<span>${svgFor([{ k: 'T', i: 2, c: [] }])} open top</span>`
+  + `<span>${svgFor([{ k: 'D', i: 3, c: [{ k: 'D', i: 1, c: [] }] }])} things inside a closed doll show through</span>`
+  + `<span class="mono">D = closed doll · B = bottom · T = top · [ ] = inside</span>`;
+
+const tabs = document.getElementById('tabs'), gallery = document.getElementById('gallery');
+function show(n) {
+  [...tabs.children].forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.n === n)));
+  const all = configs(n), groups = new Map();
+  for (const c of all) { const g = c.length; if (!groups.has(g)) groups.set(g, []); groups.get(g).push(c); }
+  let html = '', idx = 0;
+  for (const g of [...groups.keys()].sort((a, b) => a - b)) {
+    const list = groups.get(g);
+    html += `<div class="group"><h3>${g} object${g > 1 ? 's' : ''} on the table · ${list.length}</h3><div class="grid">`;
+    for (const c of list) { idx++; html += `<div class="card"><span class="num">#${idx}</span>${svgFor(c)}<div class="lab">${c.map(key).join('  ')}</div></div>`; }
+    html += '</div></div>';
+  }
+  gallery.innerHTML = html;
+  try { localStorage.setItem('matry-n', n); } catch (e) {}
+}
+for (let n = 1; n <= 4; n++) {
+  const b = document.createElement('button'); b.dataset.n = n; b.id = 'tab-' + n;
+  b.innerHTML = `N = ${n}<span class="count">${TERMS[n - 1]}</span>`;
+  b.onclick = () => show(n); tabs.appendChild(b);
+}
+let start = 2; try { const v = +localStorage.getItem('matry-n'); if (v >= 1 && v <= 4) start = v; } catch (e) {}
+show(start);
+</script>
+
+</body>
+</html>
