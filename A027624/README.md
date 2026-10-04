@@ -1,6 +1,6 @@
 # A027624 — Number of independent vertex sets in the n-hypercube graph Q_n
 
-**Status:** **a(7) = 78685477899897082403 computed 2026-09-26** (Rust, 0.75 s; see Results). **a(8) = 1268098993536094508894717661843009268823 computed 2026-09-27** (CUDA, 23.6 h on an RTX 3080; see "a(8): result"). OEIS edit drafted in `oeis_submission.md`.
+**Status:** **a(7) = 78685477899897082403 computed 2026-09-26** (Rust, 0.75 s; see Results). **a(8) = 1268098993536094508894717661843009268823 computed 2026-09-27** (CUDA, 23.6 h on an RTX 3080; see "a(8): result"). OEIS edit drafted in `oeis_submission.md` and **submitted Oct 4 2026** (awaiting review); the A354802 row-7 edit is next.
 **Known terms:** a(0)..a(6) = 2, 3, 7, 35, 743, 254475, 19768832143 (7 terms). a(6) is old; there is no b-file.
 **Target:** a(7). Sapozhenko's asymptotic gives a(n) ~ 2·√e·2^(2^(n−1)), so a(7) ≈ 6×10^19, which probably **exceeds 2^64 ≈ 1.8×10^19**. Use 128-bit integers.
 **Literature check (2026-09-25):** only asymptotic results (Sapozhenko; Galvin [1901.01991]; Jenssen–Perkins [1907.00862]). No exact a(7) found.
