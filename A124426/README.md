@@ -35,10 +35,32 @@ of the N dolls into chains works: Bell(N) ways (this is Carlo Sanna's matryoshka
 Σ_k C(N,k)·Bell(k) = Bell(N+1).
 
 **Stacking: no product formula.** Towers can alternate dolls, bottoms and tops (but a top can't sit inside an open
-bottom), which ties the tops to everything else. Terms come from a recurrence: place pieces from largest to smallest
-and track the free slots (heads at the top of a tower, empty open bottoms, chains inside outer closed dolls, chains
-inside outer tops). With every doll closed the stacking count is [A000258](https://oeis.org/A000258)(N) =
-Σ_k Stirling2(N,k)·Bell(k) (see [A008277](https://oeis.org/A008277)).
+bottom), which ties the tops to everything else. Terms come from a recurrence. Insert the dolls from largest to
+smallest and track four counts (s, f, e, t):
+- s = free heads at the top of a tower;
+- f = towers ending in an empty open bottom half;
+- e = closed dolls not enclosed in anything (each holds one nested chain);
+- t = top halves not enclosed in anything (each holds one chain of tops).
+
+Each new piece goes on the table or into one free slot, and each choice is weighted by the number of such slots:
+
+| New piece | Where it goes | Effect on (s, f, e, t) | Ways |
+|---|---|---|---|
+| closed doll | table | s+1, e+1 | 1 |
+| | on a head | e+1 | s |
+| | into an open bottom | f−1, s+1, e+1 | f |
+| | into a closed doll's chain | none | e |
+| open doll, bottom half (placed first) | table | f+1 | 1 |
+| | on a head | s−1, f+1 | s |
+| | into an open bottom or a closed doll's chain | none | f + e |
+| open doll, top half (then) | table | s+1, t+1 | 1 |
+| | on a head | t+1 | s |
+| | into a top's chain | none | t |
+
+a(N) is the total weight after N dolls, starting from (0, 0, 0, 0) (`stack_fast.py`, `prog.py`, Rust `stack`).
+With every doll closed the stacking count is [A000258](https://oeis.org/A000258)(N) =
+Σ_k Stirling2(N,k)·Bell(k) (see [A008277](https://oeis.org/A008277)): each group of a set partition of the dolls is one
+doll holding the rest of its group as a nested chain, and these outer dolls are then partitioned into towers.
 
 Stacking counts split by number of open dolls (rows sum to the sequence; column 0 is A000258):
 
