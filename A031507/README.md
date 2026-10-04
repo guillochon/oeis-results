@@ -1,8 +1,10 @@
 # A031507 / A031508 — Smallest k > 0 such that y² = x³ + k (resp. y² = x³ − k) has rank n
 
 **Status:** **SOLVED, 2026-09-28.** **A031507(7) = 47550317** and **A031508(7) = 56877643**, proved without GRH or BSD
-(so also A373795(7) = 47550317). See "Result" below; the run summary is `logs/a7_run.log`. The original plan follows
-the Result section.
+(so also A373795(7) = 47550317). This page is the full account of that result. The sections from "What is being
+counted" through "A literature note" are a self-contained explanation: what is counted, the theorem, the method stage by
+stage, every check, and how to reproduce it. The run summary is `logs/a7_run.log`. Below that, under "Working notes",
+are the original plan, the literature check and the log, kept as they were written.
 **Known terms:** a(0)..a(6) in both sequences (7 terms each). DATA was checked on oeis.org on 2026-09-27.
 - A031507: 1, 2, 15, 113, 2089, 66265, 1358556
 - A031508: 1, 2, 11, 174, 2351, 28279, 975379
@@ -11,16 +13,26 @@ All 14 terms are **unconditionally proved**. a(0..5) are from Gebel–Pethő–Z
 exhaustive mwrank search over −10⁶ < k < 1.4×10⁶ (Sept–Nov 2001), described on his web page as "without using
 conjectures". The terms were last extended in 2001–2003 (Womack); since then there have been only upper-bound comments (Womack, Aranda,
 Hasler, Elkies 2024).
-**Target:** **a(7) for both sequences.** Womack's candidates are A031507(7) = 47550317 and A031508(7) = 56877643. Both curves are
-known to have rank exactly 7 (mwrank, unconditional for rank ≤ 8, per Womack). What is missing is minimality: every
+**Target:** **a(7) for both sequences.** Womack's 2002 candidates are A031507(7) = 47550317 and A031508(7) = 56877643. Both curves were
+known to have rank exactly 7 (mwrank, unconditional for rank ≤ 8, per Womack). What was missing is minimality: every
 smaller k must have rank ≠ 7. Womack (2002): "checking slightly over 100 million curves … would take mwrank roughly
-one year running on 500 1GHz computers." This also settles A373795(7) = min of the two = 47550317.
+one year running on 500 1GHz computers." The values are Womack's; what is new here is the proof that they are the
+smallest. This also settles A373795(7) = min of the two = 47550317.
+
+## What is being counted
+For each n, a(n) is the least k ≥ 1 such that the Mordell curve E_k: y² = x³ + k (A031507), or y² = x³ − k (A031508), has
+Mordell–Weil rank exactly n. Only sixth-power-free k matter, since k and u⁶k give isomorphic curves.
+E_k and E_{−27k} are 3-isogenous, so they have the same rank.
+- Tiny example: A031507(2) = 15. For k = 1..14 the ranks of y² = x³ + k are 0, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0
+  (A060950; checked with `ellrank`), and y² = x³ + 15 has rank 2, with independent points (1, 4) and (109, 1138)
+  (the height-pairing determinant is 3.76).
+- A031508(1) = 2: y² = x³ − 1 has rank 0, and y² = x³ − 2 contains (3, 5), a point of infinite order.
 
 ## Result
 **Theorem.** Every sixth-power-free k with 1 ≤ k < 47550317 has rank(y² = x³ + k) ≤ 6, and every sixth-power-free
 k with 1 ≤ k < 56877643 has rank(y² = x³ − k) ≤ 6. The curves y² = x³ + 47550317 and y² = x³ − 56877643 have rank
-exactly 7. Hence A031507(7) = 47550317 and A031508(7) = 56877643. (A non-sixth-power-free k gives the same curve as
-k/u⁶, which is smaller and already covered.) No conjecture is used; the only unproved ingredient is PARI's BPSW
+exactly 7. Hence A031507(7) = 47550317 and A031508(7) = 56877643, and A373795(7) = min of the two = 47550317.
+(A non-sixth-power-free k gives the same curve as k/u⁶, which is smaller and already covered.) No conjecture is used; the only unproved ingredient is PARI's BPSW
 primality test inside the factoring. BPSW is proven for n < 2⁶⁴ and has no known counterexample above that.
 
 **How the ~1.14×10⁸ curves were eliminated** (both signs; counts are for k below the candidate):
@@ -52,7 +64,8 @@ primality test inside the factoring. BPSW is proven for n < 2⁶⁴ and has no k
    gives the covering Z³ = c₂X³ + 3c₁X²Y + 3uc₂XY² + uc₁Y³, and insolubility over Q_p is decided exactly by a p-adic tree
    search (`tools/witness.gp`). The fast version only descends into roots of the reduction. It returns "soluble" by
    the Weil bound for p > 50, but that answer can never produce a false witness.
-4. **Stage 6, certified 2-descent** for the 264 curves the 3-isogeny method could not close. Their φ-Selmer groups
+4. **Stage 6, certified 2-descent** for the 264 curves the 3-isogeny method could not close (the 121 + 143 stage-4
+   survivors; stage 5 closed one of the + curves, but stage 6 was run on all 121 anyway). Their φ-Selmer groups
    apparently fill the ambient bound, which points to nontrivial Sha[3]. `ellrankinit(E)` holds the `bnf` of
    Q[x]/(x³ + v) used by the 2-descent, and `bnfcertify` proves that `bnf` without GRH. `ellrank` on the same
    structure then gives R ∈ {1, 3, 5} for all 264 curves. This was the slow part: 19 + 224 CPU-minutes, one curve
@@ -87,17 +100,15 @@ gp -q tools/rank7_certificate.gp                          # the two rank-7 curve
 **A literature note.** arXiv:math/0403116 is **Elkies–Rogers**, "Elliptic curves x³ + y³ = k of high
 rank" (ANTS 2004), not Elkies–Watkins. Its statements that ranks 4 and 5 are proved minimal and ranks 6 and 7 are minimal under
 weak BSD + GRH are about the *cube-sum* family E_k: x³ + y³ = k, which is y² = x³ − 432k². They are not about
-A031507/A031508. For our sequences rank 6 is already unconditional. The new content would be **the first a(7), proved
+A031507/A031508. For our sequences rank 6 is already unconditional. The new content is **the first a(7), proved
 unconditionally, in both sequences.**
 
-## What is being counted
-For each n, a(n) is the least k ≥ 1 such that the Mordell curve E_k: y² = x³ + k (A031507), or y² = x³ − k (A031508), has
-Mordell–Weil rank exactly n. Only sixth-power-free k matter, since k and u⁶k give isomorphic curves.
-E_k and E_{−27k} are 3-isogenous, so they have the same rank.
-- Tiny example: A031507(2) = 15. For k = 1..14 the ranks of y² = x³ + k are 0, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0
-  (A060950; checked with `ellrank`), and y² = x³ + 15 has rank 2, with independent points (1, 4) and (109, 1138)
-  (the height-pairing determinant is 3.76).
-- A031508(1) = 2: y² = x³ − 1 has rank 0, and y² = x³ − 2 contains (3, 5), a point of infinite order.
+---
+
+# Working notes
+Everything below was written while planning and running the computation (from 2026-09-27). The account above
+supersedes it where they differ: for example, the plan's `ellrank` stage became stages 2–6, and the h₃ table was built
+with PARI's `nflist` rather than Belabas's CUBIC.
 
 ## How the known terms were computed
 - GPZ 1998: ranks and integral points for |k| ≤ 10⁴ (later up to 10⁵), by 2-descent. This gives a(0..5).
