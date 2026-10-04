@@ -52,7 +52,7 @@ Burnside's lemma for B_n acting on Krom functions gives the exact identity
 ```
 2^n n! · A109459(n) = G(n) + Σ_{g ≠ 1} Fix(g),        Fix(g) = # g-invariant Krom functions.
 ```
-The measured relative mass Σ_{g≠1} Fix(g)/G(n) is 0.951, 0.578, 0.356, 0.224 for n = 7..10,
+The measured relative mass Σ_{g≠1} Fix(g)/G(n) is 0.951, 0.577, 0.356, 0.225 for n = 7..10,
 shrinking by a factor ≈ 0.63 per step.
 
 **Conjecture A.** Σ_{g≠1} Fix(g) = o(G(n)). Consequently
@@ -159,3 +159,7 @@ rigid". We did not attempt it.
 - A109458: COMMENT (conjecture, supported by n ≤ 10): `a(n) ~ 2^(n(n+1)/2)/n!`.
 - A109459: COMMENT (conjecture, supported by n ≤ 10): `a(n) ~ 2^(n(n-1)/2)/n!`, i.e. almost all
   Krom functions have trivial stabiliser in the hyperoctahedral group; Burnside data above.
+
+*Oct 2026:* the OEIS edits were trimmed per the editor's preferences (terms + link only). Of the
+lines above only the A109457 FORMULA (the proved asymptotic, with its references) stays in the
+entries; the BBL comment and the two conjectures are in the README's "Asymptotics" section.
