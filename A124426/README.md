@@ -49,13 +49,19 @@ Stacking counts split by number of open dolls (rows sum to the sequence; column 
 | 3 | 12 | 58 | 135 | 107 | |
 | 4 | 60 | 446 | 1735 | 3221 | 2181 |
 
+Stacking counts mod m are eventually periodic for every m, because the recurrence only multiplies by the slot
+counts: mod m it runs on their residues (m^4 states). a(n) is odd exactly when n mod 30 is in
+{0, 2, 4, 7, 9, 13, 15, 17, 18, 19, 21, 26, 27, 29}; mod 4 the period is 120 after 4 initial terms.
+
 ## Repeated sizes
 
 N dolls whose sizes may repeat. Only the order of the sizes matters (1,1,3 = 1,1,2 = 2,2,3), so a size set is a
 composition of N (how many dolls share each size, smallest first), and the count sums over all 2^(N−1) of them.
 Dolls of equal size are identical (any top fits any bottom of its size) and never nest or stack on each other;
 otherwise the nesting or stacking rules above apply. The all-distinct size set gives the sequences above; the
-all-equal one gives N + 1.
+all-equal one gives N + 1. With nesting only, the count for a size set depends only on how many dolls share each
+size, not on their order (a chain is just a set of distinct sizes); with stacking the order matters (sizes 1,1,2
+give 53 arrangements, sizes 1,2,2 give 46).
 
 Equal pieces make direct counting overcount symmetric arrangements, so `repeat_fast.py` uses Burnside's lemma:
 an arrangement of identical pieces is an orbit of arrangements of labelled pieces under the permutations of equal
@@ -89,7 +95,8 @@ The JavaScript in the gallery pages runs its own enumeration in the browser and 
 | `nesting_fast.py`, `stack_fast.py`, `prog.py` | slot-counting recurrences (`prog.py` is the OEIS PROG version) |
 | `refine.py` | stacking counts split by number of open dolls |
 | `pedestal.py` | checks a Dobinski-type identity a(N) = e⁻¹ Σ_m W_N(m)/m! (table replaced by m pedestals) |
-| `repeat_sizes.py`, `repeat_fast.py` | repeated sizes: brute force and Pólya checks, Burnside counter |
+| `repeat_sizes.py`, `repeat_fast.py`, `prog_repeat.py` | repeated sizes: brute force and Pólya checks, Burnside counter, compact OEIS version |
+| `periodicity.py` | stacking count mod m on the residue classes of the slot state: period 30 mod 2, 120 mod 4 |
 | `rust/`, `crt.py`, `make_bfiles.py` | compiled counters (modular), CRT reassembly, b-file assembly and checks |
 | `stacking.txt` | stacking count, b-file n = 0..180 |
 | `repeat_nesting.txt`, `repeat_stacking.txt` | repeated-size counts, b-files n = 0..18 and n = 0..13 |
