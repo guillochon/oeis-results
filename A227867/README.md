@@ -55,6 +55,28 @@ So a(2^k) = 32 for k ≥ 3. Direct counts give a(2) = 8 and a(4) = 32.
   - `A_two`, `A_four` and `A_two_pow`, where the kernel checks "never 7 mod 8" by exhausting ZMod 8;
   - `A_closed_form`.
 
+  Its statement is the count of solutions over `ZMod n`, taken straight from the definition, written as the product of the local factors over the factorization of n. `#print axioms` shows only propext, Classical.choice and Quot.sound.
+- **b-file.** `bfile.py` writes n = 1..10000 from the closed form, after checking it against the direct count for n ≤ 256.
+- **PARI.** The PARI line below was run in gp 2.15.4 for every n in the b-file; all 10000 terms match. The Python program was also checked against the b-file.
+
+## Programs
+Both compute every term, from the closed form.
+
+    (PARI) a(n) = my(f=factor(n)); prod(i=1, #f~, my(p=f[i,1], e=f[i,2]); if(p==2, if(e==1, 8, 32), p^(2*e-1)*(p+1)+2));
+
+    (Python)
+    from sympy import factorint
+    def A227867(n):
+        r = 1
+        for p, e in factorint(n).items():
+            r *= (8 if e == 1 else 32) if p == 2 else p**(2*e-1)*(p+1)+2
+        return r
+
+## How to reproduce
+- `python verify.py 256` — direct count of A227867 (and A236553) for n = 1..256, compared with the closed forms and the OEIS data.
+- `python bfile.py` — rebuild `b227867.txt`.
+- `cd lean && lake exe cache get && lake build` — check the Lean proof.
+
 ## Files
 | File | What it is |
 |---|---|
