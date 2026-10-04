@@ -1,6 +1,140 @@
 # A027624 — Number of independent vertex sets in the n-hypercube graph Q_n
 
-**Status:** **a(7) = 78685477899897082403 computed 2026-09-26** (Rust, 0.75 s; see Results). **a(8) = 1268098993536094508894717661843009268823 computed 2026-09-27** (CUDA, 23.6 h on an RTX 3080; see "a(8): result"). OEIS edit drafted in `oeis_submission.md` and **submitted Oct 4 2026** (awaiting review); the A354802 row-7 edit is next.
+**New terms:**
+
+    a(7) = 78685477899897082403
+    a(8) = 1268098993536094508894717661843009268823
+
+This page is the explanation linked from the OEIS entry: the identities used, how each term was computed, and how
+it was checked. The working log follows further down. Everything needed to reproduce the values is in this folder.
+
+## The identities
+
+Q_n has 2^n vertices, the binary strings of length n, with two vertices adjacent when they differ in exactly one bit.
+An independent set is a set of vertices no two of which are adjacent; the empty set counts. For W ⊆ V(Q_d), write
+**j(W)** for the number of independent sets of Q_d contained in W (so j(V(Q_d)) = a(d)).
+
+**1. Q_n = Q_{n-2} × C_4.** Take d = n − 2 and V = V(Q_d). Q_2 is the 4-cycle, so Q_n consists of four copies of Q_d
+in a ring, each joined to its two neighbours in the ring vertex by vertex. An independent set of Q_n is therefore a
+cyclic sequence (S_0, S_1, S_2, S_3) of independent sets of Q_d in which consecutive members are disjoint. Fix
+S = S_0 and U = S_2: then S_1 and S_3 are, independently, any independent sets inside V ∖ (S ∪ U). Hence
+
+    a(n) = Σ_{S, U independent in Q_{n-2}}  j(V ∖ (S ∪ U))².
+
+**2. Q_n = Q_{n-1} × K_2.** In the same way, with d = n − 1, an independent set of Q_n is a pair (S, T) of disjoint
+independent sets of Q_{n-1}, so a(n) = Σ_S j(V ∖ S). This identity is used only as a check.
+
+**3. Grouping the pairs by their union.** In identity 1 the summand depends on S and U only through Y = S ∪ U. For a
+given Y ⊆ V, the number of pairs (S, U) of independent sets with S ∪ U = Y is 3^i(Y) · 2^c(Y), where i(Y) is the
+number of isolated vertices of the induced subgraph Q_d[Y] and c(Y) the number of its other connected components.
+An isolated vertex can lie in S, in U or in both. A larger component is connected and bipartite (Q_d is bipartite),
+and two adjacent vertices cannot share a set, so each of its vertices lies in exactly one of S, U and there are
+exactly two ways to split it. Hence
+
+    a(n) = Σ_{Y ⊆ V(Q_{n-2})}  3^i(Y) · 2^c(Y) · j(V ∖ Y)².
+
+All three identities reproduce the known a(0)..a(6).
+
+## How the new terms were computed
+
+**a(7)** (identity 1 with d = 5; Rust, `rust/`, 0.75 s). S runs over orbit representatives of Aut(Q_5) (order
+2^5 · 5! = 3840; 288 orbits on the 254475 independent sets of Q_5), weighted by orbit size, and U over all 254475
+sets; the summand is unchanged when S and U are moved by the same symmetry. j(W) for W ⊆ V(Q_5) is evaluated through
+Q_5 = Q_4 × K_2: writing W = (W_lo, W_hi) with 16 bits each, j(W) = Σ_A g(W_hi ∖ A) over the independent sets A of
+Q_4 inside W_lo, where g is the subset-sum table of Q_4's independent sets (2^16 entries). The total exceeds 2^64 and
+is accumulated in 128 bits.
+
+**a(8)** (identity 3 with d = 6; CUDA, one RTX 3080, 23.6 h). a(8) ≈ 1.27 · 10^39 > 2^128, so the sums use 192- and
+256-bit accumulators.
+- Q_6 = Q_5 × K_2, so Y ⊆ V(Q_6) is a pair (Y_lo, Y_hi) of subsets of V(Q_5). Y_lo runs over the **1,228,158 orbits
+  of subsets of V(Q_5) under Aut(Q_5)** (that count is A000616(5)), weighted by orbit size; Y_hi runs over all 2^32
+  subsets.
+- Writing Q_6 = Q_4 × C_4 as four 16-bit fibres, j(V ∖ Y) for all 2^16 values of one fibre at once is a single
+  subset-sum transform, so each GPU block handles a slice of 2^16 terms. 3^i(Y) · 2^c(Y) comes from a flood fill
+  over byte tables.
+- The summand is symmetric under swapping Y_lo and Y_hi, and |Y_lo| is Aut-invariant, so only terms with
+  |Y_hi| ≥ |Y_lo| are computed, with weight 1 (equal sizes) or 2.
+
+**Row 7 of A354802** (independent sets of Q_n by size; `hypercube-indep poly 5`, 4.9 s). Identity 1 with sizes
+tracked: if J(W) is the independence polynomial of the subgraph induced by W (Σ x^|I| over its independent sets I),
+then the independence polynomial of Q_n is Σ_{S,U} x^(|S|+|U|) · J(V ∖ (S ∪ U))², with S, U as in identity 1. Its
+coefficients are row n of A354802. Row 7 has 65 coefficients and is in `b354802.txt` (n = 0..135, rows 0..7).
+
+## Checks
+
+a(7):
+- the same program reproduces a(2)..a(6) by both identities 1 and 2;
+- a(7) comes out the same with the full symmetry group of Q_5 (288 orbits, 0.75 s), with bit flips only (8394
+  orbits, 18 s), and with no symmetry at all, i.e. all 6.5 · 10^10 pairs (10 min);
+- the fast j(W) agrees with a direct count on 8000 random W;
+- a refined run that tracks set sizes gives the whole independence polynomial of Q_7: its coefficients sum to a(7),
+  rows 2..6 match A354802, and its value at x = −1 is 7715 = A354082(7), which Flippen and Taylor (2022) computed by
+  deletion–contraction, an independent method.
+
+A354802 row 7: rows 2..6 from the same program match A354802 (row 6 against its b-file); row 7 sums to a(7) and
+its alternating sum is A354082(7) = 7715; and T(7,1) = 128, T(7,2) = C(128,2) − 448 = 7680, T(7,62) = 2·C(64,2) =
+4032, T(7,63) = 128, T(7,64) = 2, as they must be (the two bipartition classes have 64 vertices each).
+
+a(8):
+- the union-grouping code, run with Q_3, Q_4, Q_5 in place of Q_6, reproduces a(5), a(6) and a(7) exactly, and its
+  orbit counts 6, 22, 402 match A000616;
+- the orbit representatives were found by a union-find over all 2^32 subsets of V(Q_5), and their orbit sizes sum
+  to 2^32;
+- the GPU's per-orbit sums equal an independent CPU implementation's on 12 chosen orbits (including Y_lo = ∅ and
+  Y_lo = V), with and without the swap symmetry, and on 24 more orbits chosen at random after the run
+  (`logs/cpu6_*.txt`);
+- the 2^16-point slices of j were checked against j computed through the unrelated route Q_6 = Q_5 × K_2 on 256
+  random points;
+- every one of the 1,228,158 orbits appears exactly once in the result, with the orbit size from the
+  representatives file (`cuda/aggregate.py`).
+
+Not yet done: a second full run without the swap symmetry (`hypercube-indep.exe a8run --nosym`, about 1.5 days).
+Its per-orbit sums are different numbers, but the total must agree.
+
+**Asymptotics.** Sapozhenko's a(n) ~ 2√e · 2^(2^(n−1)) is exceeded by factors 0.88, 1.18, 1.40, 1.29, 1.13 for
+n = 4..8. Dividing out the first-order correction 1 + (3n² − 3n − 2)/(8 · 2^n) of Jenssen and Perkins
+(arXiv:1907.00862) leaves 1.19, 1.15, 1.05 for n = 6, 7, 8, so the new values approach the asymptotic formula as
+expected.
+
+## A short program (small n only)
+
+Identity 1 in plain Python. It reproduces a(0)..a(6) (2, 3, 7, 35, 743, 254475, 19768832143) but is far too slow
+for a(7); the Rust and CUDA programs in this folder compute the new terms.
+
+```python
+def A027624(n):  # via Q_n = Q_{n-2} X C_4
+    if n < 2: return [2, 3][n]
+    d = n - 2; N = 1 << d
+    nb = [sum(1 << (v ^ 1 << i) for i in range(d)) for v in range(N)]
+    I = [0]
+    for v in range(N): I += [s | 1 << v for s in I if not s & nb[v]]
+    f = [0] * (1 << N)  # f[W] = number of independent sets inside W
+    for s in I: f[s] = 1
+    for b in range(N):
+        for w in range(1 << N):
+            if w >> b & 1: f[w] += f[w ^ 1 << b]
+    full = (1 << N) - 1
+    return sum(f[full & ~(s | u)]**2 for s in I for u in I)
+```
+
+## Reproducing
+
+```
+cd rust && cargo build --release
+./target/release/hypercube-indep validate          # a(2..6) by both identities and three symmetry groups
+./target/release/hypercube-indep run 5             # a(7), under a second
+./target/release/hypercube-indep ygroup            # union grouping at d = 3..5: a(5), a(6), a(7)
+./target/release/hypercube-indep.exe a8run         # a(8) on an NVIDIA GPU (~23 h, resumable); then
+python ../cuda/aggregate.py                        # checks every orbit is present once and prints a(8)
+```
+
+The details of each step, the GPU engineering and the full logs are in the working notes below and in `logs/`.
+
+---
+
+# Working notes
+
+Starting point (2026-09-25):
 **Known terms:** a(0)..a(6) = 2, 3, 7, 35, 743, 254475, 19768832143 (7 terms). a(6) is old; there is no b-file.
 **Target:** a(7). Sapozhenko's asymptotic gives a(n) ~ 2·√e·2^(2^(n−1)), so a(7) ≈ 6×10^19, which probably **exceeds 2^64 ≈ 1.8×10^19**. Use 128-bit integers.
 **Literature check (2026-09-25):** only asymptotic results (Sapozhenko; Galvin [1901.01991]; Jenssen–Perkins [1907.00862]). No exact a(7) found.
