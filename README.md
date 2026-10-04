@@ -25,7 +25,7 @@ New terms or corrections that came out of the work above; the evidence is in the
 |---|---|---|
 | [A000609](https://oeis.org/A000609) | a(9) = 144130531453121108 **independently confirmed** (previously single-source) | [A109455](A109455/RELATED.md) |
 | [A000615](https://oeis.org/A000615) | **new a(9)** = 143972777957019648 (inverse binomial transform of A000609) | [A109455](A109455/RELATED.md) |
-| [A000617](https://oeis.org/A000617) | **a(9) corrected** to 993061484 (the OEIS has 989913346); our enumeration, Kurz (2012) and A000619(9) agree | [A109455](A109455/RELATED.md) |
+| [A000617](https://oeis.org/A000617) | **a(9) corrected** to 993061484 (was 989913346; correction published Oct 4 2026); our enumeration, Kurz (2012) and A000619(9) agree | [A109455](A109455/RELATED.md) |
 | [A001529](https://oeis.org/A001529) | **new a(9)** = 496618456, via a(n) = (A000617(n) + A001532(n))/2 | [A109455](A109455/RELATED.md) |
 | [A001530](https://oeis.org/A001530) | **new a(9)** = 495252138 = A001529(9) - A001529(8) | [A109455](A109455/RELATED.md) |
 | [A001532](https://oeis.org/A001532) | a(9) = 175428 independently confirmed | [A109455](A109455/RELATED.md) |

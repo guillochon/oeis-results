@@ -99,8 +99,8 @@ The correct value is **38,456**.
 **New terms.** Nobody had computed the values for 7 and 8 members. They are **2,490,634** and
 **550,112,272**. For 9 members it is **448,764,716,674**. That run also recounted all 144 quadrillion rules
 for 9 inputs from scratch, confirming a published number that had rested on a single 2006 thesis.
-Along the way it found that a related OEIS entry (A000617) also seems to have a wrong value for 9
-inputs, and it gave new values for two more entries (A002078 and A001529).
+Along the way it found that a related OEIS entry (A000617) also had a wrong value for 9 inputs (the
+OEIS published the correction on Oct 4 2026), and it gave new values for two more entries (A002078 and A001529).
 
 ## 6. How we know the numbers are right
 
