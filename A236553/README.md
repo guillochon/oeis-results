@@ -60,6 +60,28 @@ so the lift is a solution exactly when t satisfies one affine-linear equation ov
   - `A_two`, `A_four` and `A_two_pow` (the last reusing `A236554.card_A236554`);
   - `A_closed_form`, via `Nat.multiplicative_factorization`.
 
+  Its statement is the count of solutions of the defining system over `ZMod n`, taken straight from the definition, written as the product of the local factors over the factorization of n. `#print axioms` shows only propext, Classical.choice and Quot.sound.
+- **b-file.** `bfile.py` writes n = 1..10000 from the closed form, after checking it against the direct count for n ≤ 256.
+- **PARI.** The PARI line below was run in gp 2.15.4 for every n in the b-file; all 10000 terms match. The Python program was also checked against the b-file.
+
+## Programs
+Both compute every term, from the closed form.
+
+    (PARI) a(n) = my(f=factor(n)); prod(i=1, #f~, my(p=f[i,1], e=f[i,2]); if(p==2, if(e==1, 8, if(e==2, 64, 2^(2*e+2)+32)), p^(2*e-1)*(p+1)+2));
+
+    (Python)
+    from sympy import factorint
+    def A236553(n):
+        r = 1
+        for p, e in factorint(n).items():
+            r *= (8 if e == 1 else 64 if e == 2 else 2**(2*e+2)+32) if p == 2 else p**(2*e-1)*(p+1)+2
+        return r
+
+## How to reproduce
+- `python verify.py 256` — direct count of A236553 (and A227867) for n = 1..256, compared with the closed forms and the OEIS data.
+- `python bfile.py` — rebuild `b236553.txt`.
+- `cd lean && lake exe cache get && lake build` — check the Lean proof.
+
 ## Files
 | File | What it is |
 |---|---|
