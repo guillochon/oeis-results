@@ -31,11 +31,36 @@ Let N = 2^n with n ≥ 3.
 
 From the computed a(3) = 288 we get M(3) = (288 − 32)/2 = 128, so M(n) = 2^(2n+1) and **a(n) = 32 + 2^(2n+2) for n ≥ 3.** (a(1) = 8 and a(2) = 64 are outside the lemma's range.)
 
+**Equivalent forms.** Since a(n) = 4^(n+1) + 32 for n ≥ 3, with a(1) = 8 and a(2) = 64:
+- generating function: Σ a(n)·xⁿ = 8x(1 + 3x − 16x³) / ((1 − x)(1 − 4x));
+- recurrence: a(n) = 5·a(n−1) − 4·a(n−2) for n ≥ 5.
+
+Both follow directly from the closed form (the recurrence has characteristic roots 1 and 4), and the generating function was checked against the closed form for n ≤ 29 with sympy.
+
 **Formal verification (2026-09-26):** `lean/OeisLean/A236554.lean` (about 580 lines) proves
 
     theorem card_A236554 (n : ℕ) (hn : 3 ≤ n) : (T n).card = 2 ^ (2 * n + 2) + 32
 
 where `T n` is the solution set of the system above over `ZMod (2^n)`, taken straight from the definition. It follows the paper proof. M(3) = 128 and a(1) = 8, a(2) = 64 are checked by the Lean kernel (`decide +kernel`, no `native_decide`). Build it with `cd lean && lake build`.
+
+## Checks
+- **Direct count.** `count.py` counts the system straight from the definition, with no idea from the proof. It reproduces the published a(1)..a(8) and gives a(9)..a(13); all agree with the formula.
+- **Formal proof.** The Lean theorem above, whose statement is the defining system itself; `#print axioms` shows only propext, Classical.choice and Quot.sound.
+- **b-file.** `bfile.py` writes n = 1..500 from the formula, after asserting that it matches `count.py` for every n ≤ 13.
+- **PARI.** The PARI line below was run in gp 2.15.4 for every n in the b-file; all 500 terms match.
+
+## Programs
+Both compute every term, from the closed form.
+
+    (PARI) a(n) = if(n < 3, [8, 64][n], 4^(n+1) + 32);
+
+    (Python)
+    def A236554(n): return (8, 64)[n-1] if n < 3 else 4**(n+1) + 32
+
+## How to reproduce
+- `python count.py 13` — direct count for n = 1..13, compared with the formula (about 2 seconds).
+- `python bfile.py` — rebuild `b236554.txt`.
+- `cd lean && lake exe cache get && lake build` — check the Lean proof.
 
 ## Related sequences
 A236553(n) counts the same system modulo any n. It is multiplicative, and A236554(n) = A236553(2^n). A closed form for all of A236553, and for its Lipschitz-quaternion sibling A227867, is proved in `../A236553/` and `../A227867/`. Those proofs reuse this one for the powers of 2.
