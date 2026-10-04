@@ -225,6 +225,6 @@ Ratio to Sapozhenko's 2√e·2^(2^(n−1)): 0.88, 1.18, 1.40, 1.29, **1.13** for
   - `./target/release/hypercube-indep ygroup` (union grouping, d = 3..5) and `ybench [samples] [y3]` (d = 6 checks + cost estimate)
 - `logs/`: run logs for a(7) (`a7_*.log`), for the Q_7 independence polynomial (`poly7_full.log`), the a(8) GPU run (`a8_gpu.log`) and the CPU reference sums for the GPU (`cpu6_*.txt`).
 - `cuda/`: the a(8) kernel (`a8.cu`), its compiled `a8.cubin` (embedded by the Rust binary), `aggregate.py`, and the WSL build/profile/run scripts.
-- `b027624.txt`: A027624 n = 0..8 (optional b-file). `b354802.txt`: A354802 rows 0..7 (n = 0..135), for the A354802 edit.
+- `b354802.txt`: A354802 rows 0..7 (n = 0..135), for the A354802 edit. (A027624 has 9 terms, all in DATA, so it has no b-file.)
 - `oeis_submission.md`: the drafted edits for A027624 (a(7), a(8)) and A354802 (row 7).
   - `./target/release/hypercube-indep poly 5`: Q_6 and Q_7 polynomials, checked against A354802 / A354082.
