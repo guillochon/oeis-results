@@ -44,7 +44,7 @@ Tiny example, n = 2 (the square 00 – 01 – 11 – 10 – 00):
 That makes **7**. No set of three corners works, because some two of them would be neighbours.
 
 The sequence starts 2, 3, 7, 35, 743, 254475, 19768832143. That last value, for n = 6, was the
-end of the OEIS entry.
+end of the OEIS entry (it now lists our n = 7 and n = 8 values too; published Oct 10 2026).
 
 ## 4. Why it looked hard
 

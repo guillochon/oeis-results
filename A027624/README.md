@@ -5,6 +5,8 @@
     a(7) = 78685477899897082403
     a(8) = 1268098993536094508894717661843009268823
 
+**Status:** published by the OEIS (Oct 10 2026; a(7) and a(8) are live). A354802 row 7 not yet submitted.
+
 This page is the explanation linked from the OEIS entry: the identities used, how each term was computed, and how
 it was checked. The working log follows further down. Everything needed to reproduce the values is in this folder.
 
@@ -350,6 +352,11 @@ Checks on the value:
 Ratio to Sapozhenko's 2√e·2^(2^(n−1)): 0.88, 1.18, 1.40, 1.29, **1.13** for n = 4..8. After dividing out the Jenssen–Perkins first-order correction 1 + (3n²−3n−2)/(8·2^n) = 1.081 at n = 8, the leftover ratio is 1.05 (it was 1.15 at n = 7, 1.19 at n = 6), so the value sits where the asymptotics say it should.
 
 **Not done:** the fully independent recomputation, a second full run without the swap symmetry (`hypercube-indep.exe a8run --nosym`, output `results/a8_plain.txt`, roughly 1.5 days). Its per-orbit sums are entirely different numbers, but the total must agree. The OEIS draft flags this.
+
+### Published (2026-10-10)
+The OEIS published the edit (submitted Oct 4, trimmed per Andrew Howroyd to DATA + link + EXTENSIONS):
+a(7) and a(8) are in DATA, with the link to this page (titled "Programs and logs for a(7) and a(8)" by the editors).
+A354802 row 7 can go next.
 
 ### Files
 - `rust/`: the engine. Build with `cargo build --release`. `.cargo/config.toml` sets target-cpu=native.
