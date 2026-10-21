@@ -1,0 +1,23 @@
+# python sensed.py 59 6; python run_wref.py 21 38 i; python run_wrr.py 21 38 i (i=0..3); python combine_full.py 21 38 4
+duality: pairs 72 violations 0
+A212438 cells ok 196 bad 0
+b002840.txt ok 30 bad 0 not covered 0
+b006445.txt ok 33 bad 0 not covered 0
+A000944(4) = 1  ok
+A000944(5) = 2  ok
+A000944(6) = 7  ok
+A000944(7) = 34  ok
+A000944(8) = 257  ok
+A000944(9) = 2606  ok
+A000944(10) = 32300  ok
+A000944(11) = 440564  ok
+A000944(12) = 6384634  ok
+A000944(13) = 96262938  ok
+A000944(14) = 1496225352  ok
+A000944(15) = 23833988129  ok
+A000944(16) = 387591510244  ok
+A000944(17) = 6415851530241  ok
+A000944(18) = 107854282197058  ok
+A000944(19) = 1837856160118250  NEW
+A000944(20) = 31696106245572086  NEW
+A000944(21) = 552533560690636208  NEW

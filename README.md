@@ -5,6 +5,7 @@ logs and write-ups needed to check them. Each folder is one sequence.
 
 | Sequence | Results |
 |---|---|
+| [A000944](https://oeis.org/A000944) | [polyhedra with n vertices — a(19) to a(40) by formula](A000944/) · [plain-English explanation](A000944/layman.md) |
 | [A005162](https://oeis.org/A005162) | [n×n alternating sign matrices symmetric about both diagonals (DASASMs), n ≤ 62](A005162/) · [plain-English explanation](A005162/layman.md) |
 | [A006455](https://oeis.org/A006455) | [Naturally labeled posets on {1, …, n}](A006455/) · [plain-English explanation](A006455/layman.md) |
 | [A027624](https://oeis.org/A027624) | [Number of independent vertex sets in the n-hypercube graph Q_n](A027624/) · [plain-English explanation](A027624/layman.md) |
