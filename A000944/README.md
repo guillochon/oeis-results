@@ -257,8 +257,47 @@ Brute force (`brute/`): `gen_poly.sh 11 <dir>` (in WSL with nauty), then `symsta
 * `results/`: `run_a19.log`, `U_19_34.json`, `sensed_53.json` (a(19)); `run_a21.log`, `U_21_38.json`,
   `sensed_59.json` (a(20), a(21)); `run_a40.log`, `U_40_76.json`, `sensed_116.json` (to a(40)).
 * `b000944.txt`: a(1)–a(40).
+* `formula/derived.py`, `derived/b*.txt`: the 13 related sequences of §10.
 
-## 10. Open
+## 10. Related sequences
+
+The tables U(v,f) (all polyhedra) and S(v,f) (polyhedra up to orientation-preserving isomorphism) on the
+40×76 box, extended by duality U(v,f) = U(f,v), S(v,f) = S(f,v), give 13 other OEIS sequences directly;
+2U − S counts the achiral polyhedra (those with an orientation-reversing automorphism). Every term is in
+`derived/bNNNNNN.txt`, written by `formula/derived.py`, which first compares each of them with the live
+OEIS entry (DATA and b-file). The edge counts reach n = 79 (every cell with v + f ≤ 81 has min(v,f) ≤ 40).
+
+| sequence | counts | terms | known before | now |
+|---|---|---|---|---|
+| A000109 | simplicial polyhedra (triangulations) by vertices | U(n, 2n−4) | 22 (to n = 24) | n = 3..40 |
+| A002840 | polyhedra by edges | Σ_{v+f=n+2} U(v,f) | 30 (to n = 35) | n = 6..79 |
+| A005645 | sensed 3-connected maps by edges | Σ_{v+f=n+2} S(v,f) | 45 (to n = 50) | n = 6..79 |
+| A006445 | achiral polyhedra by edges | Σ_{v+f=n+2} (2U − S)(v,f) | 33 (to n = 33) | n = 1..79 |
+| A119501 | polyhedra up to rotations, by vertices | Σ_f S(n,f) | 17 (to n = 17) | n = 1..40 |
+| A002856 | n vertices and n faces | U(n, n) | 15 (to n = 18) | n = 4..40 |
+| A058789 | n faces and n+1 vertices | U(n+1, n) | 15 (to n = 18) | n = 4..40 |
+| A342057 | n vertices and n faces, sensed | S(n, n) | 14 (to n = 17) | n = 4..40 |
+| A058787 | triangle, n faces, k vertices (k ≥ n/2+2) | U(k, n) | 54 (to n = 57) | n = 4..1030 |
+| A212438 | triangle, n faces, k = 4..2n−4 vertices | U(k, n) | 196 (to n = 199) | n = 4..1372 |
+| A239893 | triangle, sensed, n faces, k vertices | S(k, n) | 196 (to n = 199) | n = 4..1372 |
+| A058788 | triangle, n edges, k vertices | U(k, n+2−k) | 74 (to n = 79) | n = 6..930 |
+| A049337 | triangle, n vertices, k = 0..C(n,2) edges | U(n, k−n+2) | 469 (to n = 472) | n = 1..9919 |
+
+Every known term agrees, with two exceptions, both errors in the entries:
+
+* **A005645(34)** is 3323268053528, not 3323258053528 (one digit). Our count of all polyhedra with 34
+  edges, U = S/2 + W_ref + W_rr summed over v + f = 36, equals A002840(34), which was found by generation;
+  with the stored value it would be off by 5·10^6.
+* **A049337**'s DATA and b-file are the triangle of its name with the first three terms (zeros) missing,
+  so every term sits three places early (row 4 puts K_4 at 3 edges). With three zeros restored, all 469
+  terms of its b-file agree.
+
+Further independent checks of the triangulation edge of the table: S(n, 2n−4) equals A253882 (sensed
+triangulations, 256 terms, computed by formula), S(n, 2n−5) equals A341924 (sensed triangulations of a
+quadrilateral), and U(n, 2n−5) equals A058786 (polyhedra with one quadrilateral face), for every n ≤ 40.
+The submission drafts are in `derived/` (not published).
+
+## 11. Open
 
 Nothing new is needed for more terms: the cost is polynomial in n (roughly n^4.5 per prime here), plus
 more primes as the terms grow.
