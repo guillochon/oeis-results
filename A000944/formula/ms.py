@@ -10,7 +10,8 @@ import numpy as np
 
 from fastmul import mulmod
 
-PRIMES = [67108859, 67108837, 67108819, 67108777, 67108763, 67108757, 67108753]
+PRIMES = [67108859, 67108837, 67108819, 67108777, 67108763, 67108757, 67108753, 67108747, 67108739, 67108729,
+          67108721, 67108709]   # the 12 largest primes below 2^26, in decreasing order
 
 
 class Ctx:

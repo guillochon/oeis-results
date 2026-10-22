@@ -40,8 +40,9 @@ about 2·10^15, too many to build one by one, and the sequence had stopped there
 ## 5. What we found
 
 **a(19) = 1,837,856,160,118,250**, **a(20) = 31,696,106,245,572,086**,
-**a(21) = 552,533,560,690,636,208**, and so on up to 40 corners:
-a(40) = 680,349,069,787,813,513,725,946,584,317,522,497,406,424 (about 7·10^41).
+**a(21) = 552,533,560,690,636,208**, and so on up to 50 corners:
+a(40) = 680,349,069,787,813,513,725,946,584,317,522,497,406,424 (about 7·10^41), and
+a(50) = 5,133,920,250,464,394,146,370,477,687,596,886,023,574,428,607,987,052,190 (about 5·10^54).
 
 Instead of building the shapes, we counted them with formulas. Counting shapes "with a labelled
 starting edge" is easy: there is a 1960s formula for that. The difficulty is the symmetric shapes.
@@ -73,9 +74,9 @@ and those maps can be counted with a 1960s-style equation.
 This is one more term of a classic sequence. It is not a breakthrough, but this sequence is a central
 one.
 * A000944 is one of the OEIS's "core" sequences; these are its first new terms in 20 years, and they
-  more than double its length: from 18 to 40 corners.
-* The method needs no enumeration, so it is not limited by how many shapes exist. All 22 new terms took
-  under two hours on a desktop PC.
+  nearly triple its length: from 18 to 50 corners.
+* The method needs no enumeration, so it is not limited by how many shapes exist. The first 22 new
+  terms took under two hours on a desktop PC; the next ten (to 50 corners) took an overnight run.
 * The mirror-counting idea is new as far as we know and should apply to other kinds of maps.
 
 ---

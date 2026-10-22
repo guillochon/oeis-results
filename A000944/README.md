@@ -1,7 +1,7 @@
-# A000944: polyhedra with n vertices — a(19) to a(40) by formula
+# A000944: polyhedra with n vertices — a(19) to a(50) by formula
 
 **a(19) = 1837856160118250, a(20) = 31696106245572086, a(21) = 552533560690636208**, and further terms
-to a(40) (§7, `b000944.txt`). A000944(n) is the
+to a(50) (§7, `b000944.txt`). A000944(n) is the
 number of combinatorial types of convex polyhedra with n vertices, i.e. 3-connected simple planar graphs
 on n vertices. The terms up to a(18) were found by exhaustive generation (Brinkmann and McKay's plantri;
 a(18) in 2006). Generation cannot reach n = 19 (about 2·10^15 graphs). Here the new terms are computed
@@ -143,13 +143,15 @@ For odd v only C_mh contributes; for v = 19 that is just the 17-gonal bipyramid 
 * **Integrality.** S/2 + W_ref + W_rr is a sum of rationals. It comes out integral in every cell, and the
   CRT value is the same from one prime fewer (8 primes below 2^24 for the a(40) run: values below 2^192,
   checked with 2^168).
-* **Independent runs.** The boxes 21×38, 25×46, 30×56 and 40×76 were computed separately (different
-  truncations); every cell they share agrees. The fast arithmetic of §8 reproduces the arrays of the
+* **Independent runs.** The boxes 21×38, 25×46, 30×56, 40×76 and 50×96 were computed separately (different
+  truncations); every cell they share agrees. The 50×96 box (10 primes, values below 2^240, checked with
+  2^216) also gives A000109(n) = U(n, 2n−4) for n ≤ 50, which agrees with the separate triangulation-only
+  computation of §10.1 for all 47 terms. The fast arithmetic of §8 reproduces the arrays of the
   original slow code bit for bit at 21×38.
 * **Growth.** 3-connected planar graphs on n vertices grow like c·γ^n·n^(−7/2), γ ≈ 21.049 (Bender,
   Gao and Wormald), and almost all are asymmetric, so a(n)/a(n−1)·(n/(n−1))^(7/2) should approach γ
   with corrections of order 1/n. It rises smoothly: 20.64 (n = 20), 20.79 (25), 20.87 (30), 20.92 (35),
-  20.95 (40).
+  20.95 (40), 20.99 (50).
 
 ## 7. The new terms, and U(n, f) for n = 19, 20, 21
 
@@ -177,6 +179,16 @@ For odd v only C_mh contributes; for v = 19 that is just the 17-gonal bipyramid 
 | 38 | 1854883285393075863218182649498233922286 |
 | 39 | 35478950056586460924968154727569837727537 |
 | 40 | 680349069787813513725946584317522497406424 |
+| 41 | 13078029141786987917947296699510018497488086 |
+| 42 | 251970228921967515999745665140918464159553324 |
+| 43 | 4865230961236971096977643610891951940308827274 |
+| 44 | 94136796806757268251701566416931662670186542698 |
+| 45 | 1825049836000321853623401131134162691561215496676 |
+| 46 | 35449486378095182698027271280682209409907703488176 |
+| 47 | 689808083538857753694074196406130077148423671039220 |
+| 48 | 13446069527227352253641418327073119747889834311479422 |
+| 49 | 262530042482078689407163992132427884347958694431491115 |
+| 50 | 5133920250464394146370477687596886023574428607987052190 |
 
 By faces:
 
@@ -228,7 +240,9 @@ From `formula/`:
     python combine_full.py 40 76 8   # U, all checks, A000944(n) for n <= 40
 
 On an i5-12600K with all 17 jobs in parallel this takes about 80 minutes (a(30): 18 minutes, a(25): 8,
-a(21): 2 per prime). Series products use `fastmul.py`: exact multiplication mod p by floating-point FFT
+a(21): 2 per prime). For a(50) (box 50 × 96, 10 primes; `sensed_p.py` runs the sensed counts one prime per
+process) each `run_wref.py` / `run_wrr.py` job peaks at about 3.5–4 GB of memory, so at most six ran at
+once on 32 GB (`formula/logs/memqueue.py`); the run took about 14 hours of wall time. Series products use `fastmul.py`: exact multiplication mod p by floating-point FFT
 (operands split into limbs so that every convolution sum stays below 2^44, and each result checked to be
 within 0.25 of an integer), operands cropped to the bounding box of their nonzero terms, and the anchor
 markers α of the grammars evaluated as one batch. The series/parallel network equations are solved in
@@ -256,7 +270,7 @@ Brute force (`brute/`): `gen_poly.sh 11 <dir>` (in WSL with nauty), then `symsta
 * `brute/`: nauty generation, automorphism classification, half-map checks.
 * `results/`: `run_a19.log`, `U_19_34.json`, `sensed_53.json` (a(19)); `run_a21.log`, `U_21_38.json`,
   `sensed_59.json` (a(20), a(21)); `run_a40.log`, `U_40_76.json`, `sensed_116.json` (to a(40)).
-* `b000944.txt`: a(1)–a(40).
+* `b000944.txt`: a(1)–a(50).
 * `formula/derived.py`, `derived/b*.txt`: the 13 related sequences of §10.
 
 ## 10. Related sequences
@@ -269,7 +283,7 @@ OEIS entry (DATA and b-file). The edge counts reach n = 79 (every cell with v + 
 
 | sequence | counts | terms | known before | now |
 |---|---|---|---|---|
-| A000109 | simplicial polyhedra (triangulations) by vertices | U(n, 2n−4) | 22 (to n = 24) | n = 3..40 |
+| A000109 | simplicial polyhedra (triangulations) by vertices | U(n, 2n−4) | 22 (to n = 24) | n = 3..80 (§10.1) |
 | A002840 | polyhedra by edges | Σ_{v+f=n+2} U(v,f) | 30 (to n = 35) | n = 6..79 |
 | A005645 | sensed 3-connected maps by edges | Σ_{v+f=n+2} S(v,f) | 45 (to n = 50) | n = 6..79 |
 | A006445 | achiral polyhedra by edges | Σ_{v+f=n+2} (2U − S)(v,f) | 33 (to n = 33) | n = 1..79 |
@@ -297,6 +311,29 @@ triangulations, 256 terms, computed by formula), S(n, 2n−5) equals A341924 (se
 quadrilateral), and U(n, 2n−5) equals A058786 (polyhedra with one quadrilateral face), for every n ≤ 40.
 The submission drafts are in `derived/` (not published).
 
+### 10.1 A000109 beyond n = 40
+
+A000109(n) = U(n, 2n−4) = S/2 + W_ref + W_rr on the triangulation diagonal, and S(n, 2n−4) is A253882,
+for which Howroyd gives a closed formula. So A000109(n) = (A253882(n) + achiral(n))/2 with
+achiral = 2(W_ref + W_rr), and only the symmetric terms are needed.
+
+* **Reflections, triangulations only** (`formula/triang.py`). In a simple triangulation with a reflection,
+  each point of the mirror circle is a vertex (V) or the midpoint of a crossing edge (a, σa), with end a
+  labelled X; every face the mirror enters is mirror-symmetric, so the mirror runs V–V along an edge or
+  V–X–V through the two triangles on a crossing edge. The half is a simple triangulated disk whose
+  boundary is the cyclic V/X word (no other boundary vertices) with no two X adjacent and no interior
+  chord joining two V (it would double with its mirror image; nothing else can make the double
+  non-simple, and a simple triangulation with ≥ 4 vertices is 3-connected). The disk splits along its
+  chords into chordless pieces, counted by inverting Brown's formula for rooted triangulations of a
+  polygon; the chord tree becomes a 2×2 transfer system in one variable t (vertices of the double:
+  t for V, t² for X and interior vertices), with α marking the boundary length A:
+  W_ref = Σ_A [α^A] R/(4A). It equals the general W_ref on all 37 cells n ≤ 40 and takes 9 s at n = 40.
+* **Rotatory reflections** still come from `run_wrr.py` on the box 80 × 156.
+* **Checks**: `formula/a109.py` reproduces all 37 terms n ≤ 40 of §10; CRT with 8 primes, stable with 7;
+  A253882 + achiral is even and achiral ≤ A253882 at every n; Howroyd's formula matches all 256 terms of
+  A253882's b-file; a(n)/a(n−1)·(n/(n−1))^(7/2) rises smoothly toward 256/27 (9.435 at n = 41, 9.470 at
+  n = 80). Terms: `derived/b000109.txt` (n = 3..80), `results/a109_80.json`, `results/run_a109_80.log`.
+
 ## 11. Open
 
 Nothing new is needed for more terms: the cost is polynomial in n (roughly n^4.5 per prime here), plus
@@ -322,3 +359,5 @@ more primes as the terms grow.
   prime, bit-identical output. a(22)–a(25) (8 min), a(26)–a(30) (18 min), a(31)–a(40) (80 min). The
   first a(40) combine failed its CRT check: the 8th entry of the prime list (16777111 = 13·1290547) was
   not prime; fixed (the first six entries, used for every earlier result, were correct).
+* 2026-10-21/22: a(41)–a(50) (box 50 × 96, 10 primes; two out-of-memory crashes with 30 parallel jobs, then a
+  memory-aware queue). A000109 to n = 80 by §10.1.
