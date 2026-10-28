@@ -37,18 +37,18 @@ impl Hasher for Mix {
 }
 type Map = HashMap<u128, u128, BuildHasherDefault<Mix>>;
 
-const MAXP: usize = 24; // n + 1 <= MAXP
-const DEG2: u8 = 15; // vertex code: 0 = unused so far, 1..14 = one end of strand with that label, 15 = degree 2
+pub const MAXP: usize = 24; // n + 1 <= MAXP
+pub const DEG2: u8 = 15; // vertex code: 0 = unused so far, 1..14 = one end of strand with that label, 15 = degree 2
 
 /// Frontier: p[0..=n] as described in the module doc, k = the vertex above-left of the next cell,
 /// h[i] = frontier horizontal edge i already owned, v = vertical edge left of the next cell already owned.
 #[derive(Clone)]
-struct St {
-    p: [u8; MAXP],
-    k: u8,
-    h: u32,
-    v: bool,
-    n: u8,
+pub struct St {
+    pub p: [u8; MAXP],
+    pub k: u8,
+    pub h: u32,
+    pub v: bool,
+    pub n: u8,
 }
 
 fn encode(s: &St) -> u128 {
@@ -76,7 +76,7 @@ fn decode(mut x: u128, n: usize) -> St {
 }
 
 /// Relabel strand ends in order of first appearance.
-fn canon(s: &mut St) {
+pub fn canon(s: &mut St) {
     let mut map = [0u8; 16];
     let mut next = 1u8;
     let n = s.n as usize;
@@ -148,9 +148,9 @@ fn add_edge(w: &mut Work, x: usize, i: usize, j: usize, may_close: bool) -> bool
     true
 }
 
-struct Problem {
-    n: usize,
-    frozen: Vec<Option<u8>>, // per cell (row-major from bottom): forced edge 0=B 1=R 2=T 3=L
+pub struct Problem {
+    pub n: usize,
+    pub frozen: Vec<Option<u8>>, // per cell (row-major from bottom): forced edge 0=B 1=R 2=T 3=L
 }
 
 fn interior(n: usize, i: usize, j: usize) -> bool {
@@ -167,7 +167,7 @@ fn final_ok(n: usize, i: usize, j: usize, c: u8) -> bool {
 }
 
 /// All successors of state s when processing cell idx. Each successor carries the edge chosen (0..3).
-fn step(pr: &Problem, idx: usize, s: &St, out: &mut Vec<(u8, St)>) {
+pub fn step(pr: &Problem, idx: usize, s: &St, out: &mut Vec<(u8, St)>) {
     let n = pr.n;
     let (x, y) = (idx % n, idx / n);
     let last = idx == n * n - 1;
@@ -230,14 +230,14 @@ fn step(pr: &Problem, idx: usize, s: &St, out: &mut Vec<(u8, St)>) {
     }
 }
 
-fn initial(n: usize) -> St {
+pub fn initial(n: usize) -> St {
     let mut p = [0u8; MAXP];
     p[0] = 1; // a and b: one end each of the strand closed by the virtual edge b-a
     p[n] = 1;
     St { p, k: 0, h: 0, v: false, n: n as u8 }
 }
 
-fn read_problem(path: &str) -> Problem {
+pub fn read_problem(path: &str) -> Problem {
     let txt = std::fs::read_to_string(path).expect("read bounds file");
     let rows: Vec<&str> = txt.lines().filter(|l| !l.trim().is_empty() && !l.starts_with('#')).collect();
     let n = rows.len();

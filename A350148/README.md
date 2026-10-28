@@ -17,7 +17,8 @@ CPU-hours and, for 13×13, found only sample motifs from partial runs.
 | 5 | 11 | 20305328 | 58936 + 19854452 + 391940 | 0.1 s |
 | 6 | 13 | **7287109207271** | 34174087 + 344435015915 + 3695591785 + 18614455315 + 6920329970169 | 11 s |
 | 7 | 15 | **3892817988876823083** | 30561568363 + 5580524782288346 + 636529366875968 + 11306407057702863 + 3780168885982901976 + 10659326850390 + 63424610454389340 + 31690341344245837 | 9 min (peak 2.7M states) |
-| 8 | 17 | running: 5 of 13 modes done (`results/n17.txt`), about 25 min per mode | | |
+| 8 | 17 | **370720354045169062282196655** | 135879677410959 + 411297300212654023648 + 51711377581144855936 + 83957935550425652760350 + 16463131878906415553612712 + 41124585630148011913 + 211265298320859583865522 + 192143246383015915029769 + 796636287707588212 + 348048211035339330806375 + 306467364859207877763 + 856636468990701460108647 + 352564359608581854246244849 | 1.5 h on 6 threads (`big`; peak 40M states) |
+| 9 | 19 | running (`bash run_n.sh 19 big 5 6`, results/n19.txt), 21 modes, roughly 2 to 3 days | | |
 
 Modes are listed in McKenna's order (mode bits 0…01 first). The 9×9 and 11×11 per-mode splits are McKenna's,
 reproduced exactly.
@@ -41,6 +42,17 @@ of its four edges. No edge can be owned twice. The owned edges must form one pat
 lattice point. The state holds the frontier points' degrees, strand labels and one "owned" bit per frontier edge.
 11×11 peaks at 14k states and 13×13 at 190k.
 
+For 17×17 and up, `rust/src/bin/big.rs` runs the same transitions (it calls the same `step`) with:
+- 64-bit keys. Strand ends are written as brackets, two bits per frontier point, which works because the
+  pairings below a frontier never cross.
+- 128-bit counts.
+- The next layer split into 256 hash shards, built on several threads and, when it would not fit the memory
+  budget, a group of shards at a time, with the current layer spilled to disk.
+
+It reproduces every per-mode count up to 15×15 with the same peak state counts, and the 17×17 mode 000000001
+computed by the old engine (121 s against 778 s). The dominant 17×17 mode is also being rerun on the old engine as a
+check (`results/n17_check_old_engine.txt`).
+
 ## Checks
 
 - **Known terms.** The DP reproduces every known term, mode by mode.
@@ -53,7 +65,7 @@ lattice point. The state holds the frontier points' degrees, strand labels and o
   perimeter tiles. So if every locally plausible 2×2 tile pattern is safe for the frozen boundary, every DP motif
   is globally self-avoiding, by induction on k. A plausible pattern has distinct edges, at most one arrival and
   one departure per point, and parity changing exactly across owned edges (McKenna Lemma 3.6). All 192 plausible
-  patterns are safe for every mode up to 17×17. The same test flags 164 and 186 of them for the Hilbert curve and
+  patterns are safe for every mode up to 19×19 (`results/sound_n19.txt` for the 21 modes of 19×19). The same test flags 164 and 186 of them for the Hilbert curve and
   McKenna's J.
 
 Completeness rests on McKenna's Lemma 3.17 and Theorem 3.1. Soundness is the computed check above.

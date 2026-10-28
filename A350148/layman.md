@@ -31,7 +31,8 @@ For 13×13 he found examples but no count.
 |---|---|
 | 13×13 | 7,287,109,207,271 |
 | 15×15 | 3,892,817,988,876,823,083 |
-| 17×17 | see README.md |
+| 17×17 | 370,720,354,045,169,062,282,196,655 |
+| 19×19 | being computed |
 
 ## How
 
@@ -44,8 +45,8 @@ With the outer ring fixed, the rest is a self-contained puzzle: give every inner
 chosen sides form a single path through every inner grid point. Instead of listing the answers, a computer can
 count them by sweeping across the grid one tile at a time, remembering only how the path crosses the current
 "front" line (which loose ends will later join up). Many different partial drawings look the same at the front, so
-they are counted together. This counts all 20 million 11×11 motifs in a tenth of a second, and 13×13 in eleven
-seconds.
+they are counted together. This counts all 20 million 11×11 motifs in a tenth of a second, 13×13 in eleven
+seconds, and the 17×17 count, about 3.7·10²⁶, in an hour and a half.
 
 ## How we know it is right
 
