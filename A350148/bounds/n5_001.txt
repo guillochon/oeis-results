@@ -1,0 +1,6 @@
+# n=5 mode=001
+RTLBB
+R...R
+B...T
+L...L
+LTRBB

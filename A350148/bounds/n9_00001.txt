@@ -1,0 +1,10 @@
+# n=9 mode=00001
+RTTTLBBBB
+R.......R
+R.......R
+R.......R
+B.......T
+L.......L
+L.......L
+L.......L
+LTTTRBBBB

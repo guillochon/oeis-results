@@ -1,0 +1,3 @@
+bounds/n11_000001.txt peak states 10773 58936 n=11 time 0.0s 
+bounds/n11_000101.txt peak states 13647 19854452 n=11 time 0.1s 
+bounds/n11_001001.txt peak states 9641 391940 n=11 time 0.0s 

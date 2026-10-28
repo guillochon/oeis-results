@@ -1,0 +1,10 @@
+# n=9 mode=00101
+RTLBRTLBB
+R.......R
+B.......T
+L.......L
+T.......B
+R.......R
+B.......T
+L.......L
+LTRBLTRBB

@@ -1,0 +1,5 @@
+bounds/n13_0000001.txt peak states 144655 34174087 n=13 time 1.0s 
+bounds/n13_0000101.txt peak states 180557 344435015915 n=13 time 1.9s 
+bounds/n13_0001001.txt peak states 143420 3695591785 n=13 time 1.2s 
+bounds/n13_0010001.txt peak states 139544 18614455315 n=13 time 1.3s 
+bounds/n13_0010101.txt peak states 190026 6920329970169 n=13 time 2.4s 
