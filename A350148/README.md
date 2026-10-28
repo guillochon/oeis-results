@@ -50,8 +50,8 @@ For 17×17 and up, `rust/src/bin/big.rs` runs the same transitions (it calls the
   budget, a group of shards at a time, with the current layer spilled to disk.
 
 It reproduces every per-mode count up to 15×15 with the same peak state counts, and the 17×17 mode 000000001
-computed by the old engine (121 s against 778 s). The dominant 17×17 mode is also being rerun on the old engine as a
-check (`results/n17_check_old_engine.txt`).
+computed by the old engine (121 s against 778 s). The dominant 17×17 mode (001010101, 95% of a(8)) was rerun on the old engine and agrees
+(`results/n17_check_old_engine.txt`, 2946 s).
 
 ## Checks
 
