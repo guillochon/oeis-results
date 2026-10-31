@@ -5,6 +5,7 @@ logs and write-ups needed to check them. Each folder is one sequence.
 
 | Sequence | Results |
 |---|---|
+| [A000080](https://oeis.org/A000080) | [minimal triangle graphs (and A048781)](A000080/) · [plain-English explanation](A000080/layman.md) |
 | [A000638](https://oeis.org/A000638) | [a(21) = 245393739 from A000637(21)](A000638/) |
 | [A000944](https://oeis.org/A000944) | [polyhedra with n vertices — a(19) to a(50) by formula](A000944/) · [plain-English explanation](A000944/layman.md) |
 | [A005162](https://oeis.org/A005162) | [n×n alternating sign matrices symmetric about both diagonals (DASASMs), n ≤ 62](A005162/) · [plain-English explanation](A005162/layman.md) |
