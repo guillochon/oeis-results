@@ -8,13 +8,13 @@ Martin Fuller (2015) took both sequences to n = 25 with an isomorph-free generat
 n ≤ 25).
 
 **Result:** an exact counting formula from a structure theorem plus Pólya / species theory. There is no
-enumeration and no isomorphism testing. All terms to **n = 80** come out in about 2 minutes per prime (n = 100
-is running). The formula reproduces all 23 known terms of both sequences. New terms start at
+enumeration and no isomorphism testing. All terms to **n = 100** come out in about 28 minutes per prime (n = 80 in under
+2 minutes). The formula reproduces all 23 known terms of both sequences. New terms start at
 
     A000080(26) = 4987668376,  A000080(27) = 16341943122,  ...,
-    A000080(80) = 2617646724739221521059589519172655683909550
+    A000080(100) = 1026015488005710246126149101254038186758042829027287415070
 
-(results/a000080_n80.txt). Pictures: https://guillochon.github.io/minimal-triangle-graphs/
+(results/a000080_n100.txt). Pictures: https://guillochon.github.io/minimal-triangle-graphs/
 
 ## 1. Structure theorem
 
@@ -71,17 +71,18 @@ CRT over 3 or 4 primes, and the remaining primes check the result.
   incidence-graph blocks. It finds 1, 1, 1, 2, 2, 4, 6, 12, 20, 42, 84, 187, 424 distinct blocks with 3..15
   points, matching B*(x, x) from the multigraph series.
 * species.py (exact rationals, independent code) agrees with the Rust engine for n ≤ 16.
-* CRT: every term is reconstructed from 3 primes and agrees with the other 2 (n ≤ 80).
+* CRT: every term to n = 80 is reconstructed from 3 primes and agrees with the other 2; to n = 100,
+  from 4 primes with 1 check. The n = 100 table agrees with the n = 80 one on their overlap.
 * The random examples on the web page are built from the theorem in reverse. 11,400 of them (n = 3..40)
   were tested to be connected and minimal on exactly n points.
-* Growth: a(n+1)/a(n) rises smoothly from 3.25 (n = 25) to 5.03 (n = 79). The blocks make growth slightly
+* Growth: a(n+1)/a(n) rises smoothly from 3.25 (n = 25) to 5.67 (n = 99). The blocks make growth slightly
   faster than exponential, because many triples can share one pair of points.
 
 ## 4. Files
 
 * `rust/` – engine. `mtg N PRIME THREADS` prints A000080 mod a prime. `mtg2` (dual numbers) prints A000080
   and A048781. It sets below-normal priority and opts out of Windows EcoQoS.
-* `run.sh N` – all 5 primes in turn. `crt.py TAG K` – CRT with K primes, the rest as checks.
+* `run.sh N` – all 5 primes in turn (`run2.sh N` the same with mtg2). `crt.py TAG K` – CRT with K primes, the rest as checks.
 * `species.py` – exact-rational Python prototype of the same formula (slow, n ≲ 20).
 * `check/blocks.py`, `check/a000080_fuller.c` – the block check and Martin Fuller's program (from the
   OEIS entry; the copy in `check/` has its argument parsing patched for nauty 2.8).
@@ -90,4 +91,5 @@ CRT over 3 or 4 primes, and the remaining primes check the result.
 
 ## 5. Timing (i5-12600K, 6 threads, one prime)
 
-n = 25: 0.2 s · n = 50: 0.6 s · n = 60: 3.6 s · n = 70: 19 s · n = 80: ~100 s. Each +10 in n costs about 5×.
+n = 25: 0.2 s · n = 50: 0.6 s · n = 60: 3.6 s · n = 70: 19 s · n = 80: ~100 s · n = 100: ~28 min.
+Each +10 in n costs about 4–5×.

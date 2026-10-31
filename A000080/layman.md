@@ -54,11 +54,11 @@ network. That forces a simple shape. The drawing is a *tree* of pieces glued at 
 
 Tree-like objects built from known pieces are exactly what a 1930s counting method (Pólya's) handles well.
 With it the whole count becomes a formula, adding up over the ways to split a number into parts. No drawing
-is ever built. All counts up to **80 dots** now take about two minutes:
+is ever built. All counts up to **100 dots** now take about half an hour:
 
 * 26 dots: **4,987,668,376**
 * 27 dots: **16,341,943,122**
-* 80 dots: **2,617,646,724,739,221,521,059,589,519,172,655,683,909,550**
+* 100 dots: **1,026,015,488,005,710,246,126,149,101,254,038,186,758,042,829,027,287,415,070**
 
 The same formula, with each triangle tagged, also extends A048781 (the total number of triangles).
 
