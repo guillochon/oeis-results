@@ -1,0 +1,2 @@
+partial sums of A000637 reproduce all 21 known terms A000638(0..20)
+A000638(21) = 104994596 + 140399143 = 245393739
