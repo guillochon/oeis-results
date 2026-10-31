@@ -60,7 +60,7 @@ is ever built. All counts up to **100 dots** now take about half an hour:
 * 27 dots: **16,341,943,122**
 * 100 dots: **1,026,015,488,005,710,246,126,149,101,254,038,186,758,042,829,027,287,415,070**
 
-The same formula, with each triangle tagged, also extends A048781 (the total number of triangles).
+The same formula, with each triangle tagged, also extends A048781 (the total number of triangles) to 100 dots.
 
 You can browse examples at https://guillochon.github.io/minimal-triangle-graphs/: every drawing up to 9 dots,
 and random ones beyond.

@@ -14,7 +14,8 @@ enumeration and no isomorphism testing. All terms to **n = 100** come out in abo
     A000080(26) = 4987668376,  A000080(27) = 16341943122,  ...,
     A000080(100) = 1026015488005710246126149101254038186758042829027287415070
 
-(results/a000080_n100.txt). Pictures: https://guillochon.github.io/minimal-triangle-graphs/
+(results/a000080_n100.txt), and A048781 to n = 100 likewise, e.g. A048781(26) = 82050584487
+(results/a048781_n100.txt). Pictures: https://guillochon.github.io/minimal-triangle-graphs/
 
 ## 1. Structure theorem
 
@@ -67,6 +68,7 @@ CRT over 3 or 4 primes, and the remaining primes check the result.
 ## 3. Checks
 
 * All 23 known terms of A000080 and of A048781 (n = 3..25) are reproduced exactly.
+* mtg2's A000080 column (results/d100_p*) matches mtg's (results/n100_p*) for every n ≤ 100.
 * Block counts: check/blocks.py splits all graphs with n ≤ 15 points (lists from Fuller's program) into
   incidence-graph blocks. It finds 1, 1, 1, 2, 2, 4, 6, 12, 20, 42, 84, 187, 424 distinct blocks with 3..15
   points, matching B*(x, x) from the multigraph series.
@@ -82,7 +84,8 @@ CRT over 3 or 4 primes, and the remaining primes check the result.
 
 * `rust/` – engine. `mtg N PRIME THREADS` prints A000080 mod a prime. `mtg2` (dual numbers) prints A000080
   and A048781. It sets below-normal priority and opts out of Windows EcoQoS.
-* `run.sh N` – all 5 primes in turn (`run2.sh N` the same with mtg2). `crt.py TAG K` – CRT with K primes, the rest as checks.
+* `run.sh N` – all 5 primes in turn (`run2.sh N` the same with mtg2). `crt.py TAG K [COL]` – CRT with K primes, the rest as checks
+  (COL 2 picks the A048781 column of mtg2's d* files).
 * `species.py` – exact-rational Python prototype of the same formula (slow, n ≲ 20).
 * `check/blocks.py`, `check/a000080_fuller.c` – the block check and Martin Fuller's program (from the
   OEIS entry; the copy in `check/` has its argument parsing patched for nauty 2.8).
@@ -91,5 +94,5 @@ CRT over 3 or 4 primes, and the remaining primes check the result.
 
 ## 5. Timing (i5-12600K, 6 threads, one prime)
 
-n = 25: 0.2 s · n = 50: 0.6 s · n = 60: 3.6 s · n = 70: 19 s · n = 80: ~100 s · n = 100: ~28 min.
+n = 25: 0.2 s · n = 50: 0.6 s · n = 60: 3.6 s · n = 70: 19 s · n = 80: ~100 s · n = 100: ~28 min (mtg2: ~55 min).
 Each +10 in n costs about 4–5×.
