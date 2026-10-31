@@ -1,0 +1,6 @@
+A000638(0..21) = partial sums of A000637; A000638(21) = 245393739
+inverse Euler transform reproduces all 19 known terms A005226(0..18)
+Euler transform of A005226(0..21) gives back A000638(0..21)
+A005226(19) = 6772030
+A005226(20) = 76121103
+A005226(21) = 110719742
