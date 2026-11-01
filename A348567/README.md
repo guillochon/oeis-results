@@ -5,7 +5,8 @@ leaving the grid go to the sink) that are invariant under all eight symmetries o
 closed product formula for a(n), proves the formula a(n)² = A348566(n, n) · 2^A030451(n) conjectured in the entry,
 and lists a(0)–a(100) (`b348567.txt`; a(100) has 635 digits). James Guillochon, Nov 1 2026.
 
-Plain-English version: [layman.md](layman.md).
+Plain-English version: [layman.md](layman.md). Pictures (the identity, every symmetric recurrent for small n, the
+eigenmodes): https://guillochon.github.io/symmetric-sandpiles/
 
 ## Result
 
