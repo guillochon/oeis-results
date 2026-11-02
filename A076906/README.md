@@ -23,6 +23,9 @@ A077550 and A077556 in terms of the directed counts. Four old terms are wrong:
 * A077556(7) = 239 should be **218** = A077551(7) = A076906(7). 239 is probably the pre-2003 wrong value
   of A076906(7) carried over ("a(7) corrected Aug 25 2003").
 
+Pictures (every river for n ≤ 8, a viewer with each river's itinerary, the table of counts):
+https://guillochon.github.io/rivers-at-the-crossroads/
+
 ## 1. Combinatorial model (brute.py)
 
 Cut the plane along the four rays W, S, E, N. Inside each quadrant the river pieces form a non-crossing
@@ -96,4 +99,5 @@ holding the rays W and N is the strip picture of two parallel roads. Hence, for 
 ## Files
 
 brute.py, orbits.py (reference enumeration), tm.py (Python prototype), rust/ (engine `meander2`),
-run_all.sh, combine.py (→ results/counts.json, bfiles/), ../../viz/A076906 (gallery page).
+run_all.sh, combine.py (→ results/counts.json, bfiles/). The gallery page's source is in the private project;
+its published copy is the rivers-at-the-crossroads repo.
