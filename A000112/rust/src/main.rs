@@ -654,8 +654,20 @@ fn burnside(nmax: usize) {
             extra.insert(key, v);
         }
     }
-    // fix cache keyed by (r, interacting lengths)
+    // fix cache keyed by (r, interacting lengths), persisted in fix_small.txt ("r lens value" lines) so a
+    // rerun skips the r <= 10 sums. A000112_TRUST_FAST=1 uses the closed forms without recomputing the
+    // generic count (they were asserted equal on every r <= 10 class in the full run).
+    let cache_path = format!("{}/../fix_small.txt", env!("CARGO_MANIFEST_DIR"));
     let mut cache: BTreeMap<(usize, Vec<usize>), u128> = BTreeMap::new();
+    if let Ok(text) = std::fs::read_to_string(&cache_path) {
+        for line in text.lines().filter(|l| !l.trim().is_empty()) {
+            let f: Vec<&str> = line.split_whitespace().collect();
+            let lens = f[1].split(',').map(|x| x.parse().unwrap()).collect();
+            cache.insert((f[0].parse().unwrap(), lens), f[2].parse().unwrap());
+        }
+    }
+    let trust_fast = std::env::var("A000112_TRUST_FAST").is_ok();
+    let threads = 6;
     for n in 1..=nmax {
         let mut lams = vec![];
         partitions(n, n, &mut vec![], &mut lams);
@@ -670,22 +682,50 @@ fn burnside(nmax: usize) {
                 v
             } else {
                 assert!(r <= rmax, "need posets on {r} points for {lam:?}");
-                *cache.entry((r, t.clone())).or_insert_with(|| {
-                    let mut wc = HashMap::new();
-                    let s: u128 = posets[r]
-                        .iter()
-                        .map(|(q, w)| {
-                            let g = sum_phi(q, &t, &mut wc);
-                            if let Some(f) = sum_phi_fast(q, &t) {
-                                assert_eq!(f, g, "fast path {t:?} r={r}");
-                            }
-                            *w * g as u128
-                        })
-                        .sum();
+                if let Some(&v) = cache.get(&(r, t.clone())) {
+                    v
+                } else {
+                    // split the posets over threads, each with its own pattern cache
+                    let ps = &posets[r];
+                    let chunk = ps.len().div_ceil(threads).max(1);
+                    let tt = &t;
+                    let s: u128 = std::thread::scope(|sc| {
+                        let hs: Vec<_> = ps
+                            .chunks(chunk)
+                            .map(|part| {
+                                sc.spawn(move || {
+                                    let mut wc = HashMap::new();
+                                    part.iter()
+                                        .map(|(q, w)| {
+                                            let fast = sum_phi_fast(q, tt);
+                                            let g = match fast {
+                                                Some(f) if trust_fast => f,
+                                                _ => {
+                                                    let g = sum_phi(q, tt, &mut wc);
+                                                    if let Some(f) = fast {
+                                                        assert_eq!(f, g, "fast path {tt:?} r={r}");
+                                                    }
+                                                    g
+                                                }
+                                            };
+                                            *w * g as u128
+                                        })
+                                        .sum::<u128>()
+                                })
+                            })
+                            .collect();
+                        hs.into_iter().map(|h| h.join().unwrap()).sum()
+                    });
                     let falling: u128 = ((r - t.len() + 1)..=r).map(|x| x as u128).product();
                     assert!(s % falling == 0);
-                    s / falling
-                })
+                    let v = s / falling;
+                    cache.insert((r, t.clone()), v);
+                    let l: Vec<String> = t.iter().map(|x| x.to_string()).collect();
+                    use std::io::Write;
+                    let mut fh = std::fs::OpenOptions::new().create(true).append(true).open(&cache_path).unwrap();
+                    writeln!(fh, "{r} {} {v}", l.join(",")).unwrap();
+                    v
+                }
             };
             let c = class_size(lam) * fx;
             total += c;
