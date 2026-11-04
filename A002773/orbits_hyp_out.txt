@@ -1,0 +1,31 @@
+simple k=0: 1 0 0 0 0 0 0 0 0 0
+simple k=1: 0 1 0 0 0 0 0 0 0 0
+simple k=2: 0 0 1 0 0 0 0 0 0 0
+simple k=3: 0 0 1 1 0 0 0 0 0 0
+simple k=4: 0 0 1 2 1 0 0 0 0 0
+simple k=5: 0 0 1 4 3 1 0 0 0 0
+simple k=6: 0 0 1 9 11 4 1 0 0 0
+simple k=7: 0 0 1 23 49 22 5 1 0 0
+simple k=8: 0 0 1 68 617 217 40 6 1 0
+simple k=9: 0 0 1 383 185981 188936 1092 66 7 1
+loopless-from-k<=9 s=0: 1 0 0 0 0 0 0 0 0 0 0  sum 1
+loopless-from-k<=9 s=1: 0 1 0 0 0 0 0 0 0 0 0  sum 1
+loopless-from-k<=9 s=2: 0 1 1 0 0 0 0 0 0 0 0  sum 2
+loopless-from-k<=9 s=3: 0 1 2 1 0 0 0 0 0 0 0  sum 4
+loopless-from-k<=9 s=4: 0 1 4 3 1 0 0 0 0 0 0  sum 9
+loopless-from-k<=9 s=5: 0 1 6 9 4 1 0 0 0 0 0  sum 21
+loopless-from-k<=9 s=6: 0 1 10 25 18 5 1 0 0 0 0  sum 60
+loopless-from-k<=9 s=7: 0 1 14 70 85 31 6 1 0 0 0  sum 208
+loopless-from-k<=9 s=8: 0 1 21 217 832 288 51 7 1 0 0  sum 1418
+loopless-from-k<=9 s=9: 0 1 29 950 189274 189889 1217 79 8 1 0  sum 381448
+loopless-from-k<=9 s=10: 0 1 40 3513 1616845 1626070 5577 208 15 1 0  sum 3252270
+labeled all n=0: 1  sum 1
+labeled all n=1: 1 1  sum 2
+labeled all n=2: 1 3 1  sum 5
+labeled all n=3: 1 7 7 1  sum 16
+labeled all n=4: 1 15 36 15 1  sum 68
+labeled all n=5: 1 31 171 171 31 1  sum 406
+labeled all n=6: 1 63 813 2053 813 63 1  sum 3807
+labeled all n=7: 1 127 4012 33442 33442 4012 127 1  sum 75164
+labeled all n=8: 1 255 20891 1022217 8520812 1022217 20891 255 1  sum 10607540
+labeled all n=9: 1 511 115463 78968940 63041101998 63041101998 78968940 115463 511 1  sum 126240373826

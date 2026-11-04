@@ -1,0 +1,34 @@
+A055545: all 11 known terms reproduced
+A058718: all 10 known terms reproduced
+A002773: all 10 known terms reproduced
+A058731: all 11 known terms reproduced
+A058719: all 8 known terms reproduced
+A058693: all 8 known terms reproduced
+A336704: all 7 known terms reproduced
+A058673: all 9 known terms reproduced
+A058712: all 9 known terms reproduced
+A058721: all 7 known terms reproduced
+A058722: all 5 known terms reproduced
+A058715: all 8 known terms reproduced
+A058681: all 9 known terms reproduced
+A100728: all 7 known terms reproduced
+A058687: all 6 known terms reproduced
+A058669: all 47 known terms reproduced
+A058710: all 45 known terms reproduced
+A058720: all 28 known terms reproduced
+A058716: all 45 known terms reproduced
+A058730: all 38 known terms reproduced
+A053534: all 55 known terms reproduced
+unlabeled_all       n= 9 total 383172  by rank 1,9,87,1275,190214,190214,1275,87,9,1
+unlabeled_all       n=10 total 3232000741644  by rank 1,10,128,10037,4886380924,3222227959444,4886380924,10037,128,10,1
+unlabeled_loopless  n= 9 total 381448  by rank 0,1,29,950,189274,189889,1217,79,8,1
+unlabeled_loopless  n=10 total 3232000358472  by rank 0,1,41,8762,4886190710,3222227769230,4886379649,9950,119,9,1
+unlabeled_simple    n= 9 total 376467  by rank 0,0,1,383,185981,188936,1092,66,7,1
+unlabeled_simple    n=10 total 3231997106202  by rank 0,0,1,5249,4884573865,3222226143160,4886374072,9742,104,8,1
+labeled_all         n= 9 total 126240373826  by rank 1,511,115463,78968940,63041101998,63041101998,78968940,115463,511,1
+labeled_all         n=10 total 11727995799397397461  by rank 1,1023,677546,16869404175,17716560870661325,11692562643915909321,17716560870661325,16869404175,677546,1023,1
+labeled_loopless    n= 9 total 126147335851  by rank 0,1,21146,70820187,62965554090,63032041311,78785409,113204,502,1
+labeled_loopless    n=10 total 11727994537462688545  by rank 0,1,115974,16122092568,17715930839227973,11692562013550420644,17716560081896990,16868260900,672481,1013,1
+labeled_simple      n= 9 total 125807231446  by rank 0,0,1,50166353,62680769286,62998060596,78129885,104858,466,1
+labeled_simple      n=10 total 11727988869192909352  by rank 0,0,1,13480967629,17713104354273649,11692559177940845715,17716556552798468,16863372160,650761,968,1
+A002773(10) = 3231997106202
