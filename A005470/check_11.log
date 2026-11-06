@@ -1,0 +1,15 @@
+ identity/rotations/half-turns done
+ rotatory reflections (projective plane) done
+  refl points 192/864  32s
+  refl points 384/864  62s
+  refl points 576/864  92s
+  refl points 768/864  121s
+  refl points 864/864  136s
+ reflections done
+  C_mh n=3: 15 cells
+  C_mh n=5: 2 cells
+  C_mh n=7: 1 cells
+  C_mh n=9: 1 cells
+  C_mh n=11: 0 cells
+formula rows: 637 in 141s
+cells 637 mismatches 0

@@ -13,6 +13,7 @@ logs and write-ups needed to check them. Each folder is one sequence.
 | [A003088](https://oeis.org/A003088) | [unilateral digraphs on n unlabeled nodes](A003088/) |
 | [A005162](https://oeis.org/A005162) | [n×n alternating sign matrices symmetric about both diagonals (DASASMs), n ≤ 62](A005162/) · [plain-English explanation](A005162/layman.md) |
 | [A005226](https://oeis.org/A005226) | [a(19)..a(21) from the inverse Euler transform of A000638](A005226/) |
+| [A005470](https://oeis.org/A005470) | [unlabeled planar graphs (and A003094, A021103)](A005470/) |
 | [A006455](https://oeis.org/A006455) | [Naturally labeled posets on {1, …, n}](A006455/) · [plain-English explanation](A006455/layman.md) |
 | [A027624](https://oeis.org/A027624) | [Number of independent vertex sets in the n-hypercube graph Q_n](A027624/) · [plain-English explanation](A027624/layman.md) |
 | [A031507](https://oeis.org/A031507) | [/ A031508 — Smallest k > 0 such that y² = x³ + k (resp. y² = x³ − k) has rank n](A031507/) · [plain-English explanation](A031507/layman.md) |

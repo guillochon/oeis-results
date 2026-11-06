@@ -1,0 +1,25 @@
+ identity/rotations/half-turns done
+ rotatory reflections (projective plane) done
+  refl points 1024/8788  19s
+  refl points 2048/8788  29s
+  refl points 3072/8788  40s
+  refl points 4096/8788  51s
+  refl points 5120/8788  62s
+  refl points 6144/8788  73s
+  refl points 7168/8788  83s
+  refl points 8192/8788  104s
+  refl points 8788/8788  122s
+ reflections done
+  C_mh n=3: 372 cells
+  C_mh n=5: 57 cells
+  C_mh n=7: 15 cells
+  C_mh n=9: 4 cells
+  C_mh n=11: 4 cells
+  C_mh n=13: 1 cells
+  C_mh n=15: 1 cells
+  C_mh n=17: 1 cells
+  C_mh n=19: 1 cells
+  C_mh n=21: 1 cells
+  C_mh n=23: 1 cells
+  C_mh n=25: 0 cells
+wrote 28375 rows in 297s
