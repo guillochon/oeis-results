@@ -32,6 +32,8 @@ homeomorphism (A239893).
 
 All counts below are generating functions in x (vertices) and y (faces), computed modulo primes
 p < 2^26 with exact rational coefficients reduced mod p, and combined by the Chinese remainder theorem.
+The range of the CRT is proved large enough for every cell (§6, *CRT range*); §11 says which parts are
+proved and which rest on computation.
 
 ## 2. Identity term: rooted c-nets
 
@@ -142,7 +144,19 @@ For odd v only C_mh contributes; for v = 19 that is just the 17-gonal bipyramid 
   vertices and faces differently.
 * **Integrality.** S/2 + W_ref + W_rr is a sum of rationals. It comes out integral in every cell, and the
   CRT value is the same from one prime fewer (8 primes below 2^24 for the a(40) run: values below 2^192,
-  checked with 2^168).
+  checked with 2^168). Stability is only a consistency check; the next item is what makes the lift exact.
+* **CRT range.** The symmetric CRT lift returns the true integer only if the product P of the primes
+  exceeds 2·|value|. `formula/crt_bound.py` proves this for every cell of the 50×96 run: 0 ≤ U ≤ S ≤ R,
+  where R(v,f) is the number of rooted c-nets (every sensed type has a rooting, and different types give
+  different rooted maps), and R ≤ B(v,f), the Brown–Tutte number of rooted nonseparable maps (§2). It
+  computes R modulo 14 primes (364 bits > 2·max B, so the nonnegative lift is R itself) in exact
+  arithmetic, and then checks 2R < P for both tables: R stays below 2^188 on the box, against moduli of
+  240 bits (W_ref, W_rr, U) and 260 bits (S). Log: `formula/logs/crt_bound.log`.
+* **Exact arithmetic.** `fastmul.py` multiplies by floating-point FFT, which has no proved error bound for
+  these transform sizes and this backend (the 0.25-from-an-integer test only catches gross errors). With
+  `FASTMUL_EXACT=1` it uses an integer number-theoretic transform instead (three NTT primes, Garner
+  recombination; exact by construction, about 50× slower). In that mode `check_brute.py 20` (2669
+  comparisons) and `refl.py 11 20` (48) pass, and `crt_bound.py` always runs in it.
 * **Independent runs.** The boxes 21×38, 25×46, 30×56, 40×76 and 50×96 were computed separately (different
   truncations); every cell they share agrees. The 50×96 box (10 primes, values below 2^240, checked with
   2^216) also gives A000109(n) = U(n, 2n−4) for n ≤ 50, which agrees with the separate triangulation-only
@@ -242,9 +256,9 @@ From `formula/`:
 On an i5-12600K with all 17 jobs in parallel this takes about 80 minutes (a(30): 18 minutes, a(25): 8,
 a(21): 2 per prime). For a(50) (box 50 × 96, 10 primes; `sensed_p.py` runs the sensed counts one prime per
 process) each `run_wref.py` / `run_wrr.py` job peaks at about 3.5–4 GB of memory, so at most six ran at
-once on 32 GB (`formula/logs/memqueue.py`); the run took about 14 hours of wall time. Series products use `fastmul.py`: exact multiplication mod p by floating-point FFT
+once on 32 GB (`formula/logs/memqueue.py`); the run took about 14 hours of wall time. Series products use `fastmul.py`: multiplication mod p by floating-point FFT
 (operands split into limbs so that every convolution sum stays below 2^44, and each result checked to be
-within 0.25 of an integer), operands cropped to the bounding box of their nonzero terms, and the anchor
+within 0.25 of an integer; `FASTMUL_EXACT=1` switches to an exact integer NTT, §6), operands cropped to the bounding box of their nonzero terms, and the anchor
 markers α of the grammars evaluated as one batch. The series/parallel network equations are solved in
 closed form (S = xD²/(1 + xD), and P = D·yD(1)/(1 + yD(1)) with the catalytic variable), and the
 nonseparable-map equation by fixed-point iteration with a warm-started Newton inverse.
@@ -252,12 +266,23 @@ nonseparable-map equation by fixed-point iteration with a warm-started Newton in
     python refl.py 11 20             # reflection weights vs brute force
     python rotorefl.py 20; python check_rr.py 20; python test_wrrh.py   # rotatory reflections vs brute force
 
+    python crt_bound.py              # proves the CRT range for every cell of the 50x96 run (a few minutes with 6 workers)
+    python halfturn.py 10 ../brute/stats_le8.json   # the exact-rational half-turn solver vs brute force
+
+The residues of the a(50) run are included (`formula/wref_50_96_*.npy`, `wrr_50_96_*.npy`,
+`sensed_146_*.npy`, with `formula/sensed_146.json`), so `python combine_full.py 50 96 10` replays the final
+step and every check without recomputing them. `MANIFEST.md` lists the b-files in `data/`, the residues and
+the outputs with SHA-256 hashes, the primes and the software versions.
+
 Brute force (`brute/`): `gen_poly.sh 11 <dir>` (in WSL with nauty), then `symstats.py planar2c_*.g6`;
 `refl_check.py 8` checks the half-map characterization.
 
 ## 9. Files
 
-* `formula/fastmul.py`: exact FFT multiplication of truncated series mod p.
+* `formula/fastmul.py`: FFT multiplication of truncated series mod p, and the exact NTT mode.
+* `formula/crt_bound.py`: proof that the CRT range covers every cell (R ≤ Brown–Tutte, exact R).
+* `formula/halfturn.py`: the half-turn equations in exact rationals (a readable reference for `pipeline.py`).
+* `MANIFEST.md`, `make_manifest.py`, `data/`: inputs, residues and outputs with hashes; OEIS b-file copies.
 * `formula/ms.py`, `series.py`: truncated bivariate series mod p (numpy) and exact versions.
 * `formula/rooted.py`, `pipeline.py`: networks, rooted c-nets, rotations of order ≥ 3, half-turns.
 * `formula/t3.py`: nonseparable maps and c-nets by vertices, faces and root-face degree.
@@ -334,7 +359,20 @@ achiral = 2(W_ref + W_rr), and only the symmetric terms are needed.
   A253882's b-file; a(n)/a(n−1)·(n/(n−1))^(7/2) rises smoothly toward 256/27 (9.435 at n = 41, 9.470 at
   n = 80). Terms: `derived/b000109.txt` (n = 3..80), `results/a109_80.json`, `results/run_a109_80.log`.
 
-## 11. Open
+## 11. Status of the argument, and what is open
+
+* **Proved / standard.** The Burnside identities of §1; rooted c-nets from Brown–Tutte and Tutte's
+  network decomposition (§2); the rotation weights (Walsh, Liskovets; §3); the CRT range (§6).
+* **Derived here and checked, not written out as a full proof.** The reflection grammar of §4 (unique
+  R/S/P decomposition of the half-map, the local face conditions, the correction at the root, the
+  1/(4A) automorphism factor and its behavior under truncation), and the rotational disk grammar and the
+  projective-plane lifting factors of §5. Each was checked cell by cell against brute force (§6) and,
+  through the related sequences, against independent data, but a configuration that first appears
+  beyond the brute-force range would not be caught by those checks. A complete bijective write-up is the
+  main open item. For n = 19 only S, W_ref and the bipyramid term enter (§5), so a(19) rests on the
+  reflection grammar alone.
+* **Arithmetic.** The production runs used the FFT path; the exact NTT path (§6) reproduces it on every
+  test, but the full 50×96 run has not been repeated in exact mode.
 
 Nothing new is needed for more terms: the cost is polynomial in n (roughly n^4.5 per prime here), plus
 more primes as the terms grow.
@@ -361,3 +399,10 @@ more primes as the terms grow.
   not prime; fixed (the first six entries, used for every earlier result, were correct).
 * 2026-10-21/22: a(41)–a(50) (box 50 × 96, 10 primes; two out-of-memory crashes with 30 parallel jobs, then a
   memory-aware queue). A000109 to n = 80 by §10.1.
+* 2026-11-07: fixes after an external audit. The standalone `halfturn.py` had kept two bugs fixed long
+  ago in `pipeline.py` (VV/FF half-turn weights need both i and j odd, i.e. 2 | e; the tree-edge terms
+  carry x²y², not xy); it now matches `pipeline.py` on all 720 coefficients to total degree 14 and the
+  brute-force data, and exits nonzero on a mismatch. Added the CRT range proof (`crt_bound.py`), the
+  exact NTT mode of `fastmul.py`, `MANIFEST.md` and the a(50) residues; corrected a docstring in
+  `refl.py` (the grammar does have P-nodes) and the A000168(6) reference value in `rp2.py` (24057). No
+  term changed.

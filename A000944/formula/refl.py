@@ -8,9 +8,10 @@ consecutive anchors V/X) in nothing, a vertex or an edge; plus >= 3 anchors (bru
 brute/refl_check.py).  W_ref = 1/2 * sum_{(H,lab)} 1/|Aut(H,lab)|.
 
 Counting: H decomposes along its 2-cuts (all on C') into R-nodes (c-nets whose outer face carries all
-virtual edges) and S-nodes (polygons = faces of H touching C' >= 3 times), no P-nodes, no S-S
-adjacency. A virtual edge of an R-node carries an R-arc (2-touch face) or an S-arc; S-nodes carry
-R-arcs. Conditions become local (each pocket = R-arc has an interior anchor; touches of an S-face
+virtual edges), S-nodes (polygons = faces of H touching C' >= 3 times) and P-nodes, no S-S
+adjacency. A P-node is a real chord a-b of H in parallel with exactly one child arc (an R-arc or an
+S-arc); it is counted by the `chord` terms in virtuals(), not as a separate node type. A virtual edge
+of an R-node carries an R-arc (2-touch face), an S-arc or a chord arc; S-nodes carry R-arcs. Conditions become local (each pocket = R-arc has an interior anchor; touches of an S-face
 between two real chain edges are anchors; V-count per multi-touch face) except one correction at the
 root.  Rooted at an anchor rho and the C'-edge leaving it; anchors marked by alpha, evaluated at
 alpha = 0..VX and interpolated; W_ref = 1/2 sum_A [alpha^A] rooted / (2A), A >= 3.

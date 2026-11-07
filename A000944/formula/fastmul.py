@@ -8,7 +8,17 @@ the convolution sums stay well below 2^53, which `_split` guarantees from the nu
 result is checked to be within 0.25 of an integer. Operands are first cut to the bounding box of their
 nonzero entries, and sparse operands (monomials, a few terms, possibly varying over the batch) are
 handled by shifted adds.
+
+Certification. The float64 FFT path has no proved forward-error bound for the transform sizes and the
+pocketfft backend used here; the 0.25 check catches gross failures but does not prove exactness.
+Setting the environment variable FASTMUL_EXACT=1 (or fastmul.EXACT = True) replaces it by an integer
+number-theoretic transform: the convolution of the reduced operands (entries < p < 2^26, so every
+coefficient is < nterms * 2^52 < 2^67 for the sizes used) is computed modulo the three NTT primes
+998244353, 469762049 and 167772161 (product > 2^86) with int64 arithmetic only (all products < 2^60),
+and recombined modulo p by Garner's algorithm. That path is exact by construction.
 """
+import os
+
 import numpy as np
 
 try:
@@ -19,6 +29,78 @@ except ImportError:            # numpy's pocketfft: same interface, no workers a
     _KW = {}
 
 SPARSE = 8                     # operands with at most this many nonzero terms are multiplied directly
+EXACT = os.environ.get('FASTMUL_EXACT', '') not in ('', '0')   # integer NTT instead of float64 FFT
+
+# NTT primes q = c 2^k + 1 with primitive root 3; q1 q2 q3 > 2^86
+_NTT = ((998244353, 23), (469762049, 26), (167772161, 25))
+_TW = {}
+_REV = {}
+
+
+def _ntt_axis(x, q, invert):
+    """In-place-style iterative radix-2 NTT mod q along the last axis (length a power of 2)."""
+    n = x.shape[-1]
+    if n not in _REV:
+        lg = n.bit_length() - 1
+        rev = np.zeros(n, dtype=np.int64)
+        for b in range(lg):
+            rev |= ((np.arange(n) >> b) & 1) << (lg - 1 - b)
+        _REV[n] = rev
+    x = x[..., _REV[n]]
+    m = 1
+    while m < n:
+        key = (q, m, invert)
+        if key not in _TW:
+            g = pow(3, (q - 1) // (2 * m), q)
+            if invert:
+                g = pow(g, q - 2, q)
+            w = np.empty(m, dtype=np.int64)
+            c = 1
+            for j in range(m):
+                w[j] = c
+                c = c * g % q
+            _TW[key] = w
+        w = _TW[key]
+        x = x.reshape(x.shape[:-1] + (n // (2 * m), 2, m))
+        u = x[..., 0, :]
+        v = x[..., 1, :] * w % q
+        x = np.stack(((u + v) % q, (u - v) % q), axis=-2).reshape(x.shape[:-3] + (n,))
+        m *= 2
+    if invert:
+        x = x * pow(n, q - 2, q) % q
+    return x
+
+
+def _ntt(x, q, axes, invert=False):
+    for ax in axes:
+        x = np.moveaxis(_ntt_axis(np.moveaxis(x, ax, -1), q, invert), -1, ax)
+    return x
+
+
+def _conv_exact(a, b, p, full, nb):
+    """Exact (a * b mod p) truncated to `full`, operands with entries in [0, p), by NTT + Garner."""
+    ba, bb = a.shape[nb:], b.shape[nb:]
+    size = tuple(1 << (x + y - 2).bit_length() for x, y in zip(ba, bb))   # linear (no wrap-around) length
+    nterms = int(np.prod([min(x, y) for x, y in zip(ba, bb)]))
+    assert nterms * (p - 1) ** 2 < 998244353 * 469762049 * 167772161, 'NTT moduli too small'
+    for (q, k), n in ((qk, n) for qk in _NTT for n in size):
+        assert n <= 1 << k, 'transform too long for the NTT prime'
+    axes = tuple(range(nb, a.ndim))
+    keep = (Ellipsis,) + tuple(slice(0, x) for x in full)
+    res = []
+    for q, _ in _NTT:
+        pa = np.zeros(a.shape[:nb] + size, dtype=np.int64)
+        pb = np.zeros(b.shape[:nb] + size, dtype=np.int64)
+        pa[(Ellipsis,) + tuple(slice(0, x) for x in ba)] = a
+        pb[(Ellipsis,) + tuple(slice(0, x) for x in bb)] = b
+        c = _ntt(_ntt(pa, q, axes) * _ntt(pb, q, axes) % q, q, axes, invert=True)
+        res.append(c[keep])
+    (q1, _), (q2, _), (q3, _) = _NTT
+    r1, r2, r3 = res
+    # Garner: x = r1 + q1 t2 + q1 q2 t3 with 0 <= t2 < q2, 0 <= t3 < q3; then reduce mod p
+    t2 = (r2 - r1) % q2 * pow(q1, -1, q2) % q2
+    t3 = ((r3 - r1) % q3 - q1 % q3 * t2 % q3) % q3 * pow(q1 * q2 % q3, -1, q3) % q3
+    return (r1 % p + (q1 % p) * (t2 % p) % p + (q1 * q2 % p) * (t3 % p) % p) % p
 
 
 def _fast_len(n):
@@ -96,6 +178,10 @@ def _mul_window(a, b, p, shape, nb, bshape):
     if np.count_nonzero(a.any(axis=tuple(range(nb))) if nb else a) <= SPARSE:
         return _sparse_mul(b, a, p, shape, bshape)
     full = tuple(min(x + y - 1, s) for x, y, s in zip(ba, bb, shape))   # the part of the product we keep
+    if EXACT:
+        res = np.zeros(bshape + shape, dtype=np.int64)
+        res[(Ellipsis,) + tuple(slice(0, x) for x in full)] = _conv_exact(a, b, p, full, nb)
+        return res
     fft_shape = tuple(_fast_len(x + y - 1) for x, y in zip(ba, bb))
     nterms = int(np.prod([min(x, y) for x, y in zip(ba, bb)]))
     k, bits = _split(nterms, max(1, (p - 1).bit_length()))

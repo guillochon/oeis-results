@@ -1,0 +1,4 @@
+1657 cells; max B has 343 bits; 14 primes, 364 bits
+U table: max R over its cells 188 bits, CRT modulus 240 bits, 2R < P: True
+S table: max R over its cells 188 bits, CRT modulus 260 bits, 2R < P: True
+CRT bound PROVED for every cell

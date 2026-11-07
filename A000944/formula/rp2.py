@@ -71,6 +71,6 @@ if __name__ == '__main__':
             if s:
                 qe[v + f - 1] = qe.get(v + f - 1, 0) + s
     print('planar by edges', [pe.get(e, 0) % p for e in range(X)])
-    print('A000168        ', [1, 2, 9, 54, 378, 2916, 24054, 208494][:X])
+    print('A000168        ', [1, 2, 9, 54, 378, 2916, 24057, 208494][:X])
     print('RP2 by edges   ', [qe.get(e, 0) % p for e in range(1, X)])
     print('A007137        ', [1, 10, 98, 982, 10062, 105024, 1112757][:X - 1])

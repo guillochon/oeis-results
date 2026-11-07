@@ -38,9 +38,8 @@ def WB(N):
             q = {}
             if i % 2 == 0 and j % 2 == 0:
                 q['VF'] = E(i // 2, j // 2)
-            if i % 2 == 1:
+            if i % 2 == 1 and j % 2 == 1:   # d = 2 must divide e = i + j
                 q['VV'] = F((i - 1) // 2, (j + 1) // 2)
-            if j % 2 == 1:
                 q['FF'] = F((j - 1) // 2, (i + 1) // 2)
             if i % 2 == 1 and j % 2 == 1:
                 q['EE'] = e * C(i, j)
@@ -165,10 +164,10 @@ def solve(N, iters=None, verbose=False):
                     continue
                 for s in SIG:
                     for s2 in SIG:
-                        rhs[tkey(s, s2)] = rhs[tkey(s, s2)] - xy * net[t1][s] * net[t2][s2] * Fraction(1, 8)
+                        rhs[tkey(s, s2)] = rhs[tkey(s, s2)] - xy * xy * net[t1][s] * net[t2][s2] * Fraction(1, 8)
         # side-swapping tree edges (add): H-networks swapped, poles VV or FF
-        rhs['VV'] = rhs['VV'] + xy * H2 * Fraction(1, 8)
-        rhs['FF'] = rhs['FF'] + xy * H2 * Fraction(1, 8)
+        rhs['VV'] = rhs['VV'] + xy * xy * H2 * Fraction(1, 8)
+        rhs['FF'] = rhs['FF'] + xy * xy * H2 * Fraction(1, 8)
         for t, d in digon.items():
             rhs[t] = rhs[t] + d
         # update
@@ -208,6 +207,8 @@ def main():
                 bad += 1
                 print('MISMATCH', t, v, f, got, want)
     print('checked', checked, 'bad', bad)
+    if bad or not checked:
+        sys.exit(1)
 
 
 if __name__ == '__main__':
