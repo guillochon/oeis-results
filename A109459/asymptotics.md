@@ -28,9 +28,12 @@ Ilinca–Kahn proof gives the rate: the number of skew posets whose colored grap
 **These are new formula lines for the OEIS entries** (A109457 has no FORMULA at all).
 
 ### How far the data are from the limit
-Unate(n) = 2^n Σ_k C(n,k) Σ_{G on n−k vertices} 2^(−iso(G)) is the exact number of unate Krom
-functions (a unate function is counted once per valid sign vector, and the valid sign vectors of
-a function are 2^(number of variables it does not depend on)).
+Unate(n) = 1 + 2^n Σ_k C(n,k) Σ_{G on n−k vertices} 2^(−iso(G)) is the exact number of unate Krom
+functions. The sum counts the satisfiable ones (a unate function is counted once per valid sign
+vector, and the valid sign vectors of a function are 2^(number of variables it does not depend
+on)); the 1 is the constant false function, which the sum misses. By enumeration Unate(n) = 4, 14,
+96 for n = 1, 2, 3. (An earlier version omitted the 1; the ratios below do not change at this
+precision.)
 
 | n | G(n)/Unate(n) | A109459(n)·2^n n!/G(n) | A109458(n)·n!/G(n) |
 |---|---|---|---|
@@ -60,7 +63,7 @@ shrinking by a factor ≈ 0.63 per step.
 A109459(n) ~ G(n)/(2^n n!) ~ 2^(C(n,2))/n!,      A109458(n) ~ G(n)/n! ~ 2^(C(n+1,2))/n!.
 ```
 **Conjecture B (second order).** Σ_{g≠1} Fix(g)/G(n) = Θ(n^2 2^(−n)). The two dominant classes
-are the n single flips, with Fix = G(n−1) − 1 exactly (the flipped variable must be isolated),
+are the n single flips, with Fix = G(n−1) exactly (the function must not depend on the flipped variable),
 and the 2·C(n,2) signed transpositions of order 2, each with Fix ≈ 3·H(n−1) (Lemma 3.2). From
 the exact data at n = 10 the flips carry 3.3 % of the mass and a transposition has
 Fix ≈ 3.2·G(9), in line with this picture.
@@ -68,17 +71,31 @@ Fix ≈ 3.2·G(9), in line with this picture.
 ## 3. What is proved
 
 Throughout, for an elementary function (skew poset) P and g ∈ B_n, "g-invariant" means the
-relation is preserved: R(gl, gm) ⇔ R(l, m). Let g move m variables (a variable is moved if it is
-permuted or complemented) in c non-trivial cycles; write j = m − c.
+relation is preserved: R(gl, gm) ⇔ R(l, m). Write g = (π, ε), π the permutation of the variables.
+Let g move m variables (a variable is moved if it is permuted or complemented), let c be the number
+of cycles of π of length ≥ 2, and write j = m − c. A variable fixed by π but complemented counts in
+m and not in c. Then c ≤ j (a cycle of length L ≥ 2 adds L − 1 ≥ 1 to j, a complemented fixed
+variable adds 1), m ≤ 2j, and j = 0 only for g = 1.
 
 **Lemma 3.1 (flips).** If g complements a variable v and fixes everything else, the g-invariant
-Krom functions are exactly those in which v is isolated (unforced, in no block, in no
-implication). Hence Fix(g) = G(n−1) − 1 for all Krom functions and Fix_H(g) = H(n−1) for skew
-posets.
-*Proof.* If v is forced its value flips. If v ≡ ±w for w ≠ v, the flip turns it into v ≡ ∓w,
-which cannot also hold. If v < l (or ¬v < l) for a literal l of another variable, the flip gives
-¬v < l as well, so l is forced, contradiction; symmetrically for l < v. Conversely an isolated v
-is unaffected by the flip. □
+Krom functions are exactly those that do not depend on v. Hence Fix(g) = G(n−1) for all Krom
+functions (both constant functions included) and Fix_H(g) = H(n−1) for skew posets.
+*Proof.* Invariance under complementing v is independence from v. Restricting to x_v = 0 is a
+bijection from these functions to the Krom functions on the other n − 1 variables (restriction keeps
+a 2-CNF a 2-CNF), with inverse "add v as an unused variable". For n = 1, 2, 3 direct enumeration
+gives 2, 4, 16 = G(0), G(1), G(2). For a satisfiable function, independence means v is isolated
+(unforced, in no block, in no implication): if v is forced its value flips; if v ≡ ±w the flip
+gives v ≡ ∓w; if v < l (or ¬v < l) for a literal l of another variable, the flip gives ¬v < l as
+well, so l is forced. (An earlier version had G(n−1) − 1: it left out the constant false function,
+which every flip fixes.) □
+
+**Lemma 3.1′ (complemented fixed variables).** Let v be fixed by π and complemented by ε, and let
+P be a g-invariant skew poset. Then P has no relation between a literal of v and a literal of any
+other variable w fixed by π. In particular, if π = 1 every complemented variable is isolated.
+*Proof.* Let v < l, l a literal of w (the case l < v is the contrapositive of ¬l < ¬v). If w is
+not complemented, the image is ¬v < l, so l is forced; if it is, the image is ¬v < ¬l, i.e.
+l < v, so v ≡ l. A skew poset has neither. (Checked by enumeration for all sign flips and all
+skew posets with n ≤ 4 in the case π = 1.) □
 
 **Lemma 3.2 (transposition bound).** Let g swap variables v, w (possibly with a complementation
 of both). Then Fix_H(g) ≤ 3 H(n−1).
@@ -91,14 +108,17 @@ remain, and these two cannot coexist (v → ¬w and ¬v → w say v ≡ ¬w). Fo
 v ↦ ¬w, w ↦ ¬v the same argument leaves "none", "v < w", "w < v". □
 
 **Lemma 3.3 (injection for general g).** Fix_H(g) ≤ H(n − j) · 2^(8 c j).
-*Proof.* Choose one representative variable per non-trivial cycle; with the fixed variables
-this is a set of n − j variables. A g-invariant P is determined by (i) its restriction to the
-representatives (a skew poset on n − j points) and (ii) for each cycle representative v and each
-of the j non-representative variables u, the relations between the literals of v and the
-literals of u (at most 8 bits). Indeed for literals a of g^s(v) and b of g^t(v') (v, v' cycle
-representatives), R(a, b) = R(g^(−s) a, g^(−s) b) and g^(−s) b is a literal of g^(t−s)(v'),
-which is a representative or a non-representative; in either case the value is in (i) or (ii).
-Fixed variables are their own representatives. □
+*Proof.* The representatives are one variable per cycle of π of length ≥ 2 and every variable
+fixed by π and not complemented: c + (n − m) = n − j variables. The j others are the rest of the
+long cycles and the complemented fixed variables. A g-invariant P is determined by (i) its
+restriction to the representatives (a skew poset on n − j points) and (ii) for each representative
+v of a long cycle and each of the j non-representatives u, the relations between the literals of v
+and of u (at most 8 bits). Indeed, for literals a of g^s(v) and b of g^t(v') (v, v' long-cycle
+representatives), R(a, b) = R(g^(−s) a, g^(−s) b) and g^(−s) b is a literal of g^(t−s)(v'), a
+representative or not: the value is in (i) or (ii). If a is a literal of a variable w fixed by π,
+shift by g^(−t) instead: R(a, b) = R(g^(−t) a, g^(−t) b), a pair (w, v'), which is in (i) when w is
+not complemented and in (ii) when it is. Two variables fixed by π, at least one complemented, have
+no relations at all (Lemma 3.1′). □
 
 **Proposition 3.4 (small support).** Let U(n) denote the set of g ≠ 1 with j(g) ≤ n/20. Then
 Σ_{g ∈ U(n)} Fix_H(g) = o(H(n)).
@@ -108,9 +128,10 @@ H(k) ≤ H(n_0) for k < n_0; by the unate construction (graphs with no isolated 
 ```
 Fix_H(g)/H(n) ≤ 4 · 2^(C(n−j+1,2) − C(n+1,2) + 8 j^2) = 4 · 2^(−jn + j(j−1)/2 + 8j^2) ≤ 4 · 2^(−jn + 8.5 j^2).
 ```
-For j ≤ n/20 the exponent is ≤ −0.57 jn. The number of g with a given j is at most
-C(n, 2j) (2j)! 2^(2j) ≤ (2n)^(2j) 2^(2j) (choose the moved variables and their images), so
-Σ_{g∈U(n)} Fix_H(g)/H(n) ≤ Σ_{j≥1} 4 · 2^(2j log2(4n) − 0.57 jn) → 0. □
+For j ≤ n/20 the exponent is ≤ −0.57 jn. Since m ≤ 2j, the number of g with a given j is at most
+(2j + 1) C(n, 2j) (2j)! 2^(2j) ≤ (2j + 1)(2n)^(2j) 2^(2j) (choose at most 2j moved variables, their
+images and their signs), so
+Σ_{g∈U(n)} Fix_H(g)/H(n) ≤ Σ_{j≥1} 4(2j + 1) · 2^(2j log2(4n) − 0.57 jn) → 0. □
 
 **Proposition 3.5 (large support, unate part).** For g with j(g) > n/20, the number of
 g-invariant *unate* skew posets is ≤ 2^(C(n+1,2) − n^2/160 + O(n)), and summing over all such
@@ -120,13 +141,17 @@ the signed variables; isolated vertices of G are the isolated points of P). Writ
 with π the underlying permutation, moving m' variables, and let f be the number of variables
 fixed by π but complemented by ε; m = m' + f > n/20. If P is g-invariant then
 P(s, G) = P(g·s, πG); the two sign vectors agree on the variables P depends on, so G = πG. Also
-each of the f complemented fixed variables is isolated in P (Lemma 3.1 applied to g^(ord π),
-which complements them and moves nothing else), so it is an isolated vertex of G.
+each of the f complemented fixed variables v is an isolated vertex of G. A unate function that
+depends on v is monotone in v in one direction only. Composing with g replaces x_v by ¬x_v and
+permutes the other coordinates among themselves, so it reverses that direction; invariance then
+makes the function monotone both ways in v, i.e. independent of v. (An earlier version applied
+Lemma 3.1 to g^(ord π) instead; that fails when ord π is even: g swapping variables 1, 2 and
+complementing 3 has g² = 1.)
 Case f ≥ n/40: G is a graph on the other n − f vertices, so there are at most
 2^(n + C(n−f,2)) ≤ 2^(C(n+1,2) − n^2/160 + n) such P.
 Case m' ≥ n/40: the pairs fixed by π are the C(n−m',2) pairs of fixed vertices and at most
 m'/2 swapped pairs, every other pair lies in an orbit of size ≥ 2, so π has at most
-(C(n,2) + C(n−m',2))/2 + m'/4 ≤ C(n,2) − m'(n−1)/4 ≤ C(n,2) − n^2/160 + n orbits on pairs, and
+(C(n,2) + C(n−m',2))/2 + m'/4 ≤ C(n,2) − m'(n−2)/4 ≤ C(n,2) − n^2/160 + n orbits on pairs, and
 there are at most 2^n · 2^(orbits) invariant (s, G).
 Either way the count is ≤ 2^(C(n+1,2) − n^2/160 + O(n)), and |B_n| ≤ 2^(n log2 n + n) does not
 disturb the 2^(−n^2/160). □
@@ -163,3 +188,10 @@ rigid". We did not attempt it.
 *Oct 2026:* the OEIS edits were trimmed per the editor's preferences (terms + link only). Of the
 lines above only the A109457 FORMULA (the proved asymptotic, with its references) stays in the
 entries; the BBL comment and the two conjectures are in the README's "Asymptotics" section.
+
+*Nov 2026:* corrected after an external audit: Fix of a single flip is G(n−1), not G(n−1) − 1
+(Lemma 3.1); the unate count includes the constant false function; complemented fixed variables
+are now explicitly not cycles in the definition of c (so c ≤ j and j = 0 only for g = 1), with
+Lemma 3.1′ added for the Lemma 3.3 injection; and the isolation step of Proposition 3.5 now
+uses uniqueness of the sign of an essential variable. Conjectures A and B and the table are
+unchanged; no finite count was affected.
