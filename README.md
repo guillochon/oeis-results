@@ -7,6 +7,7 @@ logs and write-ups needed to check them. Each folder is one sequence.
 |---|---|
 | [A000080](https://oeis.org/A000080) | [minimal triangle graphs (and A048781)](A000080/) · [plain-English explanation](A000080/layman.md) |
 | [A000112](https://oeis.org/A000112) | [(17): unlabeled posets on 17 points by Burnside over the labeled counts](A000112/) · [plain-English explanation](A000112/layman.md) |
+| [A000445](https://oeis.org/A000445) | [a(8) = 1508324](A000445/) |
 | [A000638](https://oeis.org/A000638) | [a(21) = 245393739 from A000637(21)](A000638/) |
 | [A000944](https://oeis.org/A000944) | [polyhedra with n vertices — a(19) to a(50) by formula](A000944/) · [plain-English explanation](A000944/layman.md) |
 | [A002773](https://oeis.org/A002773) | [# Matroids on 9 and 10 elements: simple and loopless counts (A002773 and family)](A002773/) |
