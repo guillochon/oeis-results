@@ -1,4 +1,4 @@
-# A000445: a(8) = 1508324
+# A000445: a(8) = 1508324, and a(9) >= 178708831
 
 **Status:** new term found, with a machine-checkable certificate. Not yet submitted.
 **Known terms:** a(2)..a(7) = 9, 77, 1224, 7888, 202124, 1649375 (Lehmer, Lehmer, Mills, Dunton, Bierstedt–Mills;
@@ -83,9 +83,38 @@ variables, 2^{n/sqrt(log n)} is still astronomically large. This instance is eas
 consecutive pairs drive the propagation, and the free-prime argument removes the large primes. The whole a(8) refutation
 explores 78k nodes.
 
+## a(9) >= 178708831 (lower bound only)
+BLL 1964 showed a(9) > 10^7. For odd k the Kummer extensions have full degree, so every assignment χ : primes → Z/9 is
+realized by infinitely many primes p ≡ 1 (mod 9), including χ(3). (We also checked χ(3) empirically: over 11,727 primes
+p ≡ 1 (mod 9), its 9 classes are as evenly spread as those of 2 and 11.)
+
+**What failed.** The DFS above, even with conflict-directed backjumping, stalls for k = 9. A run that hits its time limit
+is not evidence of UNSAT: D(25770880) took 57 minutes to come back SAT, after 1-hour runs at nearby N had timed out.
+
+**What worked.** Every good witness has χ(q) = 1 for almost all primes, so χ(n) is close to Ω(n) mod 9 and zero pairs
+are rare. `ls/beam.py` searches over small exception sets E (prime → value). It computes χ on [1, X] with numpy, finds
+the first zero pair (r, r+1), and tries changing χ at each prime dividing r or r+1. It keeps the 6 sets with the latest
+first pair. A run with X = 3·10^8, 40 rounds, takes 2.5 hours. The search finds the true a(6) exactly, but only 77% of a(5)
+and 17% of a(7), so its results are lower bounds, possibly far from the truth.
+
+**Result** (`ls/best_k9.txt`). χ(q) = 1 for every prime except:
+- χ = 0: 3, 11, 277, 509, 3631, 5903, 9257, 20773, 25261, 47939, 409729
+- χ = 2: 127, 173, 179, 269, 347, 619, 907, 1747
+- χ = 3: 769
+
+The first zero pair is
+
+    178708831 = 7^8 * 31,    178708832 = 2^5 * 19 * 41 * 67 * 107,
+
+so **a(9) >= 178708831**. `ls/verify_chunked.py` checks this independently. It computes χ(n) by trial division over every
+n <= 1.8·10^8, in chunks of 10^7, and reports the same first pair (`results/verify_k9_178708831.log`). An earlier
+6-exception witness was also checked with `verify_witness.py`, giving no pair below 6·10^7.
+
+The exact a(9) is open. It needs a refutation of D(a(9)+1) at N ≈ 10^8 or more, and that looks out of reach for this
+solver.
+
 ## Possible next steps
-- a(9): BLL 1964 showed a(9) > 10^7. The same code should handle it, since the work scales with the number of
-  smooth pairs rather than with N. Expect N around 10^7–10^8, with memory for the arrays of about 30 bytes × N.
+- a(9): improve the beam (it reaches only 17% of a(7)), then retry; an exact value needs a far stronger refutation method.
 - a(10) >= 22458303 (BLL), with constraint R(5) even.
 - Erdős #436 lists Λ(k,2) only up to k = 7; a(8) could be reported there.
 
@@ -93,3 +122,5 @@ explores 78k nodes.
 - 2026-11-07: read BLL 1964 and the Erdős #436 page (the Reble SeqFan post was unreachable because the archive was down).
   Solver written; a(2..7) reproduced. k=8: SAT at 1499877, UNSAT at 1508325; binary search → a(8) = 1508324.
   SAT witness verified, UNSAT certificate verified (also from the gzip file).
+- 2026-11-08: a(9). DFS with backjumping verified witnesses up to N = 25770880, then stalled. Beam search over exception
+  sets: a(9) >= 6·10^7 (verify_witness), then a(9) >= 178708831 (X = 3·10^8, checked by verify_chunked.py).

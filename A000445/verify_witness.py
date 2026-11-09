@@ -12,6 +12,7 @@ def main():
     k, N = int(sys.argv[1]), int(sys.argv[2])
     path = sys.argv[3]
     X = N
+    L = int(sys.argv[sys.argv.index("--L") + 1]) if "--L" in sys.argv else 2
     if "--extend" in sys.argv:
         X = int(sys.argv[sys.argv.index("--extend") + 1])
     given = {}
@@ -22,7 +23,7 @@ def main():
             given[int(p)] = int(v) % k
     if k == 8:
         assert given.get(2, 0) % 2 == 0, "chi(2) must be even for p = 1 mod 8"
-    M = max(N, X)
+    M = max(N, X) + L - 2
     spf = list(range(M + 1))
     for i in range(2, int(M**0.5) + 1):
         if spf[i] == i:
@@ -37,8 +38,8 @@ def main():
             if p in given:
                 v = given[p]
             else:
-                lim = N // p
-                assert p * p > N or lim < k, f"prime {p} not in witness but not free-eligible"
+                lim = (N + L - 2) // p
+                assert p * p > N + L - 2 or lim < k, f"prime {p} not in witness but not free-eligible"
                 seen = set(chi[1:lim + 1])
                 miss = [w for w in range(k) if w not in seen]
                 assert miss, f"prime {p}: chi(1..{lim}) covers Z/{k}"
@@ -47,11 +48,12 @@ def main():
             chi[n] = v
         else:
             chi[n] = (chi[n // p] + pval[p]) % k
-    bad = [r for r in range(1, N) if chi[r] == 0 and chi[r + 1] == 0]
-    print(f"k={k} N={N}: zero pairs with r<N: {len(bad)}", "OK" if not bad else bad[:5])
+    zw = lambda r: all(chi[r + j] == 0 for j in range(L))
+    bad = [r for r in range(1, N) if zw(r)]
+    print(f"k={k} L={L} N={N}: zero windows with r<N: {len(bad)}", "OK" if not bad else bad[:5])
     if X > N:
-        nxt = next((r for r in range(N, X) if chi[r] == 0 and chi[r + 1] == 0), None)
-        print("first zero pair at r =", nxt)
+        nxt = next((r for r in range(N, X) if zw(r)), None)
+        print("first zero window at r =", nxt)
     return 0 if not bad else 1
 
 
