@@ -1,0 +1,3 @@
+T(n,k)={my(h=(n+1)\2, id=matrix(h,h), m=0, c=0, o=i->min(i,n+1-i), M); for(b=1,h, for(i=1,b, id[i,b]=m++)); M=matrix(n,n,i,j,my(x=o(i),y=o(j)); id[min(x,y),max(x,y)]); for(s=0,2^m-1, my(A=matrix(n,n,i,j,bittest(s,M[i,j]-1)), V=matrix(n,n), ok=1); for(i=1,n, for(j=1,n, if(ok&&A[i,j]&&!V[i,j], my(q=List([[i,j]]), t=0); V[i,j]=1; while(t<#q, t++; my(u=q[t]); for(a=-1,1, for(b=-1,1, my(x=u[1]+a, y=u[2]+b); if(x>=1&&x<=n&&y>=1&&y<=n&&A[x,y]&&!V[x,y], V[x,y]=1; listput(q,[x,y]))))); if(#q<k, ok=0)))); c+=ok); c}
+B=readvec("/mnt/c/Users/guill/oeis-sniper/attacks/vinciolo/b_minregion_table.gp");
+bad=0; i=0; for(d=2,10, for(n=1,d-1, i++; if(T(n,d-n)!=B[i], bad++; print("mismatch ",n," ",d-n)))); print("checked ",i," terms, mismatches ",bad);

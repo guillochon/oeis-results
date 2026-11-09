@@ -34,3 +34,49 @@ is the log of how we got there, published as NOTES.md.
   Exact 384-bit counts to n = 43 (n = 45 ran out of WSL's 23 GB), then residues mod 2^64 and four primes near
   2^62 for n = 43..47 (`crt.py`), exact and CRT agreeing at n = 43. a(1)–a(47) in `b_pinhole_d4.txt`.
 * PARI brute force (`tools/check.gp`) agrees for n ≤ 10. Draft submission `oeis_submission.md`.
+
+## 2026-11-08: growth and region rules
+
+Asked whether the panels follow any rule beyond "no pinhole", in particular one about how the design grows.
+Tools: `tools/growth_rules.py` (rule battery), `tools/small_open.py`, `tools/null_sampler.c` (20 random
+no-pinhole designs per panel, same size and darned fraction, `null/`), `tools/count_minregion.c`.
+
+- **Radial growth rules all fail, in every panel.** Tested: open or darned cells must have a same-color neighbor
+  closer to the center (or, the other way, closer to the edge), except the seed ring of their own region. Three
+  radii (square, diamond, round) and 4- or 8-neighbors, 24 variants. Every variant has violations in all 19 panels.
+  The motifs bend back toward the center (scrolls, hooks, flower heads), so neither color grows monotonically.
+- **No open region has fewer than 5 meshes.** This holds in 19/19, and size 5 occurs once: the open cross at the
+  center of p23r. Regions are 8-connected open meshes, and the outside counts as darned. No pinhole is the case
+  "size at least 2". Random designs of the same size and density break the rule in most panels. They pass at a rate
+  of 0% on p23r and p24r (the dense ones) and 25–90% elsewhere, so the product over the 19 panels is below 1e-8.
+  The reason is that Vinciolo's open meshes form one big web: 1 region in 10 panels and at most 10 in the others.
+  Random designs have a median of 2–91 regions, most of them tiny.
+- Darned islands (not touching the frame) of size 2 occur in p26r_0 and p33r_1, so there is no matching rule on
+  the darned side. Lone darned dots (flower eyes) are common.
+- Counts of the generalized rule, "every 8-connected region of 1s has at least k cells", for k = 1..8, are in
+  `tools/minregion_counts.txt`. k = 2 reproduces a(1)–a(12). For k = 5:
+  - symmetric: 1, 1, 5, 6, 42, 43, 601, 612, 17134, 17756, 990833, 1036978;
+  - all arrays: 1, 1, 227, 36632, 15691156.
+  Neither the k = 3, 4, 5 families nor their unsymmetric versions are in the OEIS. The unsymmetric k = 2 version
+  is A202788. Going further needs a transfer matrix that tracks region labels and sizes up to k − 1.
+
+## 2026-11-08: the minimum-region table T(n,k)
+
+T(n,k) = number of D4-symmetric n x n 0/1 arrays in which every 8-connected region of 1s has at least k cells
+(k = 2 is the no-pinhole sequence, and k = 5 is the strongest region-size rule all 19 panels obey). The user chose
+a single table entry read by antidiagonals. Draft: `oeis_submission_table.md`; b-file: `b_minregion_table.txt`
+(antidiagonals n + k = 2..34, 561 terms).
+
+- `tools/minregion_tm2.cpp`: a transfer matrix over the octant. A quotient component touches the diagonal wall
+  and/or the vertical-midline wall when one of its cells is equal or king-adjacent to its own mirror image. Its
+  full-array region then has stabilizer <those reflections> (order 1, 2, 2 or 8), and size
+  (sum of orbit sizes) * |H| / 8. States are packed into 192 bits; counts are kept mod 2^128 and mod 2^61 - 1
+  and combined by CRT (exact up to 2^189). `minregion_tm.cpp` is the first, string-keyed version.
+- Checks: brute force (`count_minregion.c`) n <= 12, k <= 8, 96 values; the two TM versions agree; column 2
+  matches `b_pinhole_d4.txt` through n = 32 (past 2^128, so the CRT path is exercised); PARI
+  (`tools/check_table.gp`) agrees on antidiagonals 2..10; `assemble_table.py` checks monotonicity in k and
+  T(n,k) = 1 for k > n^2.
+- Runs: `tools/run_table.py` (resumable; `table_runs.txt`, logs `table_log1..3.txt`). 4 workers x 4 GB through
+  d = 32, then 2 x 9 GB, then 1 x 14 GB for (29,5) and (27,7) at about 50 million states each. Antidiagonal 35
+  needs bigger jobs; stopped.
+- Not in the OEIS (Nov 8): the table, columns 3, 4, 5, 6, 10 and rows 5 and 6. k = 1 is 2^A008805(n-1).
