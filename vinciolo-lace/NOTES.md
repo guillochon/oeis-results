@@ -80,3 +80,33 @@ a single table entry read by antidiagonals. Draft: `oeis_submission_table.md`; b
   d = 32, then 2 x 9 GB, then 1 x 14 GB for (29,5) and (27,7) at about 50 million states each. Antidiagonal 35
   needs bigger jobs; stopped.
 - Not in the OEIS (Nov 8): the table, columns 3, 4, 5, 6, 10 and rows 5 and 6. k = 1 is 2^A008805(n-1).
+
+## 2026-11-08: patch-mix (maximum-entropy) designs
+
+The user asked for a page section that uses the distribution of 3 x 3 blocks Vinciolo used.
+
+- `tools/blockstats.py` -> `block_target.txt`: counts of the 102 symmetry classes over the 47,867 windows (frame
+  darned, as in build.py); 101 are used, and the unused one is the pinhole.
+- `tools/block_fit.c`: P(design) ~ exp(-sum of w[class(window)]) over D4-symmetric framed panels, with the pinhole
+  forbidden. Fitted by persistent-chain moment matching, one chain per panel size (`block_sizes.txt`), 2500
+  iterations, with the weights averaged over the last quarter. Output: `block_weights.txt`, `block_fit_classes.txt`,
+  `block_samples_43.txt`, log in `tools/block_fit_log.txt`.
+- Fit, from fresh chains: KL(Vinciolo || model) = 0.040. Density-matched rule-only designs give 0.207. Patch kinds
+  within ±50% of Vinciolo's rate cover 87% of his windows for the model and 59% for rule-only designs (from
+  `tools/block_compare.py` -> `block_compare.json`). The model stalls near KL 0.03-0.04: the chains switch between
+  dense and open phases during the fit, and neither a single size nor per-panel sizes did better.
+- The samples look like lace texture (bars, frames, stepped diagonals, medallions), but they have no large motifs.
+  The page's JS generator is checked in Node: KL 0.042 against the data, no pinholes.
+
+## 2026-11-09: off-center pocket rule
+
+- The only open region under 9 meshes in the 19 panels is the 5-mesh cross at the center of page 23. Leaving out the
+  region through the center cell (2 x 2 block for even n), the smallest region is 9: eight mirror copies in page 31
+  (next: 66, four copies in page 24; then 192 and up). 25 off-center regions in all. `tools/offcenter_pockets.py`.
+- Density-matched no-pinhole nulls (null/): joint pass chance for "off-center min >= 9" ~1e-11, for ">= 5" ~3e-9
+  (zero-pass panels counted as 0.5/20, so rough). Rests on one panel for the 9.
+- Not added to the T(n,k) table (decided with the user). Used instead as the rule for the site's random designs:
+  editor default k = "9, except through the center"; patch-mix generator rejects flips that break it, starting from
+  all open. `tools/pocket_patchmix.js` runs the page's own generator in Node: with the rule KL 0.050, 86% within
+  +-50%, 57/57 designs obey it (independent flood fill), 115 ms per design; without the rule KL 0.044, 25/57 obey.
+  Writes block_fit_classes_rule.txt (now used by block_compare.py) and block_samples_43_rule.txt (page gallery).

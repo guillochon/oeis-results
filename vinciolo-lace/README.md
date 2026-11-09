@@ -129,6 +129,15 @@ and the same fraction of darned meshes. They break the 5-mesh rule on most panel
 designs would all pass is below 10^-8. The reason is that Vinciolo's open meshes form one web around the motifs,
 while random designs have between 2 and 91 regions (median per panel), mostly tiny.
 
+**Away from the center the bound is 9** (`tools/offcenter_pockets.py`). The 5-mesh cross lies on the center cell, which
+all eight symmetries fix, so a central region costs one choice of shape rather than eight copies. Leaving out the
+region through the center (the center cell, or the central 2 × 2 block for even n), the 25 remaining regions in the 19
+panels have sizes 9 (eight mirror copies, all in the page 31 panel), 66 (four copies, page 24), and 192 to 1,056.
+So off-center regions of 1 to 8 meshes never occur. Against the same random designs, the fractions passing "no
+off-center region under 9" give a joint chance of roughly 10^-11 (rough: a panel where none of the 20 passes is counted
+as 1 in 40). The bound rests on a single panel; without page 31 it would be 66. This rule is not counted in the table
+of section 7. The Pages site uses it for its random designs.
+
 Rules on how a design grows fail. We tested 24 versions: "every open (or every darned) mesh touches a mesh of its
 color that is closer to the center (or to the frame)", with square, diamond or round distance and side or corner
 neighbors. Each version is broken in every one of the 19 panels, because the motifs (scrolls, hooks, flower heads)
