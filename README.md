@@ -24,6 +24,7 @@ logs and write-ups needed to check them. Each folder is one sequence.
 | [A114601](https://oeis.org/A114601) | [Symmetric positive definite matrices with 2 on the diagonal and entries in {−1, 0, 1}](A114601/) · [plain-English explanation](A114601/layman.md) |
 | [A123234](https://oeis.org/A123234) | [n X n Latin squares up to row and column permutation](A123234/) |
 | [A124426](https://oeis.org/A124426) | [Matryoshka dolls taken apart: nesting and stacking](A124426/) |
+| [A132183](https://oeis.org/A132183) | [regular Boolean functions of n variables](A132183/) · [plain-English explanation](A132183/layman.md) |
 | [A154640](https://oeis.org/A154640) | [# A154639–A154645: Mallows's 3D Apollonian sphere packing](A154640/) · [plain-English explanation](A154640/layman.md) |
 | [A157615](https://oeis.org/A157615) | [Longest alternating (H/V) self-avoiding path on an n × n board](A157615/) · [plain-English explanation](A157615/layman.md) |
 | [A227867](https://oeis.org/A227867) | [Lipschitz quaternions X with X^2 ≡ 1 (mod n): a closed form](A227867/) · [plain-English explanation](A227867/layman.md) |

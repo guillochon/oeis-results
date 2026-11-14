@@ -1,0 +1,7 @@
+m=8: 16175190 ideals, 110433364 Hasse edges, built in 36.5 s
+k2 m=8 a(10) = 4191080125665004647
+k2 m=8 selfdual(10) = 1214554343
+
+real	0m37.635s
+user	0m0.000s
+sys	0m0.000s

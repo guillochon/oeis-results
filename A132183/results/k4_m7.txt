@@ -1,0 +1,24 @@
+m=7: 44315 ideals, 190162 Hasse edges, built in 0.1 s
+comparable pairs: 602034981
+phase 1 done in 20.8 s
+k4 m=7 selfdual(11) = 1706241214185942
+k4 m=7 a(11) mod 4294967291 = 3562208367
+done in 37.0 s
+m=7: 44315 ideals, 190162 Hasse edges, built in 0.1 s
+comparable pairs: 602034981
+phase 1 done in 21.9 s
+k4 m=7 selfdual(11) = 1706241214185942
+k4 m=7 a(11) mod 4294967279 = 2751855204
+done in 38.6 s
+m=7: 44315 ideals, 190162 Hasse edges, built in 0.0 s
+comparable pairs: 602034981
+phase 1 done in 18.8 s
+k4 m=7 selfdual(11) = 1706241214185942
+k4 m=7 a(11) mod 4294967231 = 4033528344
+done in 33.7 s
+m=7: 44315 ideals, 190162 Hasse edges, built in 0.0 s
+comparable pairs: 602034981
+phase 1 done in 20.7 s
+k4 m=7 selfdual(11) = 1706241214185942
+k4 m=7 a(11) mod 4294967197 = 2044833171
+done in 36.9 s
