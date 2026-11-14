@@ -1,0 +1,295 @@
+  tid 0 nodes: nil 0 group 0 depthvec 10
+  tid 3 nodes: nil 0 group 0 depthvec 10
+  tid 2 nodes: nil 0 group 0 depthvec 10
+  tid 1 nodes: nil 0 group 0 depthvec 10
+  tid 4 nodes: nil 0 group 0 depthvec 10
+  tid 5 nodes: nil 0 group 0 depthvec 10
+class 0 [10] |C|=10 leaves=0 nodes=396 0.0s
+  tid 0 nodes: nil 0 group 3 depthvec 11
+  tid 5 nodes: nil 0 group 3 depthvec 11
+  tid 2 nodes: nil 0 group 3 depthvec 11
+  tid 1 nodes: nil 0 group 3 depthvec 11
+  tid 3 nodes: nil 0 group 3 depthvec 11
+  tid 4 nodes: nil 0 group 3 depthvec 11
+class 1 [9,1] |C|=9 leaves=1 nodes=438 0.0s
+  tid 0 nodes: nil 0 group 0 depthvec 18
+  tid 2 nodes: nil 0 group 0 depthvec 18
+  tid 1 nodes: nil 0 group 0 depthvec 18
+  tid 3 nodes: nil 0 group 0 depthvec 18
+  tid 4 nodes: nil 0 group 0 depthvec 18
+  tid 5 nodes: nil 0 group 0 depthvec 18
+class 2 [8,2] |C|=16 leaves=0 nodes=234 0.0s
+  tid 4 nodes: nil 0 group 31 depthvec 48
+  tid 2 nodes: nil 0 group 31 depthvec 48
+  tid 0 nodes: nil 0 group 31 depthvec 48
+  tid 1 nodes: nil 0 group 31 depthvec 48
+  tid 5 nodes: nil 0 group 31 depthvec 48
+  tid 3 nodes: nil 0 group 31 depthvec 48
+class 3 [8,1,1] |C|=16 leaves=33 nodes=3859 0.1s
+  tid 0 nodes: nil 0 group 0 depthvec 21
+  tid 4 nodes: nil 0 group 0 depthvec 21
+  tid 5 nodes: nil 0 group 0 depthvec 21
+  tid 3 nodes: nil 0 group 0 depthvec 21
+  tid 1 nodes: nil 0 group 0 depthvec 21
+  tid 2 nodes: nil 0 group 0 depthvec 21
+class 4 [7,3] |C|=21 leaves=0 nodes=276 0.0s
+  tid 1 nodes: nil 0 group 11 depthvec 34
+  tid 4 nodes: nil 0 group 11 depthvec 34
+  tid 5 nodes: nil 0 group 11 depthvec 34
+  tid 2 nodes: nil 0 group 11 depthvec 34
+  tid 0 nodes: nil 0 group 11 depthvec 34
+  tid 3 nodes: nil 0 group 11 depthvec 34
+class 5 [7,2,1] |C|=14 leaves=10 nodes=2774 0.1s
+  tid 5 nodes: nil 16 group 125 depthvec 270
+  tid 0 nodes: nil 16 group 125 depthvec 270
+  tid 1 nodes: nil 16 group 125 depthvec 270
+  tid 3 nodes: nil 16 group 125 depthvec 270
+  tid 4 nodes: nil 16 group 125 depthvec 270
+  tid 2 nodes: nil 16 group 125 depthvec 270
+class 6 [7,1,1,1] |C|=42 leaves=169 nodes=10853 0.1s
+  tid 3 nodes: nil 0 group 0 depthvec 24
+  tid 4 nodes: nil 0 group 0 depthvec 24
+  tid 2 nodes: nil 0 group 0 depthvec 24
+  tid 1 nodes: nil 0 group 0 depthvec 24
+  tid 0 nodes: nil 0 group 0 depthvec 24
+  tid 5 nodes: nil 0 group 0 depthvec 24
+class 7 [6,4] |C|=24 leaves=0 nodes=678 0.1s
+  tid 3 nodes: nil 0 group 35 depthvec 52
+  tid 1 nodes: nil 0 group 35 depthvec 52
+  tid 4 nodes: nil 0 group 35 depthvec 52
+  tid 5 nodes: nil 0 group 35 depthvec 52
+  tid 0 nodes: nil 0 group 35 depthvec 52
+  tid 2 nodes: nil 0 group 35 depthvec 52
+class 8 [6,3,1] |C|=18 leaves=34 nodes=4304 0.1s
+  tid 0 nodes: nil 0 group 0 depthvec 52
+  tid 1 nodes: nil 0 group 0 depthvec 52
+  tid 2 nodes: nil 0 group 0 depthvec 52
+  tid 3 nodes: nil 0 group 0 depthvec 52
+  tid 4 nodes: nil 0 group 0 depthvec 52
+  tid 5 nodes: nil 0 group 0 depthvec 52
+class 9 [6,2,2] |C|=48 leaves=0 nodes=690 0.1s
+  tid 1 nodes: nil 129 group 399 depthvec 419
+  tid 5 nodes: nil 133 group 189 depthvec 419
+  tid 0 nodes: nil 133 group 262 depthvec 419
+  tid 4 nodes: nil 138 group 188 depthvec 419
+  tid 2 nodes: nil 129 group 329 depthvec 419
+  tid 3 nodes: nil 144 group 193 depthvec 419
+class 10 [6,2,1,1] |C|=24 leaves=1003 nodes=36725 0.1s
+  tid 4 nodes: nil 273 group 697 depthvec 1835
+  tid 2 nodes: nil 863 group 1521 depthvec 1835
+  tid 0 nodes: nil 310 group 348 depthvec 1835
+  tid 3 nodes: nil 338 group 1494 depthvec 1835
+  tid 1 nodes: nil 268 group 1193 depthvec 1835
+  tid 5 nodes: nil 285 group 1558 depthvec 1835
+class 11 [6,1,1,1,1] |C|=144 leaves=9578 nodes=82430 0.1s
+  tid 2 nodes: nil 0 group 0 depthvec 25
+  tid 1 nodes: nil 0 group 0 depthvec 25
+  tid 3 nodes: nil 0 group 0 depthvec 25
+  tid 4 nodes: nil 0 group 0 depthvec 25
+  tid 5 nodes: nil 0 group 0 depthvec 25
+  tid 0 nodes: nil 0 group 0 depthvec 25
+class 12 [5,5] |C|=50 leaves=0 nodes=1296 0.0s
+  tid 1 nodes: nil 0 group 10 depthvec 40
+  tid 3 nodes: nil 0 group 10 depthvec 40
+  tid 4 nodes: nil 0 group 10 depthvec 40
+  tid 2 nodes: nil 0 group 10 depthvec 40
+  tid 0 nodes: nil 0 group 10 depthvec 40
+  tid 5 nodes: nil 0 group 10 depthvec 40
+class 13 [5,4,1] |C|=20 leaves=17 nodes=4408 0.1s
+  tid 1 nodes: nil 0 group 0 depthvec 30
+  tid 0 nodes: nil 0 group 0 depthvec 30
+  tid 3 nodes: nil 0 group 0 depthvec 30
+  tid 2 nodes: nil 0 group 0 depthvec 30
+  tid 5 nodes: nil 0 group 0 depthvec 30
+  tid 4 nodes: nil 0 group 0 depthvec 30
+class 14 [5,3,2] |C|=30 leaves=0 nodes=414 0.0s
+  tid 4 nodes: nil 10 group 90 depthvec 327
+  tid 0 nodes: nil 10 group 90 depthvec 327
+  tid 5 nodes: nil 10 group 90 depthvec 327
+  tid 3 nodes: nil 10 group 90 depthvec 327
+  tid 2 nodes: nil 10 group 90 depthvec 327
+  tid 1 nodes: nil 10 group 90 depthvec 327
+class 15 [5,3,1,1] |C|=30 leaves=79 nodes=15851 0.1s
+  tid 2 nodes: nil 9 group 41 depthvec 151
+  tid 5 nodes: nil 9 group 41 depthvec 151
+  tid 1 nodes: nil 9 group 41 depthvec 151
+  tid 0 nodes: nil 9 group 44 depthvec 151
+  tid 4 nodes: nil 9 group 41 depthvec 151
+  tid 3 nodes: nil 9 group 44 depthvec 151
+class 16 [5,2,2,1] |C|=40 leaves=53 nodes=19380 0.1s
+  tid 5 nodes: nil 346 group 608 depthvec 2910
+  tid 4 nodes: nil 418 group 678 depthvec 2910
+  tid 1 nodes: nil 410 group 543 depthvec 2910
+  tid 3 nodes: nil 438 group 539 depthvec 2910
+  tid 0 nodes: nil 372 group 510 depthvec 2910
+  tid 2 nodes: nil 344 group 739 depthvec 2910
+class 17 [5,2,1,1,1] |C|=60 leaves=2769 nodes=125802 0.2s
+  tid 1 nodes: nil 695 group 1311 depthvec 11517
+  tid 3 nodes: nil 713 group 1149 depthvec 11517
+  tid 0 nodes: nil 821 group 1045 depthvec 11517
+  tid 2 nodes: nil 828 group 1019 depthvec 11517
+  tid 4 nodes: nil 700 group 1157 depthvec 11517
+  tid 5 nodes: nil 780 group 962 depthvec 11517
+class 18 [5,1,1,1,1,1] |C|=600 leaves=8158 nodes=215675 0.2s
+  tid 0 nodes: nil 0 group 0 depthvec 48
+  tid 1 nodes: nil 0 group 0 depthvec 48
+  tid 3 nodes: nil 0 group 0 depthvec 48
+  tid 4 nodes: nil 0 group 0 depthvec 48
+  tid 5 nodes: nil 0 group 0 depthvec 48
+  tid 2 nodes: nil 0 group 0 depthvec 48
+class 19 [4,4,2] |C|=64 leaves=0 nodes=666 0.0s
+  tid 0 nodes: nil 338 group 207 depthvec 384
+  tid 1 nodes: nil 274 group 156 depthvec 384
+  tid 3 nodes: nil 335 group 151 depthvec 384
+  tid 5 nodes: nil 255 group 304 depthvec 384
+  tid 2 nodes: nil 293 group 254 depthvec 384
+  tid 4 nodes: nil 388 group 185 depthvec 384
+class 20 [4,4,1,1] |C|=64 leaves=1446 nodes=44860 0.1s
+  tid 0 nodes: nil 0 group 0 depthvec 48
+  tid 2 nodes: nil 0 group 0 depthvec 48
+  tid 4 nodes: nil 0 group 0 depthvec 48
+  tid 3 nodes: nil 0 group 0 depthvec 48
+  tid 1 nodes: nil 0 group 0 depthvec 48
+  tid 5 nodes: nil 0 group 0 depthvec 48
+class 21 [4,3,3] |C|=72 leaves=0 nodes=966 0.1s
+  tid 3 nodes: nil 8 group 82 depthvec 254
+  tid 2 nodes: nil 8 group 69 depthvec 254
+  tid 4 nodes: nil 8 group 50 depthvec 254
+  tid 1 nodes: nil 8 group 50 depthvec 254
+  tid 5 nodes: nil 8 group 50 depthvec 254
+  tid 0 nodes: nil 8 group 50 depthvec 254
+class 22 [4,3,2,1] |C|=24 leaves=235 nodes=26148 0.1s
+  tid 2 nodes: nil 282 group 883 depthvec 2924
+  tid 4 nodes: nil 279 group 515 depthvec 2924
+  tid 5 nodes: nil 339 group 600 depthvec 2924
+  tid 3 nodes: nil 231 group 745 depthvec 2924
+  tid 1 nodes: nil 352 group 513 depthvec 2924
+  tid 0 nodes: nil 236 group 470 depthvec 2924
+class 23 [4,3,1,1,1] |C|=72 leaves=4074 nodes=123961 0.2s
+  tid 0 nodes: nil 0 group 0 depthvec 124
+  tid 2 nodes: nil 0 group 0 depthvec 124
+  tid 1 nodes: nil 0 group 0 depthvec 124
+  tid 3 nodes: nil 0 group 0 depthvec 124
+  tid 5 nodes: nil 0 group 0 depthvec 124
+  tid 4 nodes: nil 0 group 0 depthvec 124
+class 24 [4,2,2,2] |C|=192 leaves=0 nodes=1692 0.1s
+  tid 3 nodes: nil 3999 group 1824 depthvec 3864
+  tid 0 nodes: nil 2624 group 1249 depthvec 3864
+  tid 2 nodes: nil 5206 group 2923 depthvec 3864
+  tid 1 nodes: nil 7652 group 2798 depthvec 3864
+  tid 4 nodes: nil 5452 group 3239 depthvec 3864
+  tid 5 nodes: nil 2719 group 2890 depthvec 3864
+class 25 [4,2,2,1,1] |C|=64 leaves=30836 nodes=398297 0.2s
+  tid 2 nodes: nil 36221 group 33193 depthvec 27225
+  tid 0 nodes: nil 29162 group 24616 depthvec 27225
+  tid 5 nodes: nil 18179 group 42962 depthvec 27225
+  tid 4 nodes: nil 48577 group 37613 depthvec 27225
+  tid 3 nodes: nil 38595 group 28576 depthvec 27225
+  tid 1 nodes: nil 19173 group 35437 depthvec 27225
+class 26 [4,2,1,1,1,1] |C|=192 leaves=418043 nodes=2046991 0.8s
+  tid 0 nodes: nil 46933 group 22152 depthvec 65308
+  tid 4 nodes: nil 40710 group 22564 depthvec 65308
+  tid 2 nodes: nil 21861 group 36059 depthvec 65308
+  tid 3 nodes: nil 46606 group 19284 depthvec 65308
+  tid 5 nodes: nil 29923 group 27496 depthvec 65308
+  tid 1 nodes: nil 41239 group 23023 depthvec 65308
+class 27 [4,1,1,1,1,1,1] |C|=2880 leaves=476048 nodes=2505373 1.0s
+  tid 1 nodes: nil 55 group 81 depthvec 238
+  tid 0 nodes: nil 55 group 81 depthvec 238
+  tid 4 nodes: nil 55 group 84 depthvec 238
+  tid 3 nodes: nil 55 group 82 depthvec 238
+  tid 2 nodes: nil 55 group 81 depthvec 238
+  tid 5 nodes: nil 55 group 81 depthvec 238
+class 28 [3,3,3,1] |C|=162 leaves=87 nodes=13451 0.1s
+  tid 0 nodes: nil 0 group 0 depthvec 84
+  tid 4 nodes: nil 0 group 0 depthvec 84
+  tid 1 nodes: nil 0 group 0 depthvec 84
+  tid 5 nodes: nil 0 group 0 depthvec 84
+  tid 3 nodes: nil 0 group 0 depthvec 84
+  tid 2 nodes: nil 0 group 0 depthvec 84
+class 29 [3,3,2,2] |C|=144 leaves=0 nodes=1242 0.0s
+  tid 1 nodes: nil 690 group 493 depthvec 3661
+  tid 3 nodes: nil 863 group 447 depthvec 3661
+  tid 0 nodes: nil 1053 group 568 depthvec 3661
+  tid 4 nodes: nil 951 group 393 depthvec 3661
+  tid 2 nodes: nil 1081 group 607 depthvec 3661
+  tid 5 nodes: nil 822 group 486 depthvec 3661
+class 30 [3,3,2,1,1] |C|=72 leaves=2304 nodes=143538 0.2s
+  tid 2 nodes: nil 2707 group 1684 depthvec 21948
+  tid 5 nodes: nil 2385 group 1857 depthvec 21948
+  tid 4 nodes: nil 2132 group 1990 depthvec 21948
+  tid 1 nodes: nil 2382 group 2084 depthvec 21948
+  tid 3 nodes: nil 2099 group 2107 depthvec 21948
+  tid 0 nodes: nil 2367 group 1761 depthvec 21948
+class 31 [3,3,1,1,1,1] |C|=432 leaves=16289 nodes=414762 0.3s
+  tid 2 nodes: nil 230 group 124 depthvec 701
+  tid 4 nodes: nil 195 group 117 depthvec 701
+  tid 1 nodes: nil 218 group 133 depthvec 701
+  tid 0 nodes: nil 204 group 218 depthvec 701
+  tid 3 nodes: nil 244 group 122 depthvec 701
+  tid 5 nodes: nil 205 group 494 depthvec 701
+class 32 [3,2,2,2,1] |C|=144 leaves=746 nodes=123461 0.1s
+  tid 5 nodes: nil 20281 group 10096 depthvec 27036
+  tid 2 nodes: nil 27876 group 12722 depthvec 27036
+  tid 1 nodes: nil 17192 group 27316 depthvec 27036
+  tid 0 nodes: nil 20524 group 19697 depthvec 27036
+  tid 4 nodes: nil 21019 group 15609 depthvec 27036
+  tid 3 nodes: nil 29991 group 11293 depthvec 27036
+class 33 [3,2,2,1,1,1] |C|=144 leaves=140416 nodes=2134756 0.8s
+  tid 4 nodes: nil 93743 group 68613 depthvec 156948
+  tid 2 nodes: nil 98282 group 69318 depthvec 156948
+  tid 0 nodes: nil 116496 group 67105 depthvec 156948
+  tid 1 nodes: nil 65003 group 59230 depthvec 156948
+  tid 3 nodes: nil 68371 group 40409 depthvec 156948
+  tid 5 nodes: nil 57182 group 45259 depthvec 156948
+class 34 [3,2,1,1,1,1,1] |C|=720 leaves=870555 nodes=6742162 2.3s
+  tid 0 nodes: nil 85683 group 33200 depthvec 102743
+  tid 5 nodes: nil 60344 group 41592 depthvec 102120
+  tid 1 nodes: nil 77501 group 24993 depthvec 102483
+  tid 3 nodes: nil 82040 group 24452 depthvec 104571
+  tid 4 nodes: nil 77654 group 17734 depthvec 100510
+  tid 2 nodes: nil 103961 group 25183 depthvec 99867
+class 35 [3,1,1,1,1,1,1,1] |C|=15120 leaves=726153 nodes=6082228 2.5s
+  tid 3 nodes: nil 0 group 0 depthvec 174
+  tid 4 nodes: nil 0 group 0 depthvec 174
+  tid 2 nodes: nil 0 group 0 depthvec 174
+  tid 0 nodes: nil 0 group 0 depthvec 174
+  tid 1 nodes: nil 0 group 0 depthvec 174
+  tid 5 nodes: nil 0 group 0 depthvec 174
+class 36 [2,2,2,2,2] |C|=3840 leaves=0 nodes=2898 0.1s
+  tid 3 nodes: nil 636755 group 158656 depthvec 18983
+  tid 4 nodes: nil 1027330 group 38613 depthvec 18983
+  tid 2 nodes: nil 1373108 group 3204 depthvec 18983
+  tid 0 nodes: nil 1863749 group 316326 depthvec 18983
+  tid 1 nodes: nil 2013587 group 351437 depthvec 18983
+  tid 5 nodes: nil 4678621 group 459338 depthvec 18983
+class 37 [2,2,2,2,1,1] |C|=768 leaves=1551901 nodes=22196567 5.2s
+  tid 5 nodes: nil 51837684 group 42322484 depthvec 200930
+  tid 1 nodes: nil 60196189 group 61449952 depthvec 200930
+  tid 4 nodes: nil 55182210 group 56349749 depthvec 200930
+  tid 2 nodes: nil 97737237 group 83960346 depthvec 200930
+  tid 3 nodes: nil 152805507 group 79257303 depthvec 200930
+  tid 0 nodes: nil 203478165 group 54199214 depthvec 200930
+class 38 [2,2,2,1,1,1,1] |C|=1152 leaves=667785613 nodes=1698834135 264.8s
+  tid 4 nodes: nil 175441847 group 71365335 depthvec 194071
+  tid 0 nodes: nil 302605919 group 88879144 depthvec 189385
+  tid 2 nodes: nil 296794871 group 418000482 depthvec 192792
+  tid 3 nodes: nil 383861743 group 390498582 depthvec 191401
+  tid 1 nodes: nil 626488959 group 53161847 depthvec 195463
+  tid 5 nodes: nil 485707613 group 89602602 depthvec 194174
+class 39 [2,2,1,1,1,1,1,1] |C|=5760 leaves=2736070607 nodes=5713902216 639.6s
+  tid 4 nodes: nil 172512983 group 50445454 depthvec 298474
+  tid 5 nodes: nil 250717023 group 63298877 depthvec 291620
+  tid 1 nodes: nil 266998451 group 29421896 depthvec 297825
+  tid 0 nodes: nil 275723242 group 68094088 depthvec 286504
+  tid 3 nodes: nil 327639204 group 104060451 depthvec 285829
+  tid 2 nodes: nil 380449796 group 87907532 depthvec 291533
+class 40 [2,1,1,1,1,1,1,1,1] |C|=80640 leaves=1333460125 nodes=3286467168 462.3s
+  tid 0 nodes: nil 27394786 group 3087671 depthvec 416011
+  tid 1 nodes: nil 42054385 group 6145352 depthvec 417755
+  tid 4 nodes: nil 63523502 group 6419524 depthvec 409387
+  tid 2 nodes: nil 91303974 group 7013217 depthvec 414329
+  tid 5 nodes: nil 90829753 group 9871499 depthvec 417878
+  tid 3 nodes: nil 56065051 group 3207263 depthvec 411346
+class 41 [1,1,1,1,1,1,1,1,1,1] |C|=3628800 leaves=141655715 nodes=769234893 698.7s
+total 2080.8s

@@ -1,0 +1,23 @@
+class 0 [8] |C|=8 leaves=0 nodes=162 0.0s
+class 1 [7,1] |C|=7 leaves=4 nodes=228 0.0s
+class 2 [6,2] |C|=12 leaves=0 nodes=102 0.0s
+class 3 [6,1,1] |C|=12 leaves=101 nodes=2374 0.0s
+class 4 [5,3] |C|=15 leaves=0 nodes=114 0.0s
+class 5 [5,2,1] |C|=10 leaves=11 nodes=1834 0.0s
+class 6 [5,1,1,1] |C|=30 leaves=137 nodes=6028 0.0s
+class 7 [4,4] |C|=32 leaves=7 nodes=1142 0.0s
+class 8 [4,3,1] |C|=12 leaves=23 nodes=1929 0.0s
+class 9 [4,2,2] |C|=32 leaves=0 nodes=294 0.0s
+class 10 [4,2,1,1] |C|=16 leaves=1645 nodes=20250 0.0s
+class 11 [4,1,1,1,1] |C|=96 leaves=3835 nodes=33181 0.0s
+class 12 [3,3,2] |C|=36 leaves=0 nodes=210 0.0s
+class 13 [3,3,1,1] |C|=36 leaves=198 nodes=8589 0.0s
+class 14 [3,2,2,1] |C|=24 leaves=85 nodes=9625 0.0s
+class 15 [3,2,1,1,1] |C|=36 leaves=3913 nodes=55103 0.0s
+class 16 [3,1,1,1,1,1] |C|=360 leaves=7074 nodes=73071 0.0s
+class 17 [2,2,2,2] |C|=384 leaves=0 nodes=630 0.0s
+class 18 [2,2,2,1,1] |C|=96 leaves=62091 nodes=243555 0.1s
+class 19 [2,2,1,1,1,1] |C|=192 leaves=1190228 nodes=2359470 0.4s
+class 20 [2,1,1,1,1,1,1] |C|=1440 leaves=941855 nodes=2194123 0.4s
+class 21 [1,1,1,1,1,1,1,1] |C|=40320 leaves=221805 nodes=979525 0.4s
+total 1.5s

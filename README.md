@@ -18,6 +18,7 @@ logs and write-ups needed to check them. Each folder is one sequence.
 | [A005470](https://oeis.org/A005470) | [unlabeled planar graphs (and A003094, A021103)](A005470/) |
 | [A006455](https://oeis.org/A006455) | [Naturally labeled posets on {1, …, n}](A006455/) · [plain-English explanation](A006455/layman.md) |
 | [A027624](https://oeis.org/A027624) | [Number of independent vertex sets in the n-hypercube graph Q_n](A027624/) · [plain-English explanation](A027624/layman.md) |
+| [A027851](https://oeis.org/A027851) | [(10) and A029851(10): semigroups of order 10 up to isomorphism, by counting the self-dual ones](A027851/) · [plain-English explanation](A027851/layman.md) |
 | [A031507](https://oeis.org/A031507) | [/ A031508 — Smallest k > 0 such that y² = x³ + k (resp. y² = x³ − k) has rank n](A031507/) · [plain-English explanation](A031507/layman.md) |
 | [A076906](https://oeis.org/A076906) | [family: meanders crossing two perpendicular roads](A076906/) |
 | [A109455](https://oeis.org/A109455) | [Equivalence classes of threshold functions under permutations of the variables](A109455/) · [plain-English explanation](A109455/layman.md) |

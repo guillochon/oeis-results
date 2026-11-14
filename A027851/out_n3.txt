@@ -1,0 +1,10 @@
+class 1 2,1 k=1 nil3=0 stab=2 count=1
+class 1 2,1 k=1 nil3=1 stab=2 count=1
+class 1 2,1 k=3 nil3=0 stab=2 count=1
+class 2 1,1,1 k=1 nil3=0 stab=1 count=2
+class 2 1,1,1 k=1 nil3=0 stab=2 count=1
+class 2 1,1,1 k=1 nil3=1 stab=1 count=1
+class 2 1,1,1 k=1 nil3=1 stab=2 count=1
+class 2 1,1,1 k=2 nil3=0 stab=1 count=5
+class 2 1,1,1 k=3 nil3=0 stab=1 count=1
+class 2 1,1,1 k=3 nil3=0 stab=2 count=1
