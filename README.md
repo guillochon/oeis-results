@@ -10,6 +10,7 @@ logs and write-ups needed to check them. Each folder is one sequence.
 | [A000445](https://oeis.org/A000445) | [a(8) = 1508324, and a(9) >= 178708831](A000445/) |
 | [A000638](https://oeis.org/A000638) | [a(21) = 245393739 from A000637(21)](A000638/) |
 | [A000944](https://oeis.org/A000944) | [polyhedra with n vertices — a(19) to a(50) by formula](A000944/) · [plain-English explanation](A000944/layman.md) |
+| [A001930](https://oeis.org/A001930) | [(17): unlabeled topologies on 17 points, and 29 related entries, from the cycle index of posets](A001930/) · [plain-English explanation](A001930/layman.md) |
 | [A002773](https://oeis.org/A002773) | [# Matroids on 9 and 10 elements: simple and loopless counts (A002773 and family)](A002773/) |
 | [A003088](https://oeis.org/A003088) | [unilateral digraphs on n unlabeled nodes](A003088/) |
 | [A005162](https://oeis.org/A005162) | [n×n alternating sign matrices symmetric about both diagonals (DASASMs), n ≤ 62](A005162/) · [plain-English explanation](A005162/layman.md) |
