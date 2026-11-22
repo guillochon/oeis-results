@@ -1,0 +1,11 @@
+  built tables for k=9 N=330000000 L=2 in 0.0s
+  hint: 90900 primes
+  [40s] nodes=3072 max_depth=61 (p=293)
+  [70s] nodes=6144 max_depth=61 (p=293)
+  [109s] nodes=10240 max_depth=61 (p=293)
+  [150s] nodes=13312 max_depth=61 (p=293)
+  [185s] nodes=16384 max_depth=61 (p=293)
+  restart 1 limit=20000 maxdepth=61 (p=293) total=20000 217s
+  [224s] nodes=20480 max_depth=61 (p=293)
+  [263s] nodes=23552 max_depth=61 (p=293)
+  [294s] nodes=26624 max_depth=61 (p=293)

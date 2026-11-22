@@ -1,0 +1,15 @@
+22:13 start: threads=4 ladder=350000000 400000000 450000000 500000000 stop=06:55
+23:57 N=350000000 -> SAT 350000000 104770 | k=9 L=2 N=350000000 -> SAT by thread 1 nodes=1569515 (6237.73s)
+  verify: k=9 N=350000000: no zero pair with r < N: OK first zero pair at r = 350000086 
+00:00 N=400000000 -> SAT 400000000 118539 | k=9 L=2 N=400000000 -> SAT by thread 1 nodes=598540 (84.29s)
+  verify: k=9 N=400000000: no zero pair with r < N: OK first zero pair at r = 400000066 
+00:03 N=450000000 -> SAT 450000000 132148 | k=9 L=2 N=450000000 -> SAT by thread 1 nodes=612149 (97.76s)
+  verify: k=9 N=450000000: no zero pair with r < N: OK first zero pair at r = 450000016 
+00:07 N=500000000 -> SAT 500000000 145713 | k=9 L=2 N=500000000 -> SAT by thread 1 nodes=625720 (108.81s)
+  verify: k=9 N=500000000: no zero pair with r < N: OK first zero pair at r = 500000008 
+00:08 done
+05:07 start: threads=1 ladder=550000000 600000000 650000000 700000000 750000000 800000000 850000000 900000000 950000000 1000000000 stop=13:07
+05:19 N=550000000 -> SAT 550000000 159147 | k=9 L=2 N=550000000 -> SAT by thread 0 nodes=1440775 (658.01s)
+  verify: k=9 N=550000000: no zero pair with r < N: OK first zero pair at r = 550000096 
+13:08 N=600000000 -> TIMEOUT 600000000 | 
+13:08 done

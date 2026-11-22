@@ -15,7 +15,38 @@
 
 use std::env;
 use std::io::Write as IoWrite;
+use std::sync::atomic::{AtomicBool, Ordering};
+use std::sync::Arc;
 use std::time::Instant;
+
+// Read-only number tables (about 5-6 bytes per n), shared by all search threads.
+// The exponent of the largest prime and cof(m) = m / P1^e are computed on demand by division,
+// and p2i(m) = p1i[cof(m)].
+struct Tab {
+    primes: Vec<u32>,
+    p1i: Vec<u32>,     // index of largest prime factor (u32::MAX for 1)
+    nsmall: usize,     // primes[i] with i < nsmall have q*q <= n and an explicit by_p1 list;
+                       // for larger q the list is implicitly {q*j : 1 <= j <= n/q} (all with exponent 1)
+    by_p1_off: Vec<u32>,
+    by_p1: Vec<u32>,
+    by_p2_off: Vec<u32>,
+    by_p2: Vec<u32>,
+}
+
+// software prefetch (the hot loops are bound by cache misses into the n-sized arrays)
+#[inline(always)]
+fn pf<T>(v: &[T], i: usize) {
+    #[cfg(target_arch = "x86_64")]
+    unsafe {
+        if i < v.len() {
+            std::arch::x86_64::_mm_prefetch(v.as_ptr().add(i) as *const i8, std::arch::x86_64::_MM_HINT_T0);
+        }
+    }
+}
+
+const PF: usize = 16; // prefetch distance, in list entries
+
+const NODE_BUCKETS: usize = 1 << 16; // per-prime node statistics are kept for the first primes only
 
 struct Ctx {
     k: usize,
@@ -23,17 +54,7 @@ struct Ctx {
     l: usize,      // window length (2 = pairs, 3 = triples)
     nwin: usize,   // windows start at r in [1, nwin-1]
     last_beat: f64,
-    primes: Vec<u32>,
-    // Memory: about 6 bytes per n plus the by_p1 / by_p2 lists. cof(m) = m / P1^e1 and
-    // p2i(m) = p1i[cof(m)] are computed on demand instead of stored.
-    p1i: Vec<u32>,     // index of largest prime factor (u32::MAX for 1)
-    e1: Vec<u8>,       // its exponent
-    nsmall: usize,     // primes[i] with i < nsmall have q*q <= n and an explicit by_p1 list;
-                       // for larger q the list is implicitly {q*j : 1 <= j <= n/q} (all with e1 = 1)
-    by_p1_off: Vec<u32>,
-    by_p1: Vec<u32>,
-    by_p2_off: Vec<u32>,
-    by_p2: Vec<u32>,
+    t: Arc<Tab>,       // read-only tables, shared between search threads
     chi: Vec<u8>,
     val: Vec<u8>,
     dom: Vec<u16>,
@@ -56,10 +77,12 @@ struct Ctx {
     cbj: bool,       // conflict-directed backjumping (off when writing a certificate)
     cs: Vec<u32>,    // conflict set (prime indices) returned by a failed dfs call
     gshrink: Vec<u32>, // levels at which the symmetry group shrank (symmetry pruning depends on them)
+    stop: Option<Arc<AtomicBool>>, // set by another thread that found a witness
+    tid: usize,      // thread id, for progress lines
 }
 
-impl Ctx {
-    fn new(k: usize, nwin: usize, l: usize, two_mask: u16) -> Ctx {
+impl Tab {
+    fn build(nwin: usize, l: usize) -> Tab {
         let n = nwin + l - 2;
         // primes by a bit sieve, then p1i = index of the largest prime factor (later primes overwrite)
         let mut primes: Vec<u32> = Vec::new();
@@ -86,22 +109,11 @@ impl Ctx {
                 m += p;
             }
         }
-        let mut e1 = vec![0u8; n + 1];
-        for m in 2..=n {
-            let q = primes[p1i[m] as usize] as usize;
-            let mut c = m;
-            let mut e = 0u8;
-            while c % q == 0 {
-                c /= q;
-                e += 1;
-            }
-            e1[m] = e;
-        }
         let nsmall = primes.iter().take_while(|&&p| (p as usize) * (p as usize) <= n).count();
         let cof_of = |m: usize| -> usize {
             let q = primes[p1i[m] as usize] as usize;
-            let mut c = m;
-            for _ in 0..e1[m] {
+            let mut c = m / q;
+            while c % q == 0 {
                 c /= q;
             }
             c
@@ -148,6 +160,18 @@ impl Ctx {
             }
             None
         });
+        Tab { primes, p1i, nsmall, by_p1_off, by_p1, by_p2_off, by_p2 }
+    }
+}
+
+impl Ctx {
+    fn new(k: usize, nwin: usize, l: usize, two_mask: u16) -> Ctx {
+        Ctx::from_tab(Arc::new(Tab::build(nwin, l)), k, nwin, l, two_mask)
+    }
+
+    fn from_tab(t: Arc<Tab>, k: usize, nwin: usize, l: usize, two_mask: u16) -> Ctx {
+        let n = nwin + l - 2;
+        let np = t.primes.len();
         let full: u16 = ((1u32 << k) - 1) as u16;
         let mut dom = vec![full; np];
         dom[0] &= two_mask;
@@ -160,20 +184,13 @@ impl Ctx {
             l,
             nwin,
             last_beat: 0.0,
-            primes,
-            p1i,
-            e1,
-            nsmall,
-            by_p1_off,
-            by_p1,
-            by_p2_off,
-            by_p2,
+            t,
             chi,
             val: vec![0u8; np],
             dom,
             trail: Vec::new(),
             units,
-            nodes: vec![0; np + 1],
+            nodes: vec![0; (np + 1).min(NODE_BUCKETS)],
             total_nodes: 0,
             sat_depth: 0,
             max_depth: 0,
@@ -190,6 +207,8 @@ impl Ctx {
             cbj: env::var("NOCBJ").is_err(),
             cs: Vec::new(),
             gshrink: Vec::new(),
+            stop: None,
+            tid: 0,
         };
         // initial: 1 is a determined zero; prime powers adjacent to 1 (i.e. 2) are one-unassigned.
         if l == 2 && nwin >= 2 {
@@ -198,46 +217,53 @@ impl Ctx {
         c
     }
 
+    // (cofactor, exponent) of m = cof * q^e, q = its largest prime
+    #[inline]
+    fn split(m: usize, q: usize) -> (usize, usize) {
+        let mut c = m / q;
+        let mut e = 1;
+        while c % q == 0 {
+            c /= q;
+            e += 1;
+        }
+        (c, e)
+    }
+
     #[inline]
     fn cof(&self, m: usize) -> usize {
         if m == 1 {
             return 1;
         }
-        let q = self.primes[self.p1i[m] as usize] as usize;
-        let mut c = m / q;
-        for _ in 1..self.e1[m] {
-            c /= q;
-        }
-        c
+        Ctx::split(m, self.t.primes[self.t.p1i[m] as usize] as usize).0
     }
 
     #[inline]
     fn p2i(&self, m: usize) -> u32 {
-        self.p1i[self.cof(m)]
+        self.t.p1i[self.cof(m)]
     }
 
     // number of m with largest prime index idx, and the t-th of them
     #[inline]
     fn p1_count(&self, idx: usize) -> usize {
-        if idx < self.nsmall {
-            (self.by_p1_off[idx + 1] - self.by_p1_off[idx]) as usize
+        if idx < self.t.nsmall {
+            (self.t.by_p1_off[idx + 1] - self.t.by_p1_off[idx]) as usize
         } else {
-            self.n / self.primes[idx] as usize
+            self.n / self.t.primes[idx] as usize
         }
     }
 
     #[inline]
     fn p1_at(&self, idx: usize, t: usize) -> usize {
-        if idx < self.nsmall {
-            self.by_p1[self.by_p1_off[idx] as usize + t] as usize
+        if idx < self.t.nsmall {
+            self.t.by_p1[self.t.by_p1_off[idx] as usize + t] as usize
         } else {
-            self.primes[idx] as usize * (t + 1)
+            self.t.primes[idx] as usize * (t + 1)
         }
     }
 
     #[inline]
     fn determined(&self, m: usize, cur: u32) -> bool {
-        m == 1 || self.p1i[m] <= cur
+        m == 1 || self.t.p1i[m] <= cur
     }
 
     // m is one-unassigned (cofactor determined); remove values of chi(P1(m)) that make chi(m)=0.
@@ -245,9 +271,9 @@ impl Ctx {
     #[inline]
     fn forbid_zero_of(&mut self, m: usize, r: usize) -> bool {
         let k = self.k;
-        let qi = self.p1i[m] as usize;
-        let s = self.chi[self.cof(m)] as usize;
-        let e = self.e1[m] as usize;
+        let qi = self.t.p1i[m] as usize;
+        let (c, e) = Ctx::split(m, self.t.primes[qi] as usize);
+        let s = self.chi[c] as usize;
         let mut bad: u16 = 0;
         for w in 0..k {
             if (s + e * w) % k == 0 {
@@ -277,7 +303,7 @@ impl Ctx {
         for x in st..st + self.l {
             let mut y = x;
             while y > 1 {
-                out.push(self.p1i[y]);
+                out.push(self.t.p1i[y]);
                 y = self.cof(y);
             }
         }
@@ -303,21 +329,60 @@ impl Ctx {
         let cur = idx as u32;
         self.val[idx] = v as u8;
         let cnt = self.p1_count(idx);
-        if idx < self.nsmall {
+        let q = self.t.primes[idx] as usize;
+        // One pass: set chi(m), then check the windows of m right away. This is the same as setting
+        // every chi(m) first: the other members of a window around m never have largest prime q
+        // (two numbers less than l apart cannot both be multiples of q when q >= l), and a neighbor
+        // whose cofactor lies on this list (p2i == cur) is left to the by_p2 pass below, which makes
+        // the same deduction once all of the list is set.
+        let one_pass = q >= l;
+        if !one_pass {
             for t in 0..cnt {
                 let m = self.p1_at(idx, t);
-                let s0 = self.chi[self.cof(m)] as usize;
-                self.chi[m] = ((s0 + self.e1[m] as usize * v) % k) as u8;
+                let (c, e) = Ctx::split(m, q);
+                self.chi[m] = ((self.chi[c] as usize + e * v) % k) as u8;
             }
-        } else {
-            let q = self.primes[idx] as usize;
-            for j in 1..=cnt {
-                self.chi[q * j] = ((self.chi[j] as usize + v) % k) as u8;
+        }
+        let explicit = idx < self.t.nsmall;
+        let mut ring = [(0usize, 0usize); PF];
+        if one_pass && explicit {
+            for t in 0..PF.min(cnt) {
+                let m2 = self.p1_at(idx, t);
+                let ce = Ctx::split(m2, q);
+                ring[t] = ce;
+                pf(&self.chi, ce.0);
+                pf(&self.chi, m2);
+                pf(&self.t.p1i, m2);
             }
         }
         for t in 0..cnt {
             let m = self.p1_at(idx, t);
-            if self.chi[m] != 0 {
+            if one_pass {
+                let (c, e) = if explicit {
+                    let ce = ring[t % PF];
+                    if t + PF < cnt {
+                        let m2 = self.p1_at(idx, t + PF);
+                        let ce2 = Ctx::split(m2, q);
+                        ring[t % PF] = ce2;
+                        pf(&self.chi, ce2.0);
+                        pf(&self.chi, m2);
+                        pf(&self.t.p1i, m2);
+                    }
+                    ce
+                } else {
+                    if t + PF < cnt {
+                        let m2 = q * (t + 1 + PF);
+                        pf(&self.chi, m2);
+                        pf(&self.t.p1i, m2);
+                    }
+                    (t + 1, 1)
+                };
+                let x = ((self.chi[c] as usize + e * v) % k) as u8;
+                self.chi[m] = x;
+                if x != 0 {
+                    continue;
+                }
+            } else if self.chi[m] != 0 {
                 continue;
             }
             let lo = if m + 1 > l { m + 1 - l } else { 1 };
@@ -349,16 +414,21 @@ impl Ctx {
                     return false;
                 }
                 let p2 = self.p2i(open);
-                if p2 == u32::MAX || p2 <= cur {
+                if p2 == u32::MAX || p2 < cur || (!one_pass && p2 == cur) {
                     if !self.forbid_zero_of(open, st) {
                         return false;
                     }
                 }
             }
         }
-        let (a, b) = (self.by_p2_off[idx] as usize, self.by_p2_off[idx + 1] as usize);
+        let (a, b) = (self.t.by_p2_off[idx] as usize, self.t.by_p2_off[idx + 1] as usize);
         for t in a..b {
-            let m = self.by_p2[t] as usize; // undetermined, now one-unassigned
+            if t + PF < b {
+                let m2 = self.t.by_p2[t + PF] as usize;
+                pf(&self.chi, m2);
+                pf(&self.t.p1i, m2);
+            }
+            let m = self.t.by_p2[t] as usize; // undetermined, now one-unassigned
             let lo = if m + 1 > l { m + 1 - l } else { 1 };
             let hi = m.min(self.nwin - 1);
             for st in lo..=hi {
@@ -375,7 +445,7 @@ impl Ctx {
 
     // all primes from idx on can be made "all multiples nonzero"?
     fn free_from(&self, idx: usize) -> bool {
-        let q = self.primes[idx] as usize;
+        let q = self.t.primes[idx] as usize;
         let mq = self.n / q;
         if mq < self.k {
             return true;
@@ -392,13 +462,21 @@ impl Ctx {
 
     fn dfs(&mut self, idx: usize, group: &[usize]) -> bool {
         self.total_nodes += 1;
-        self.nodes[idx] += 1;
+        self.nodes[idx.min(NODE_BUCKETS - 1)] += 1;
         if idx > self.max_depth {
             self.max_depth = idx;
         }
         if self.total_nodes >= self.node_limit {
             self.aborted = true;
             return false;
+        }
+        if self.total_nodes % 256 == 0 {
+            if let Some(f) = &self.stop {
+                if f.load(Ordering::Relaxed) {
+                    self.aborted = true;
+                    return false;
+                }
+            }
         }
         if self.total_nodes % 1024 == 0 && self.t0.elapsed().as_secs_f64() > self.deadline {
             self.aborted = true;
@@ -407,14 +485,15 @@ impl Ctx {
         if self.total_nodes % 1024 == 0 && self.t0.elapsed().as_secs_f64() - self.last_beat >= 30.0 {
             self.last_beat = self.t0.elapsed().as_secs_f64();
             eprintln!(
-                "  [{:.0}s] nodes={} max_depth={} (p={})",
+                "  t{} [{:.0}s] nodes={} max_depth={} (p={})",
+                self.tid,
                 self.t0.elapsed().as_secs_f64(),
                 self.total_nodes,
                 self.max_depth,
-                self.primes[self.max_depth.min(self.primes.len() - 1)]
+                self.t.primes[self.max_depth.min(self.t.primes.len() - 1)]
             );
         }
-        if idx >= self.primes.len() || self.free_from(idx) {
+        if idx >= self.t.primes.len() || self.free_from(idx) {
             self.sat_depth = idx;
             return true;
         }
@@ -460,7 +539,7 @@ impl Ctx {
             }
         }
         if let Some(w) = self.cert.as_mut() {
-            writeln!(w, "B {} {}", self.primes[idx], reps.len()).unwrap();
+            writeln!(w, "B {} {}", self.t.primes[idx], reps.len()).unwrap();
         }
         for v in reps {
             if d >> v & 1 == 0 {
@@ -488,7 +567,7 @@ X {}", v, r).unwrap();
                 } else {
                     let qi = x as usize;
                     out.push_str(&format!("B {} {}
-", self.primes[qi], k));
+", self.t.primes[qi], k));
                     for w2 in 0..k {
                         out.push_str(&format!("V {}
 X {}
@@ -563,6 +642,112 @@ fn luby(i: u64) -> u64 {
 
 /// SAT-seeking with restarts: first pass follows the hint (previous witness) deterministically,
 /// later passes shuffle value order with Luby-scheduled node limits. Returns witness or None on timeout.
+fn load_hint(c: &mut Ctx, path: &str) -> usize {
+    let mut cnt = 0;
+    for line in std::fs::read_to_string(path).unwrap().lines() {
+        if let Some((p, v)) = line.trim().split_once(':') {
+            let p: usize = p.parse().unwrap();
+            if let Ok(i) = c.t.primes.binary_search(&(p as u32)) {
+                c.hint[i] = (v.parse::<usize>().unwrap() % c.k) as u8;
+                cnt += 1;
+            }
+        }
+    }
+    cnt
+}
+
+/// Portfolio search on `threads` threads sharing one Tab. Thread 0 runs the complete deterministic
+/// search (its UNSAT answer is a proof, as in `decide`); the others run randomized restarts (Luby
+/// schedule, value order shuffled within gcd classes, a different seed per thread; thread 1 follows the
+/// hint first if one is given). The first witness found stops everyone.
+/// Returns Some(witness) on SAT, None on timeout; prints UNSAT and exits if thread 0 completes.
+fn portfolio(k: usize, n: usize, two_mask: u16, secs: f64, threads: usize, unit: u64, hint: Option<String>) -> Option<Vec<String>> {
+    let l: usize = env::var("WINDOW").ok().map(|s| s.parse().unwrap()).unwrap_or(2);
+    let t0 = Instant::now();
+    let tab = Arc::new(Tab::build(n, l));
+    eprintln!("  built tables for k={} N={} L={} in {:.1}s; {} threads", k, n, l, t0.elapsed().as_secs_f64(), threads);
+    let stop = Arc::new(AtomicBool::new(false));
+    let result: std::sync::Mutex<Option<(usize, Vec<String>)>> = std::sync::Mutex::new(None);
+    let unsat = AtomicBool::new(false);
+    std::thread::scope(|sc| {
+        for tid in 0..threads {
+            let tab = tab.clone();
+            let stop = stop.clone();
+            let result = &result;
+            let unsat = &unsat;
+            let hint = hint.clone();
+            std::thread::Builder::new()
+                .stack_size(1 << 30)
+                .spawn_scoped(sc, move || {
+                    let mut c = Ctx::from_tab(tab, k, n, l, two_mask);
+                    c.tid = tid;
+                    // one thread with a hint: run only the hinted restart search (no complete thread)
+                    let role = if threads == 1 && hint.is_some() { 1 } else { tid };
+                    c.stop = Some(stop.clone());
+                    c.deadline = secs;
+                    let mut g = vec![1usize];
+                    g.extend(c.units.iter().filter(|&&u| u != 1));
+                    let found = if role == 0 {
+                        let r = c.dfs(0, &g);
+                        if !r && !c.aborted {
+                            eprintln!("k={} N={} -> UNSAT (thread 0, complete) nodes={} ({:.2}s)", k, n, c.total_nodes,
+                                c.t0.elapsed().as_secs_f64());
+                            unsat.store(true, Ordering::SeqCst);
+                            stop.store(true, Ordering::SeqCst);
+                        }
+                        r
+                    } else {
+                        if role == 1 {
+                            if let Some(h) = &hint {
+                                let cnt = load_hint(&mut c, h);
+                                eprintln!("  t1 hint: {} primes", cnt);
+                            }
+                        }
+                        let mark0 = c.trail.len();
+                        let mut i: u64 = 1;
+                        loop {
+                            let lim = luby(i) * unit;
+                            c.node_limit = c.total_nodes + lim;
+                            c.aborted = false;
+                            c.max_depth = 0;
+                            let first = i == 1 && role == 1 && hint.is_some();
+                            c.rng = if first { 0 } else {
+                                (0x9E3779B97F4A7C15u64.wrapping_mul(i).wrapping_add(0xD1B54A32D192ED03u64.wrapping_mul(tid as u64))) | 1
+                            };
+                            let r = c.dfs(0, &g);
+                            if r {
+                                break true;
+                            }
+                            c.undo(mark0);
+                            if stop.load(Ordering::Relaxed) || c.t0.elapsed().as_secs_f64() > secs {
+                                break false;
+                            }
+                            i += 1;
+                        }
+                    };
+                    if found {
+                        let w: Vec<String> = (0..c.sat_depth).map(|j| format!("{}:{}", c.t.primes[j], c.val[j])).collect();
+                        let mut res = result.lock().unwrap();
+                        if res.is_none() {
+                            eprintln!("k={} L={} N={} -> SAT by thread {} nodes={} ({:.2}s)", k, l, n, tid, c.total_nodes,
+                                c.t0.elapsed().as_secs_f64());
+                            *res = Some((tid, w));
+                        }
+                        stop.store(true, Ordering::SeqCst);
+                    } else {
+                        eprintln!("  t{} stopped: nodes={} ({:.0}s)", tid, c.total_nodes, c.t0.elapsed().as_secs_f64());
+                    }
+                })
+                .unwrap();
+        }
+    });
+    if unsat.load(Ordering::SeqCst) {
+        println!("UNSAT {}", n);
+        std::process::exit(0);
+    }
+    result.into_inner().unwrap().map(|(_, w)| w)
+}
+
 fn seek(k: usize, n: usize, two_mask: u16, secs: f64, unit: u64, hint: Option<String>) -> Option<Vec<String>> {
     let l: usize = env::var("WINDOW").ok().map(|s| s.parse().unwrap()).unwrap_or(2);
     let mut c = Ctx::new(k, n, l, two_mask);
@@ -572,7 +757,7 @@ fn seek(k: usize, n: usize, two_mask: u16, secs: f64, unit: u64, hint: Option<St
         for line in std::fs::read_to_string(path).unwrap().lines() {
             if let Some((p, v)) = line.trim().split_once(':') {
                 let p: usize = p.parse().unwrap();
-                if let Ok(i) = c.primes.binary_search(&(p as u32)) {
+                if let Ok(i) = c.t.primes.binary_search(&(p as u32)) {
                     c.hint[i] = (v.parse::<usize>().unwrap() % k) as u8;
                     cnt += 1;
                 }
@@ -595,7 +780,7 @@ fn seek(k: usize, n: usize, two_mask: u16, secs: f64, unit: u64, hint: Option<St
         let el = c.t0.elapsed().as_secs_f64();
         if r {
             eprintln!("k={} L={} N={} -> SAT on restart {} nodes={} ({:.2}s)", k, l, n, i, c.total_nodes, el);
-            return Some((0..c.sat_depth).map(|j| format!("{}:{}", c.primes[j], c.val[j])).collect());
+            return Some((0..c.sat_depth).map(|j| format!("{}:{}", c.t.primes[j], c.val[j])).collect());
         }
         c.undo(mark0);
         if !c.aborted {
@@ -607,7 +792,7 @@ fn seek(k: usize, n: usize, two_mask: u16, secs: f64, unit: u64, hint: Option<St
             }
         }
         eprintln!("  restart {} limit={} maxdepth={} (p={}) total={} {:.0}s", i, lim, c.max_depth,
-            c.primes[c.max_depth.min(c.primes.len() - 1)], c.total_nodes, el);
+            c.t.primes[c.max_depth.min(c.t.primes.len() - 1)], c.total_nodes, el);
         if el > secs {
             eprintln!("k={} L={} N={} -> TIMEOUT nodes={} ({:.2}s)", k, l, n, c.total_nodes, el);
             return None;
@@ -703,7 +888,7 @@ fn real_main() {
             if r == Some(true) {
                 // print witness chi on primes up to sat_depth
                 let w: Vec<String> = (0..c.sat_depth)
-                    .map(|i| format!("{}:{}", c.primes[i], c.val[i]))
+                    .map(|i| format!("{}:{}", c.t.primes[i], c.val[i]))
                     .collect();
                 println!("SAT {} {}", n, c.sat_depth);
                 if let Some(path) = args.get(4) {
@@ -712,10 +897,24 @@ fn real_main() {
             } else if r == Some(false) {
                 println!("UNSAT {}", n);
                 let nz: Vec<String> = c.nodes.iter().enumerate().filter(|(_, &x)| x > 0)
-                    .map(|(i, x)| format!("{}:{}", c.primes[i.min(c.primes.len()-1)], x)).collect();
+                    .map(|(i, x)| format!("{}:{}", c.t.primes[i.min(c.t.primes.len()-1)], x)).collect();
                 eprintln!("nodes by prime: {}", nz.join(" "));
             } else {
                 println!("ABORT {}", n);
+            }
+        }
+        "portfolio" => {
+            // portfolio k N secs witness_out threads [hint]
+            let n: usize = args[3].parse().unwrap();
+            let secs: f64 = args[4].parse().unwrap();
+            let threads: usize = args[6].parse().unwrap();
+            let unit: u64 = env::var("UNIT").ok().map(|s| s.parse().unwrap()).unwrap_or(20000);
+            match portfolio(k, n, two_mask, secs, threads, unit, args.get(7).cloned()) {
+                Some(w) => {
+                    println!("SAT {} {}", n, w.len());
+                    std::fs::write(&args[5], w.join("\n")).unwrap();
+                }
+                None => println!("TIMEOUT {}", n),
             }
         }
         "seek" => {

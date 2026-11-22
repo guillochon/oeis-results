@@ -1,0 +1,19 @@
+  built tables for k=9 N=500000000 L=2 in 23.1s; 4 threads
+  t1 hint: 132148 primes
+  t1 [30s] nodes=100352 max_depth=345 (p=2339)
+  t3 [31s] nodes=10240 max_depth=12 (p=41)
+  t2 [32s] nodes=11264 max_depth=12 (p=41)
+  t0 [34s] nodes=8192 max_depth=16 (p=59)
+  t1 [61s] nodes=261120 max_depth=1113 (p=8963)
+  t3 [61s] nodes=20480 max_depth=12 (p=41)
+  t2 [64s] nodes=22528 max_depth=12 (p=41)
+  t0 [65s] nodes=17408 max_depth=16 (p=59)
+  t1 [91s] nodes=370688 max_depth=10681 (p=112759)
+  t3 [94s] nodes=31744 max_depth=13 (p=43)
+  t0 [95s] nodes=26624 max_depth=16 (p=59)
+  t2 [98s] nodes=33792 max_depth=14 (p=47)
+k=9 L=2 N=500000000 -> SAT by thread 1 nodes=625720 (108.81s)
+  t0 stopped: nodes=30208 (109s)
+  t3 stopped: nodes=37120 (109s)
+  t2 stopped: nodes=37632 (109s)
+SAT 500000000 145713

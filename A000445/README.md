@@ -1,4 +1,4 @@
-# A000445: a(8) = 1508324, and a(9) >= 300000031
+# A000445: a(8) = 1508324, and a(9) >= 550000096
 
 **Status:** new term found, with a machine-checkable certificate. Not yet submitted.
 **Known terms:** a(2)..a(7) = 9, 77, 1224, 7888, 202124, 1649375 (Lehmer, Lehmer, Mills, Dunton, Bierstedt–Mills;
@@ -83,7 +83,7 @@ variables, 2^{n/sqrt(log n)} is still astronomically large. This instance is eas
 consecutive pairs drive the propagation, and the free-prime argument removes the large primes. The whole a(8) refutation
 explores 78k nodes.
 
-## a(9) >= 300000031 (lower bound only)
+## a(9) >= 550000096 (lower bound only)
 BLL 1964 showed a(9) > 10^7. For odd k the Kummer extensions have full degree, so every assignment χ : primes → Z/9 is
 realized by infinitely many primes p ≡ 1 (mod 9), including χ(3). (We also checked χ(3) empirically: over 11,727 primes
 p ≡ 1 (mod 9), its 9 classes are as evenly spread as those of 2 and 11.)
@@ -125,7 +125,39 @@ pair is at r = 300000031, a prime above N (`results/verify_k9_3e8.log`). It repr
 (first pair 1508324). So **a(9) >= 300000031**. That is 1.7 times the beam bound, and the beam had again fallen short.
 The bound is set only by N: a run at larger N would probably push it further.
 
-The exact a(9) is open. It needs a refutation of D(a(9)+1), with a(9) now known to be above 3·10^8.
+**Faster solver and portfolio ladder (Nov 21-22).** Commit 79d15f3 makes the DFS 2.7 times faster at large N (k=9,
+N = 10^8, 20,000 nodes: 74.7 s before, 27.2 s after). Each prime's list is now visited in one pass (set χ and check the
+windows together, valid because q >= L), the exponent table is replaced by division, and both hot loops use software
+prefetch. Node counts for k = 2..8 are unchanged, and the k=8 certificate is byte-identical. A new `portfolio` mode
+shares the read-only tables between threads (about 16 bytes per n with 4 threads). Thread 0 runs the complete DFS, so an
+UNSAT from it is still a proof. The other threads run randomized Luby restarts, and thread 1 starts from a hint witness.
+
+`overnight.sh` climbed N with 4 threads at below-normal priority, using each witness as the next hint
+(`results/overnight_k9.log`):
+
+| N | result | time | nodes (winning thread) | first pair after completion |
+|---|---|---|---|---|
+| 3.5·10^8 | SAT, hint from 3·10^8 | 104 min | 1,569,515 | 350000086 |
+| 4·10^8 | SAT | 84 s | 598,540 | 400000066 |
+| 4.5·10^8 | SAT | 98 s | 612,149 | 450000016 |
+| 5·10^8 | SAT | 109 s | 625,720 | 500000008 |
+
+Each rung's winner was thread 1, following the hint. Once the hint covered the hard small primes, a rung cost only
+about one node per new prime. (A single-thread warm start at 3.3·10^8 had looked stuck below p = 293 after 5 minutes,
+so the 104-minute first rung was the hard part.) `verify_witness_chunked.py` checks every witness
+(`results/verify_k9_*.log`): no zero pair below N, with the first pair just above N. The ladder ended at 00:08 because it
+ran out of rungs, not time. So **a(9) >= 500000008** (`results/witness_k9_500000000.txt`, 145,713 primes up to 1,953,109).
+Below 1,171,867 it is close to the 3·10^8 witness: χ = 0 at 3, 7, 71, 137, 293, 3217, and 141 other non-1 values. The
+primes above that have only a few multiples below N, and the search set about 41,700 of them to values other than 1. The
+free rule gives χ = 1 to every prime above the witness.
+
+**Single-thread ladder (Nov 22).** With `THREADS=1` and a hint, `portfolio` now runs only the hinted restart search
+(about 7.75 bytes per n, so 10^9 would fit in 8 GB). From the 5·10^8 witness, N = 5.5·10^8 was SAT in 11 minutes
+(1,440,775 nodes; first pair after completion at 550000096, checked by `verify_witness_chunked.py`), so
+**a(9) >= 550000096**. N = 6·10^8 then timed out after 8 hours (4.7 million nodes): the hint broke at a small
+prime, and the restarts stalled around p = 600. Steps of 5·10^7 are too coarse once the hint stops carrying over.
+
+The exact a(9) is open. It needs a refutation of D(a(9)+1), with a(9) now known to be above 5.5·10^8.
 
 ## How hard is an exact a(9)? (scaling runs, 2026-11-21)
 Proof tree size of `cpr decide k a(k)+1` (UNSAT), with the SAT search at a(k) for comparison:
@@ -157,8 +189,8 @@ that N. A refutation tree above 3·10^8 is likely tens of millions of nodes or m
 at the very least, with no useful upper estimate.
 
 ## Possible next steps
-- a(9): DFS at larger N to raise the lower bound (needs about 10 bytes per n of free memory); an exact value needs a far
-  stronger refutation method.
+- a(9): continue the hinted ladder past 5·10^8. Memory is about 5 bytes per n shared plus 2.75 per thread, so a 1- or
+  2-thread run at 10^9 needs 8-10.5 GB. An exact value needs a far stronger refutation method.
 - a(10) >= 22458303 (BLL), with constraint R(5) even.
 - Erdős #436 lists Λ(k,2) only up to k = 7; a(8) could be reported there.
 
@@ -170,3 +202,6 @@ at the very least, with no useful upper estimate.
   sets: a(9) >= 6·10^7 (verify_witness), then a(9) >= 178708831 (X = 3·10^8, checked by verify_chunked.py).
 - 2026-11-21: scaling runs for a(9) cost; solver memory cut from 30 to 10 bytes per n (same search, same k=8 certificate);
   DFS at N = 3·10^8 SAT in 6 h, so a(9) >= 300000031 (checked by verify_witness_chunked.py).
+- 2026-11-22: solver 2.7x faster plus a portfolio mode (79d15f3); overnight hinted ladder SAT at 3.5, 4, 4.5 and
+  5·10^8, so a(9) >= 500000008 (all four witnesses checked by verify_witness_chunked.py). Single-thread ladder:
+  5.5·10^8 SAT in 11 min, so a(9) >= 550000096; 6·10^8 timed out after 8 h.
