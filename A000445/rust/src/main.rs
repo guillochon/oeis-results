@@ -24,11 +24,12 @@ struct Ctx {
     nwin: usize,   // windows start at r in [1, nwin-1]
     last_beat: f64,
     primes: Vec<u32>,
-    pidx: Vec<u32>,    // prime -> index (only valid on primes)
+    // Memory: about 6 bytes per n plus the by_p1 / by_p2 lists. cof(m) = m / P1^e1 and
+    // p2i(m) = p1i[cof(m)] are computed on demand instead of stored.
     p1i: Vec<u32>,     // index of largest prime factor (u32::MAX for 1)
     e1: Vec<u8>,       // its exponent
-    cof: Vec<u32>,     // n / P1^e1
-    p2i: Vec<u32>,     // index of largest prime of cof (u32::MAX if cof == 1)
+    nsmall: usize,     // primes[i] with i < nsmall have q*q <= n and an explicit by_p1 list;
+                       // for larger q the list is implicitly {q*j : 1 <= j <= n/q} (all with e1 = 1)
     by_p1_off: Vec<u32>,
     by_p1: Vec<u32>,
     by_p2_off: Vec<u32>,
@@ -60,45 +61,57 @@ struct Ctx {
 impl Ctx {
     fn new(k: usize, nwin: usize, l: usize, two_mask: u16) -> Ctx {
         let n = nwin + l - 2;
-        let mut lpf = vec![0u32; n + 1];
-        let mut primes = Vec::new();
-        for p in 2..=n {
-            if lpf[p] == 0 {
-                primes.push(p as u32);
-                let mut m = p;
-                while m <= n {
-                    lpf[m] = p as u32;
-                    m += p;
+        // primes by a bit sieve, then p1i = index of the largest prime factor (later primes overwrite)
+        let mut primes: Vec<u32> = Vec::new();
+        {
+            let mut comp = vec![0u64; n / 64 + 1];
+            for p in 2..=n {
+                if comp[p >> 6] >> (p & 63) & 1 == 0 {
+                    primes.push(p as u32);
+                    let mut m = p * p;
+                    while m <= n {
+                        comp[m >> 6] |= 1 << (m & 63);
+                        m += p;
+                    }
                 }
             }
         }
-        let mut pidx = vec![u32::MAX; n + 1];
-        for (i, &p) in primes.iter().enumerate() {
-            pidx[p as usize] = i as u32;
-        }
+        let np = primes.len();
         let mut p1i = vec![u32::MAX; n + 1];
+        for (i, &p) in primes.iter().enumerate() {
+            let p = p as usize;
+            let mut m = p;
+            while m <= n {
+                p1i[m] = i as u32;
+                m += p;
+            }
+        }
         let mut e1 = vec![0u8; n + 1];
-        let mut cof = vec![1u32; n + 1];
-        let mut p2i = vec![u32::MAX; n + 1];
         for m in 2..=n {
-            let p = lpf[m] as usize;
+            let q = primes[p1i[m] as usize] as usize;
             let mut c = m;
             let mut e = 0u8;
-            while c % p == 0 {
-                c /= p;
+            while c % q == 0 {
+                c /= q;
                 e += 1;
             }
-            p1i[m] = pidx[p];
             e1[m] = e;
-            cof[m] = c as u32;
-            p2i[m] = if c == 1 { u32::MAX } else { pidx[lpf[c] as usize] };
         }
-        let np = primes.len();
-        let build = |key: &Vec<u32>| -> (Vec<u32>, Vec<u32>) {
+        let nsmall = primes.iter().take_while(|&&p| (p as usize) * (p as usize) <= n).count();
+        let cof_of = |m: usize| -> usize {
+            let q = primes[p1i[m] as usize] as usize;
+            let mut c = m;
+            for _ in 0..e1[m] {
+                c /= q;
+            }
+            c
+        };
+        // counting-sort lists keyed by prime index; key(m) = None skips m
+        let build = |key: &dyn Fn(usize) -> Option<usize>| -> (Vec<u32>, Vec<u32>) {
             let mut cnt = vec![0u32; np + 1];
             for m in 2..=n {
-                if key[m] != u32::MAX {
-                    cnt[key[m] as usize + 1] += 1;
+                if let Some(i) = key(m) {
+                    cnt[i + 1] += 1;
                 }
             }
             for i in 0..np {
@@ -107,39 +120,34 @@ impl Ctx {
             let mut pos = cnt.clone();
             let mut arr = vec![0u32; cnt[np] as usize];
             for m in 2..=n {
-                if key[m] != u32::MAX {
-                    let i = key[m] as usize;
+                if let Some(i) = key(m) {
                     arr[pos[i] as usize] = m as u32;
                     pos[i] += 1;
                 }
             }
             (cnt, arr)
         };
-        let (by_p1_off, by_p1) = build(&p1i);
+        let (by_p1_off, by_p1) = build(&|m: usize| {
+            let i = p1i[m] as usize;
+            if i < nsmall { Some(i) } else { None }
+        });
         // by_p2 only needs numbers m that, at the moment they become one-unassigned (when their
         // second-largest prime p2i[m] is assigned), sit in some window whose other members are all
         // already determined (p1i <= p2i[m]). This is static, so filter once; propagation is unchanged.
-        let mut key2 = p2i.clone();
-        for m in 2..=n {
-            let q = p2i[m];
+        let (by_p2_off, by_p2) = build(&|m: usize| {
+            let q = p1i[cof_of(m)];
             if q == u32::MAX {
-                continue;
+                return None;
             }
             let lo = if m + 1 > l { m + 1 - l } else { 1 };
             let hi = m.min(nwin - 1);
-            let mut keep = false;
             for st in lo..=hi {
                 if (st..st + l).all(|x| x == m || x == 1 || (x <= n && p1i[x] <= q)) {
-                    keep = true;
-                    break;
+                    return Some(q as usize);
                 }
             }
-            if !keep {
-                key2[m] = u32::MAX;
-            }
-        }
-        let (by_p2_off, by_p2) = build(&key2);
-        drop(key2);
+            None
+        });
         let full: u16 = ((1u32 << k) - 1) as u16;
         let mut dom = vec![full; np];
         dom[0] &= two_mask;
@@ -153,11 +161,9 @@ impl Ctx {
             nwin,
             last_beat: 0.0,
             primes,
-            pidx,
             p1i,
             e1,
-            cof,
-            p2i,
+            nsmall,
             by_p1_off,
             by_p1,
             by_p2_off,
@@ -193,6 +199,43 @@ impl Ctx {
     }
 
     #[inline]
+    fn cof(&self, m: usize) -> usize {
+        if m == 1 {
+            return 1;
+        }
+        let q = self.primes[self.p1i[m] as usize] as usize;
+        let mut c = m / q;
+        for _ in 1..self.e1[m] {
+            c /= q;
+        }
+        c
+    }
+
+    #[inline]
+    fn p2i(&self, m: usize) -> u32 {
+        self.p1i[self.cof(m)]
+    }
+
+    // number of m with largest prime index idx, and the t-th of them
+    #[inline]
+    fn p1_count(&self, idx: usize) -> usize {
+        if idx < self.nsmall {
+            (self.by_p1_off[idx + 1] - self.by_p1_off[idx]) as usize
+        } else {
+            self.n / self.primes[idx] as usize
+        }
+    }
+
+    #[inline]
+    fn p1_at(&self, idx: usize, t: usize) -> usize {
+        if idx < self.nsmall {
+            self.by_p1[self.by_p1_off[idx] as usize + t] as usize
+        } else {
+            self.primes[idx] as usize * (t + 1)
+        }
+    }
+
+    #[inline]
     fn determined(&self, m: usize, cur: u32) -> bool {
         m == 1 || self.p1i[m] <= cur
     }
@@ -203,7 +246,7 @@ impl Ctx {
     fn forbid_zero_of(&mut self, m: usize, r: usize) -> bool {
         let k = self.k;
         let qi = self.p1i[m] as usize;
-        let s = self.chi[self.cof[m] as usize] as usize;
+        let s = self.chi[self.cof(m)] as usize;
         let e = self.e1[m] as usize;
         let mut bad: u16 = 0;
         for w in 0..k {
@@ -235,7 +278,7 @@ impl Ctx {
             let mut y = x;
             while y > 1 {
                 out.push(self.p1i[y]);
-                y = self.cof[y] as usize;
+                y = self.cof(y);
             }
         }
     }
@@ -259,14 +302,21 @@ impl Ctx {
         let l = self.l;
         let cur = idx as u32;
         self.val[idx] = v as u8;
-        let (a, b) = (self.by_p1_off[idx] as usize, self.by_p1_off[idx + 1] as usize);
-        for t in a..b {
-            let m = self.by_p1[t] as usize;
-            let s0 = self.chi[self.cof[m] as usize] as usize;
-            self.chi[m] = ((s0 + self.e1[m] as usize * v) % k) as u8;
+        let cnt = self.p1_count(idx);
+        if idx < self.nsmall {
+            for t in 0..cnt {
+                let m = self.p1_at(idx, t);
+                let s0 = self.chi[self.cof(m)] as usize;
+                self.chi[m] = ((s0 + self.e1[m] as usize * v) % k) as u8;
+            }
+        } else {
+            let q = self.primes[idx] as usize;
+            for j in 1..=cnt {
+                self.chi[q * j] = ((self.chi[j] as usize + v) % k) as u8;
+            }
         }
-        for t in a..b {
-            let m = self.by_p1[t] as usize;
+        for t in 0..cnt {
+            let m = self.p1_at(idx, t);
             if self.chi[m] != 0 {
                 continue;
             }
@@ -298,7 +348,8 @@ impl Ctx {
                     self.conf = (1, st as u32);
                     return false;
                 }
-                if self.p2i[open] == u32::MAX || self.p2i[open] <= cur {
+                let p2 = self.p2i(open);
+                if p2 == u32::MAX || p2 <= cur {
                     if !self.forbid_zero_of(open, st) {
                         return false;
                     }
@@ -521,8 +572,8 @@ fn seek(k: usize, n: usize, two_mask: u16, secs: f64, unit: u64, hint: Option<St
         for line in std::fs::read_to_string(path).unwrap().lines() {
             if let Some((p, v)) = line.trim().split_once(':') {
                 let p: usize = p.parse().unwrap();
-                if p <= c.n && c.pidx[p] != u32::MAX {
-                    c.hint[c.pidx[p] as usize] = (v.parse::<usize>().unwrap() % k) as u8;
+                if let Ok(i) = c.primes.binary_search(&(p as u32)) {
+                    c.hint[i] = (v.parse::<usize>().unwrap() % k) as u8;
                     cnt += 1;
                 }
             }

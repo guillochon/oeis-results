@@ -1,4 +1,4 @@
-# A000445: a(8) = 1508324, and a(9) >= 178708831
+# A000445: a(8) = 1508324, and a(9) >= 300000031
 
 **Status:** new term found, with a machine-checkable certificate. Not yet submitted.
 **Known terms:** a(2)..a(7) = 9, 77, 1224, 7888, 202124, 1649375 (Lehmer, Lehmer, Mills, Dunton, Bierstedt–Mills;
@@ -83,13 +83,14 @@ variables, 2^{n/sqrt(log n)} is still astronomically large. This instance is eas
 consecutive pairs drive the propagation, and the free-prime argument removes the large primes. The whole a(8) refutation
 explores 78k nodes.
 
-## a(9) >= 178708831 (lower bound only)
+## a(9) >= 300000031 (lower bound only)
 BLL 1964 showed a(9) > 10^7. For odd k the Kummer extensions have full degree, so every assignment χ : primes → Z/9 is
 realized by infinitely many primes p ≡ 1 (mod 9), including χ(3). (We also checked χ(3) empirically: over 11,727 primes
 p ≡ 1 (mod 9), its 9 classes are as evenly spread as those of 2 and 11.)
 
-**What failed.** The DFS above, even with conflict-directed backjumping, stalls for k = 9. A run that hits its time limit
-is not evidence of UNSAT: D(25770880) took 57 minutes to come back SAT, after 1-hour runs at nearby N had timed out.
+**Early DFS runs (Nov 8).** The DFS above, even with conflict-directed backjumping, seemed to stall for k = 9. A run that
+hits its time limit is not evidence of UNSAT: D(25770880) took 57 minutes to come back SAT, after 1-hour runs at nearby N
+had timed out. Given enough time it does succeed: see the N = 3·10^8 run below.
 
 **What worked.** Every good witness has χ(q) = 1 for almost all primes, so χ(n) is close to Ω(n) mod 9 and zero pairs
 are rare. `ls/beam.py` searches over small exception sets E (prime → value). It computes χ on [1, X] with numpy, finds
@@ -97,7 +98,7 @@ the first zero pair (r, r+1), and tries changing χ at each prime dividing r or 
 first pair. A run with X = 3·10^8, 40 rounds, takes 2.5 hours. The search finds the true a(6) exactly, but only 77% of a(5)
 and 17% of a(7), so its results are lower bounds, possibly far from the truth.
 
-**Result** (`ls/best_k9.txt`). χ(q) = 1 for every prime except:
+**Beam result** (`ls/best_k9.txt`). χ(q) = 1 for every prime except:
 - χ = 0: 3, 11, 277, 509, 3631, 5903, 9257, 20773, 25261, 47939, 409729
 - χ = 2: 127, 173, 179, 269, 347, 619, 907, 1747
 - χ = 3: 769
@@ -106,15 +107,58 @@ The first zero pair is
 
     178708831 = 7^8 * 31,    178708832 = 2^5 * 19 * 41 * 67 * 107,
 
-so **a(9) >= 178708831**. `ls/verify_chunked.py` checks this independently. It computes χ(n) by trial division over every
+so a(9) >= 178708831. `ls/verify_chunked.py` checks this independently. It computes χ(n) by trial division over every
 n <= 1.8·10^8, in chunks of 10^7, and reports the same first pair (`results/verify_k9_178708831.log`). An earlier
 6-exception witness was also checked with `verify_witness.py`, giving no pair below 6·10^7.
 
-The exact a(9) is open. It needs a refutation of D(a(9)+1) at N ≈ 10^8 or more, and that looks out of reach for this
-solver.
+**DFS at N = 3·10^8 (Nov 21).** After the memory cut (10 bytes per n, commit 6e756b6), `DEADLINE=43200 cpr decide 9
+300000000` ran at below-normal priority and returned **SAT** after 3,541,060 nodes in 6.0 hours (6.1 ms/node;
+`results/decide_k9_300000000.log`). The witness (`results/witness_k9_3e8.txt`) sets χ on the 90,900 primes up to
+1,171,867, and larger primes follow the free rule. χ(q) = 1 for all of them except:
+- χ = 0: 3, 13, 59, 71, 101, 137
+- χ = 2: 71 primes from 107 to 713771 (listed in the witness file)
+- χ = 3: 379, 2557
+
+`verify_witness_chunked.py` is a new independent numpy checker. It uses the same free rule as `verify_witness.py`, but
+works in chunks, so memory stays small. It confirms there is no zero pair below 3·10^8, and with this completion the first
+pair is at r = 300000031, a prime above N (`results/verify_k9_3e8.log`). It reproduces the k=8 witness check exactly
+(first pair 1508324). So **a(9) >= 300000031**. That is 1.7 times the beam bound, and the beam had again fallen short.
+The bound is set only by N: a run at larger N would probably push it further.
+
+The exact a(9) is open. It needs a refutation of D(a(9)+1), with a(9) now known to be above 3·10^8.
+
+## How hard is an exact a(9)? (scaling runs, 2026-11-21)
+Proof tree size of `cpr decide k a(k)+1` (UNSAT), with the SAT search at a(k) for comparison:
+
+| k | a(k)+1 | UNSAT nodes | time | SAT nodes at a(k) |
+|---|---|---|---|---|
+| 2 | 10 | 2 | 0 s | |
+| 3 | 78 | 5 | 0 s | |
+| 4 | 1225 | 23 | 0 s | |
+| 5 | 7889 | 319 | 0 s | 392 |
+| 6 | 202125 | 1004 | 0.03 s | 1175 |
+| 7 | 1649376 | 44712 | 8 s | 42156 |
+| 8 | 1508325 | 77949 | 14 s | 49499 |
+
+(Committed solver, at the memory-cut commit 6e756b6, which searches identically. The first scaling runs used an older
+`cpr.exe` binary that was about 3 times slower and took a few hundred more nodes; the other node counts below come from
+that binary.)
+
+At fixed k the tree shrinks slowly as N grows past a(k) (k=8: 78k nodes at 1.5M, 58k at 1.2·10^7; k=7: 45k to 40k
+from 1.6M to 6M), while time per node grows roughly linearly with N.
+
+Fits of log(nodes) against k and log a(k) (k=3..8, residual factor about 2) predict only 1-3 million nodes for k=9, which
+works out to roughly one day at N = 1.8·10^8. **That extrapolation is contradicted by the k=9 runs.** For k <= 8 the SAT
+search at a(k) uses 60-100% of the nodes of the UNSAT tree at a(k)+1, and far below a(k) it is much cheaper (k=8 at
+10^6: 20k nodes, 26% of the tree). For k=9, SAT searches at N = 1.5-2.6·10^7, at most 14% of the known lower bound,
+already took 0.65-3.9 million nodes. So the real k=9 tree is at least tens of millions of nodes, and likely far more.
+The N = 3·10^8 run confirms this. It needed 3.5 million nodes (6.1 ms each) just to find a solution, and a(9) is beyond
+that N. A refutation tree above 3·10^8 is likely tens of millions of nodes or more: days to weeks of single-core time
+at the very least, with no useful upper estimate.
 
 ## Possible next steps
-- a(9): improve the beam (it reaches only 17% of a(7)), then retry; an exact value needs a far stronger refutation method.
+- a(9): DFS at larger N to raise the lower bound (needs about 10 bytes per n of free memory); an exact value needs a far
+  stronger refutation method.
 - a(10) >= 22458303 (BLL), with constraint R(5) even.
 - Erdős #436 lists Λ(k,2) only up to k = 7; a(8) could be reported there.
 
@@ -124,3 +168,5 @@ solver.
   SAT witness verified, UNSAT certificate verified (also from the gzip file).
 - 2026-11-08: a(9). DFS with backjumping verified witnesses up to N = 25770880, then stalled. Beam search over exception
   sets: a(9) >= 6·10^7 (verify_witness), then a(9) >= 178708831 (X = 3·10^8, checked by verify_chunked.py).
+- 2026-11-21: scaling runs for a(9) cost; solver memory cut from 30 to 10 bytes per n (same search, same k=8 certificate);
+  DFS at N = 3·10^8 SAT in 6 h, so a(9) >= 300000031 (checked by verify_witness_chunked.py).
